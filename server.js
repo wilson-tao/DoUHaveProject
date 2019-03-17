@@ -3,9 +3,16 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const compression = require('compression');
 const morgan = require('morgan');
+const path = require('path');
 
 
 const app = express();
+
+app.use(express.static(path.join(__dirname, 'public/build')));
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'public/build', 'index.html'));
+});
 
 
 // Require Routes
@@ -51,6 +58,10 @@ mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true })
 app.use('/user', userRoutes);
 app.use('/items', itemRoutes);
 app.use('/savelist', savelistRoutes);
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/public/build/index.html'));
+});
 
 
 //Error Handling
