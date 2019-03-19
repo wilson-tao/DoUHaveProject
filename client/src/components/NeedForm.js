@@ -12,7 +12,7 @@ class NeedForm extends Component {
     this.state = {
       submitError: '',
       name: '',
-      itemImg: '',
+      itemImg: null,
       budget: '',
       category: '',
       condition: '',
@@ -31,7 +31,7 @@ class NeedForm extends Component {
       gamesystem: '',
     };
     this.onTextChangeName = this.onTextChangeName.bind(this);
-    this.onTextChangeItemImg = this.onTextChangeItemImg.bind(this);
+    this.onChangeItemImg = this.onChangeItemImg.bind(this);
     this.onTextChangeBudget = this.onTextChangeBudget.bind(this);
     this.onTextChangeCategory = this.onTextChangeCategory.bind(this);
     this.onTextChangeCondition = this.onTextChangeCondition.bind(this);
@@ -57,9 +57,9 @@ class NeedForm extends Component {
       name: event.target.value
     });
   }
-  onTextChangeItemImg(event) {
+  onChangeItemImg(event) {
     this.setState({
-      itemImg: event.target.value
+      itemImg: event.target.files[0]
     });
   }
   onTextChangeBudget(event) {
@@ -162,31 +162,31 @@ class NeedForm extends Component {
       gamesystem
     } = this.state;
 
+    var data = new FormData();
+    data.append('name', name);
+    data.append('itemImg', itemImg);
+    data.append('budget', budget);
+    data.append('category', category);
+    data.append('condition', condition);
+    data.append('description', description);
+    data.append('location', location);
+    data.append('locationState', locationState);
+    data.append('submittedby', submittedby);
+    data.append('submittedby1', submittedby1);
+    data.append('carmake', carmake);
+    data.append('carmodel', carmodel);
+    data.append('caryear', caryear);
+    data.append('cellmake', cellmake);
+    data.append('cellmodel', cellmodel);
+    data.append('cellcarrier', cellcarrier);
+    data.append('cellos', cellos);
+    data.append('gamesystem', gamesystem);
+
+    console.log('Data: ', itemImg);
+
     fetch('/items', {
       method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        name: name,
-        itemImg: itemImg,
-        budget: budget,
-        category: category,
-        condition: condition,
-        description: description,
-        location: location,
-        locationState: locationState,
-        submittedby: submittedby,
-        submittedby1: submittedby1,
-        carmake: carmake,
-        carmodel: carmodel,
-        caryear: caryear,
-        cellmake: cellmake,
-        cellmodel: cellmodel,
-        cellcarrier: cellcarrier,
-        cellos: cellos,
-        gamesystem: gamesystem
-      })
+      body: data,
     }).then(res => res.json())
     .then(json => {
       console.log(json.message);
@@ -263,7 +263,7 @@ class NeedForm extends Component {
           <input type="text" placeholder="Item's name..." value={name} onChange={this.onTextChangeName} /><br />
         </div>
         <div id="itemImg">
-          <input type="file" name={itemImg} />
+          <input type="file" name="itemImg" id="itemImg" onChange={this.onChangeItemImg}  />
         </div>
         <div className="itemRow">
           <div id="itemCategory">
