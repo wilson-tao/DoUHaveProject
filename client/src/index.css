@@ -307,6 +307,10 @@ input {
   top: 0;
 }
 
+.ItemFull img {
+  width: 100%;
+}
+
 .item-panel {
   position: relative;
   margin: auto;
