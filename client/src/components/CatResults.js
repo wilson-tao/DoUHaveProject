@@ -161,7 +161,10 @@ class CatResults extends Component {
             <div className="resultItem" key={model._id} onClick={() => this.onItemFull(model._id)}>
 
             <div className="itemRow">
-              <div id="itemPic"><img src={'/uploads/' + model.pic} /> </div>
+              <div id="itemPic"><img src={model.itemImg.substring(
+                model.itemImg.lastIndexOf("/") - 17,
+                model.itemImg.lastIndexOf(".") + 4
+              )} /> </div>
               <h1 id="itemName">{model.name} </h1>
               <h3 id="itemBudget">Budget: {model.budget} </h3>
             </div>
