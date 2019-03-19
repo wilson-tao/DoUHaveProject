@@ -69,6 +69,7 @@ router.post('/login', (req, res, next) => {
             });
           }
           if (result) {
+            console.log('Environment:', process.env.JWT_KEY);
             const token = jwt.sign(
               {
                 email: user[0].email,

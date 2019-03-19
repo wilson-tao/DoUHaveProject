@@ -10,10 +10,6 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, 'public/build')));
 
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'public/build', 'index.html'));
-});
-
 
 // Require Routes
 // const <variable> = require('<URL>');
@@ -25,6 +21,7 @@ const savelistRoutes = require('./routes/api/savelist')
 
 //Required Middleware
 app.use(morgan('dev'));
+app.use('/itempics', express.static('itempics'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(compression());
@@ -59,8 +56,14 @@ app.use('/user', userRoutes);
 app.use('/items', itemRoutes);
 app.use('/savelist', savelistRoutes);
 
+
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname+'/public/build/index.html'));
+});
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, 'public/build', 'index.html'));
 });
 
 

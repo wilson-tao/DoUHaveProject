@@ -12,6 +12,7 @@ class NeedForm extends Component {
     this.state = {
       submitError: '',
       name: '',
+      itemImg: '',
       budget: '',
       category: '',
       condition: '',
@@ -30,6 +31,7 @@ class NeedForm extends Component {
       gamesystem: '',
     };
     this.onTextChangeName = this.onTextChangeName.bind(this);
+    this.onTextChangeItemImg = this.onTextChangeItemImg.bind(this);
     this.onTextChangeBudget = this.onTextChangeBudget.bind(this);
     this.onTextChangeCategory = this.onTextChangeCategory.bind(this);
     this.onTextChangeCondition = this.onTextChangeCondition.bind(this);
@@ -53,6 +55,11 @@ class NeedForm extends Component {
   onTextChangeName(event) {
     this.setState({
       name: event.target.value
+    });
+  }
+  onTextChangeItemImg(event) {
+    this.setState({
+      itemImg: event.target.value
     });
   }
   onTextChangeBudget(event) {
@@ -136,6 +143,7 @@ class NeedForm extends Component {
     const {
       submitError,
       name,
+      itemImg,
       budget,
       category,
       condition,
@@ -161,6 +169,7 @@ class NeedForm extends Component {
       },
       body: JSON.stringify({
         name: name,
+        itemImg: itemImg,
         budget: budget,
         category: category,
         condition: condition,
@@ -186,6 +195,7 @@ class NeedForm extends Component {
         this.setState({
           submitError: json.message,
           name: '',
+          itemImg: '',
           budget: '',
           category: '',
           condition: '',
@@ -215,6 +225,7 @@ class NeedForm extends Component {
     const {
       submitError,
       name,
+      itemImg,
       budget,
       category,
       condition,
@@ -250,6 +261,9 @@ class NeedForm extends Component {
         <div id="itemName">
           <label>Item Name</label><br />
           <input type="text" placeholder="Item's name..." value={name} onChange={this.onTextChangeName} /><br />
+        </div>
+        <div id="itemImg">
+          <input type="file" name={itemImg} />
         </div>
         <div className="itemRow">
           <div id="itemCategory">

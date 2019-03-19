@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const itemSchema = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
   name: { type: String, default: '', required: true },
+  itemImg: { type: String, default: '', required: false },
   pic: { type: String, default: '', required: false },
   budget: { type: Number, required: true },
   category: { type: String, default: '', required: true },

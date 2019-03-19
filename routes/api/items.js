@@ -1,6 +1,34 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const multer = require('multer');
+
+const storage = multer.diskStorage({
+  destination: function(req, file, cb) {
+    cb(null, './itempics/');
+  },
+  filename: function(req, file, cb) {
+    cb(null, new Date().toISOString() + file.originalname);
+  }
+});
+
+const fileFilter = (req, file, cb) => {
+  // reject a file
+   if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+     cb(null, true);
+   } else {
+     cb(null, false);
+   }
+};
+
+const upload = multer({
+  storage: storage,
+  limits: {
+    fileSize: 1024 * 1025 * 5
+  },
+  fileFilter: fileFilter
+});
+
 
 const Item = require('../../models/Item');
 
@@ -12,7 +40,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/', (req, res, next) => {
   Item.find()
-      .select('name _id pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate')
+      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate')
       .exec()
       .then(docs => {
         const response = {
@@ -20,6 +48,7 @@ router.get('/', (req, res, next) => {
           items: docs.map(doc => {
             return {
               name: doc.name,
+              itemImg: doc.itemImg,
               pic: doc.pic,
               budget: doc.budget,
               _id: doc._id,
@@ -61,7 +90,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/:category', (req, res, next) => {
   Item.find({ category: req.params.category })
-      .select('name _id pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate')
+      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate')
       .exec()
       .then(docs => {
         const response = {
@@ -70,6 +99,7 @@ router.get('/:category', (req, res, next) => {
             return {
               name: doc.name,
               budget: doc.budget,
+              itemImg: doc.itemImg,
               pic: doc.pic,
               _id: doc._id,
               category: doc.category,
@@ -112,7 +142,7 @@ router.get('/:category', (req, res, next) => {
 router.get('/search1/:category/:term', (req, res, next) => {
   const regex = RegExp(req.params.term, 'i');
   Item.find({ category: req.params.category, name: regex })
-      .select('name _id pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate')
+      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate')
       .exec()
       .then(docs => {
         const response = {
@@ -120,6 +150,7 @@ router.get('/search1/:category/:term', (req, res, next) => {
           items: docs.map(doc => {
             return {
               name: doc.name,
+              itemImg: doc.itemImg,
               pic: doc.pic,
               budget: doc.budget,
               _id: doc._id,
@@ -161,7 +192,7 @@ router.get('/search1/:category/:term', (req, res, next) => {
   router.get('/search2/:term', (req, res, next) => {
     const regex = RegExp(req.params.term, 'i');
     Item.find({$or :[{name: regex},{description: regex}]})
-        .select('name _id pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate')
+        .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate')
         .exec()
         .then(docs => {
           const response = {
@@ -169,6 +200,7 @@ router.get('/search1/:category/:term', (req, res, next) => {
             items: docs.map(doc => {
               return {
                 name: doc.name,
+                itemImg: doc.itemImg,
                 budget: doc.budget,
                 pic: doc.pic,
                 _id: doc._id,
@@ -210,7 +242,7 @@ router.get('/search1/:category/:term', (req, res, next) => {
   router.get('/search3/:category/:condition/:term', (req, res, next) => {
     const regex = RegExp(req.params.term, 'i');
     Item.find({ category: req.params.category, condition: req.params.condition, $or :[{name: regex},{description: regex}]})
-        .select('name _id pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate')
+        .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate')
         .exec()
         .then(docs => {
           const response = {
@@ -218,6 +250,7 @@ router.get('/search1/:category/:term', (req, res, next) => {
             items: docs.map(doc => {
               return {
                 name: doc.name,
+                itemImg: doc.itemImg,
                 budget: doc.budget,
                 pic: doc.pic,
                 _id: doc._id,
@@ -257,10 +290,12 @@ router.get('/search1/:category/:term', (req, res, next) => {
 
 // End Search Route
 
-router.post('/', (req, res, next) => {
+router.post('/', upload.single('itemImg'), (req, res, next) => {
+  console.log('ReqFile: ', req.file);
   const item = new Item({
     _id: new mongoose.Types.ObjectId(),
     name: req.body.name,
+    itemImg: req.file.path,
     budget: req.body.budget,
     category: req.body.category,
     condition: req.body.condition,
@@ -284,6 +319,7 @@ router.post('/', (req, res, next) => {
           message: 'Item created in /items',
           createdItem: {
             name: result.name,
+            itemImg: result.itemImg,
             budget: result.budget,
             _id: result._id,
             category: result.category,
@@ -321,7 +357,7 @@ router.get('/item/:itemId', (req, res, next) => {
   console.log('Get Works');
   const id = req.params.itemId;
   Item.findById(id)
-      .select('name _id pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate')
+      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate')
       .exec()
       .then(doc => {
         console.log("From Database", doc);
