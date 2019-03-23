@@ -16,7 +16,8 @@ class CatResults extends Component {
       showItem: false,
       singleResult: '',
       showResults: true,
-      closed: true
+      closed: true,
+      clickToShow: false
     };
     this.onItemFull = this.onItemFull.bind(this);
     this.changeCategory = this.changeCategory.bind(this);
@@ -108,6 +109,23 @@ class CatResults extends Component {
     })
   }
 
+  onClickToShow = () => {
+    const {clickToShow} = this.state;
+    if (!clickToShow) {
+      this.setState({
+        clickToShow: true
+      })
+    } else {
+      this.setState({
+        clickToShow: false
+      })
+    }
+  }
+
+  onHamburger = () => {
+
+  }
+
 
 
 
@@ -158,10 +176,10 @@ class CatResults extends Component {
         <hr />
         <div className="categoryResults">
           {models.map(model =>
-            <div className="resultItem" key={model._id} onClick={() => this.onItemFull(model._id)}>
+            <div className="resultItem" key={model._id} >
 
             <div className="itemRow">
-              <div id="itemPic"><img src={model.itemImg.substring(
+              <div id="itemPic" onClick={() => this.onItemFull(model._id)}><img src={model.itemImg.substring(
                 model.itemImg.lastIndexOf("/") - 17,
                 model.itemImg.lastIndexOf(".") + 4
               )} /> </div>
@@ -179,7 +197,12 @@ class CatResults extends Component {
               <h5 >Description: </h5><p>{model.description}</p>
             </div>
             <div id="itemSubmittedby">
-              <h5>Submitted By: </h5> <p> {model.submittedby}</p>
+              <h5>Submitted By: </h5> <p> {model.submittedby}</p><br />
+              <h5>Contact Number: </h5> {
+                this.state.clickToShow ? (
+                  model.contactinfo
+                ) : <p onClick={this.onClickToShow}>Click To Show</p>
+              }
             </div>
             <div id="itemDate">
               <h5>Submitted On:</h5> {model.createdAt}

@@ -29,6 +29,7 @@ class NeedForm extends Component {
       cellcarrier: '',
       cellos: '',
       gamesystem: '',
+      contactinfo: ''
     };
     this.onTextChangeName = this.onTextChangeName.bind(this);
     this.onChangeItemImg = this.onChangeItemImg.bind(this);
@@ -48,6 +49,7 @@ class NeedForm extends Component {
     this.onTextChangeCellcarrier = this.onTextChangeCellcarrier.bind(this);
     this.onTextChangeCellos = this.onTextChangeCellos.bind(this);
     this.onTextChangeGamesystem = this.onTextChangeGamesystem.bind(this);
+    this.onTextChangeContactInfo = this.onTextChangeContactInfo.bind(this);
 
     this.onSubmit = this.onSubmit.bind(this);
   }
@@ -137,6 +139,11 @@ class NeedForm extends Component {
       gamesystem: event.target.value
     });
   }
+  onTextChangeContactInfo(event) {
+    this.setState({
+      contactinfo: event.target.value
+    });
+  }
 
 
   onSubmit() {
@@ -159,7 +166,8 @@ class NeedForm extends Component {
       cellmodel,
       cellcarrier,
       cellos,
-      gamesystem
+      gamesystem,
+      contactinfo
     } = this.state;
 
     var data = new FormData();
@@ -181,6 +189,7 @@ class NeedForm extends Component {
     data.append('cellcarrier', cellcarrier);
     data.append('cellos', cellos);
     data.append('gamesystem', gamesystem);
+    data.append('contactinfo', contactinfo);
 
     console.log('Data: ', itemImg);
 
@@ -212,6 +221,7 @@ class NeedForm extends Component {
           cellcarrier: '',
           cellos: '',
           gamesystem: '',
+          contactinfo: '',
         });
       } else {
         this.setState({
@@ -241,7 +251,8 @@ class NeedForm extends Component {
       cellmodel,
       cellcarrier,
       cellos,
-      gamesystem
+      gamesystem,
+      contactinfo
     } = this.state;
 
 
@@ -305,6 +316,7 @@ class NeedForm extends Component {
 
         <label>Submitted by (Name or Username)</label><br />
         <input type="text" placeholder="Your Name" value={submittedby} onChange={this.onTextChangeSubmittedby} /><br />
+        <input type="text" placeholder="Your Contact Number" value={contactinfo} onChange={this.onTextChangeContactInfo} /><br />
         <br />
         <label>Car Make</label><br />
         <input type="text" placeholder="Toyota, Honda, etc..." value={carmake} onChange={this.onTextChangeCarmake} /><br />

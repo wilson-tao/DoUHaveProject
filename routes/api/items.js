@@ -40,7 +40,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/', (req, res, next) => {
   Item.find()
-      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate')
+      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
       .exec()
       .then(docs => {
         const response = {
@@ -69,6 +69,7 @@ router.get('/', (req, res, next) => {
               gamesystem: doc.gamesystem,
               createdAt: doc.createdAt,
               expirationDate: doc.expirationDate,
+              contactinfo: doc.contactinfo,
               request: {
                 type: 'GET',
                 url: '/items/' + doc._id
@@ -90,7 +91,7 @@ router.get('/', (req, res, next) => {
 
 router.get('/:category', (req, res, next) => {
   Item.find({ category: req.params.category })
-      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate')
+      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
       .exec()
       .then(docs => {
         const response = {
@@ -119,6 +120,7 @@ router.get('/:category', (req, res, next) => {
               gamesystem: doc.gamesystem,
               createdAt: doc.createdAt,
               expirationDate: doc.expirationDate,
+              contactinfo: doc.contactinfo,
               request: {
                 type: 'GET',
                 url: '/items/' + doc._id
@@ -142,7 +144,7 @@ router.get('/:category', (req, res, next) => {
 router.get('/search1/:category/:term', (req, res, next) => {
   const regex = RegExp(req.params.term, 'i');
   Item.find({ category: req.params.category, name: regex })
-      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate')
+      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
       .exec()
       .then(docs => {
         const response = {
@@ -171,6 +173,7 @@ router.get('/search1/:category/:term', (req, res, next) => {
               gamesystem: doc.gamesystem,
               createdAt: doc.createdAt,
               expirationDate: doc.expirationDate,
+              contactinfo: doc.contactinfo,
               request: {
                 type: 'GET',
                 url: '/items/' + doc._id
@@ -192,7 +195,7 @@ router.get('/search1/:category/:term', (req, res, next) => {
   router.get('/search2/:term', (req, res, next) => {
     const regex = RegExp(req.params.term, 'i');
     Item.find({$or :[{name: regex},{description: regex}]})
-        .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate')
+        .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
         .exec()
         .then(docs => {
           const response = {
@@ -221,6 +224,7 @@ router.get('/search1/:category/:term', (req, res, next) => {
                 gamesystem: doc.gamesystem,
                 createdAt: doc.createdAt,
                 expirationDate: doc.expirationDate,
+                contactinfo: doc.contactinfo,
                 request: {
                   type: 'GET',
                   url: '/items/' + doc._id
@@ -242,7 +246,7 @@ router.get('/search1/:category/:term', (req, res, next) => {
   router.get('/search3/:category/:condition/:term', (req, res, next) => {
     const regex = RegExp(req.params.term, 'i');
     Item.find({ category: req.params.category, condition: req.params.condition, $or :[{name: regex},{description: regex}]})
-        .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate')
+        .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
         .exec()
         .then(docs => {
           const response = {
@@ -271,6 +275,7 @@ router.get('/search1/:category/:term', (req, res, next) => {
                 gamesystem: doc.gamesystem,
                 createdAt: doc.createdAt,
                 expirationDate: doc.expirationDate,
+                contactinfo: doc.contactinfo,
                 request: {
                   type: 'GET',
                   url: '/items/' + doc._id
@@ -311,7 +316,8 @@ router.post('/', upload.single('itemImg'), (req, res, next) => {
     cellmodel: req.body.cellmodel,
     cellmake: req.body.cellmake,
     cellos: req.body.cellos,
-    gamesystem: req.body.gamesystem
+    gamesystem: req.body.gamesystem,
+    contactinfo: req.body.contactinfo
   });
   item.save()
       .then(result => {
@@ -340,6 +346,7 @@ router.post('/', upload.single('itemImg'), (req, res, next) => {
             gamesystem: result.gamesystem,
             createdAt: result.createdAt,
             expirationDate: result.expirationDate,
+            contactinfo: result.contactinfo,
             request: {
               type: 'POST',
               url: '/items/' + result._id
@@ -359,7 +366,7 @@ router.get('/item/:itemId', (req, res, next) => {
   console.log('Get Works');
   const id = req.params.itemId;
   Item.findById(id)
-      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate')
+      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
       .exec()
       .then(doc => {
         console.log("From Database", doc);

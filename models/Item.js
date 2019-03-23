@@ -25,6 +25,7 @@ const itemSchema = mongoose.Schema({
   cellcarrier: { type: String, required: false },
   cellos: { type: String, required: false },
   gamesystem: { type: String, required: false },
+  contactinfo: { type: String, required: true }
 });
 
 itemSchema.index({
