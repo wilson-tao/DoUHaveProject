@@ -89,7 +89,8 @@ class Login extends Component {
   }
 
 
-  onSignIn() {
+  onSignIn(event) {
+    event.preventDefault();
     //Grab state
     console.log("Sign In function");
     const {
@@ -127,7 +128,7 @@ class Login extends Component {
           firstName: json.firstName,
           isAuth: true
         });
-        //window.location.reload();
+        window.location.reload();
       } else {
         this.setState({
           signInError: json.message,
@@ -135,6 +136,8 @@ class Login extends Component {
         });
       }
     });
+
+
   }
 
   onLogout() {
@@ -175,11 +178,11 @@ class Login extends Component {
         {
           (!isAuth) ? (
             <>
-            
-              <input type="email" placeholder="Email" value={signInEmail} onChange={this.onTextboxChangeSignInEmail} />
-              <input type="password" placeholder="Password" value={signInPassword} onChange={this.onTextboxChangeSignInPassword} />
-              <button onClick={this.onSignIn}>Sign In</button><br />
-
+              <form onSubmit={(e) => this.onSignIn(e)}>
+                <input type="email" placeholder="Email" value={signInEmail} onChange={this.onTextboxChangeSignInEmail} />
+                <input type="password" placeholder="Password" value={signInPassword} onChange={this.onTextboxChangeSignInPassword} />
+                <button type="submit">Sign In</button><br />
+              </form>
               <a href="/Register">Register</a><div className="space-break"></div>
             </>
           ) : (null)

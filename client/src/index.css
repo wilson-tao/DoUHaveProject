@@ -56,6 +56,14 @@ code {
   width: 300px;
 }
 
+.login-box {
+  display: inline-block;
+  text-align: right;
+  position: absolute;
+  right: 10px;
+  min-width: 800px;
+}
+
 .Login {
   display: inline-block;
   text-align: right;
@@ -95,8 +103,53 @@ input {
 
 /* ------------------ */
 
+.NavBar {
+  display: block;
+}
+
+/* START MOBILEMENU */
+
+.MobileMenu {
+  display: none;
+  padding-bottom: 3px;
+  /* padding-top: 20px; */
+  /* background-color: #565656; */
+  background-color: #231f20;
+  width: 100%;
+}
+
+.MobileMenu a {
+  color: #FFFAFA;
+  /* color: #2E2E2E; */
+  font-size: 110%;
+  text-transform: uppercase;
+  width: 100%;
+  text-decoration: none;
+}
+
+.MobileMenu ul {
+  list-style: none;
+  line-height: 250%;
+  padding-left: 0;
+  background-color: #231f20;
+}
+
+.MobileMenu li {
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+}
+
+.hamburger-menu {
+  margin:auto;
+  width: 45px;
+  height: 45px;
+}
+
+
 
 /* START SIDEBAR */
+
 
 .SideBar {
   display: inline-block;
@@ -108,11 +161,6 @@ input {
   /* padding-top: 20px; */
   /* background-color: #565656; */
   background-color: #231f20;
-}
-
-.NavBar {
-  width: 275px;
-  /* background-color: #0E1111; */
 }
 
 .SideBar a {
@@ -477,6 +525,12 @@ input {
 /* MEDIA QUERIES */
 
 @media only screen and (max-width: 600px) {
+  .MobileMenu {
+    display: block;
+  }
+  .login-box {
+    display: none;
+  }
   .SideBar {
     display: none;
   }
@@ -485,12 +539,14 @@ input {
     margin-left: 0;
   }
   .Categories {
-    grid-template-columns: repeat(auto-fill, 275px);
+    grid-template-columns: none;
+    width: 100%;
   }
 
   .category {
-    min-height: 275px;
-    min-width: 275px;
+    width: 100%;
+    display: block;
+    height: 300px;
   }
 }
 

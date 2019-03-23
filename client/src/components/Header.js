@@ -17,8 +17,10 @@ class Header extends Component {
       <div className="Header">
 
         <div className="site-title"><img src={Logo} alt="Logo" /></div>
-        <Login isAuth={isAuth} userName={userName} firstName={firstName} />
-
+        <div className="login-box">
+          <Login isAuth={isAuth} userName={userName} firstName={firstName} />
+        </div>
+        
       </div>
     );
   }

@@ -8,6 +8,7 @@ import {
 
 import Header from './components/Header';
 import SideBar from './components/SideBar';
+import MobileMenu from './components/MobileMenu';
 import Home from './components/Home';
 import Footer from './components/Footer';
 import About from './components/About';
@@ -97,8 +98,9 @@ class App extends Component {
           console.log('Passed Token App:', isAuth)
         }
         <Header isAuth={isAuth} userName={userName} firstName={firstName} />
-
+        <MobileMenu />
         <SideBar />
+
 
         <div className="mycontainer">
           <BrowserRouter>
