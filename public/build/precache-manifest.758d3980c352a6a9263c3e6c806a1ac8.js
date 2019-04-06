@@ -1,23 +1,27 @@
 self.__precacheManifest = [
   {
-    "revision": "f101e37176e04963919d",
-    "url": "/static/css/main.c18de214.chunk.css"
+    "revision": "e1921329d5c3b46881c9",
+    "url": "/static/css/main.1e3819b2.chunk.css"
   },
   {
-    "revision": "f101e37176e04963919d",
-    "url": "/static/js/main.f101e371.chunk.js"
+    "revision": "e1921329d5c3b46881c9",
+    "url": "/static/js/main.e1921329.chunk.js"
   },
   {
-    "revision": "87478b46f9044e6446f9",
-    "url": "/static/css/1.985a2e65.chunk.css"
+    "revision": "d36ead06831df8d62981",
+    "url": "/static/css/1.1f04020d.chunk.css"
   },
   {
-    "revision": "87478b46f9044e6446f9",
-    "url": "/static/js/1.87478b46.chunk.js"
+    "revision": "d36ead06831df8d62981",
+    "url": "/static/js/1.d36ead06.chunk.js"
   },
   {
     "revision": "229c360febb4351a89df",
     "url": "/static/js/runtime~main.229c360f.js"
+  },
+  {
+    "revision": "7d596c1c63c5b2b6724c01d0a3b99ffb",
+    "url": "/static/media/LogoWbg.7d596c1c.png"
   },
   {
     "revision": "8cbd86763e7c8853c956dad4064ef154",
@@ -80,7 +84,7 @@ self.__precacheManifest = [
     "url": "/static/media/004-linkedin-button.ccf2239d.svg"
   },
   {
-    "revision": "f7dc903841473c90a6bc5099f7156dae",
+    "revision": "c592358e450a2f7cd1a636ccae663a8e",
     "url": "/index.html"
   }
 ];
