@@ -7,7 +7,7 @@ class HowItWorks extends Component {
     return (
       <div className="HowItWorks">
         <h1>How It Works</h1>
-        <img src={logo} alt="DoUHaveLogo" />
+        <img className="logowbg" src={logo} alt="DoUHaveLogo" />
         <h2>Save Money (Find It)</h2>
         <p>Need something? Sign up to create an account where you can post what you need and the budget you're happy with. They come to you!</p>
         <h2>Make Money (Sell It)</h2>

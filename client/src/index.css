@@ -369,6 +369,22 @@ input {
   background-color: white;
 }
 
+.About {
+  text-align: center;
+  padding: 30px;
+}
+
+.HowItWorks {
+  text-align: center;
+  padding: 30px;
+}
+
+.logowbg {
+ padding: 10px;
+ width: 100%;
+ max-width: 700px;
+}
+
 /* ------------------ */
 
 
@@ -548,6 +564,8 @@ input {
     display: block;
     height: 300px;
   }
+
+
 }
 
 @media only screen and (min-width: 600px) {
@@ -564,6 +582,8 @@ input {
     padding-left: 10px;
     padding-right: 10px;
   }
+
+
 }
 
 @media only screen and (min-width: 768px) {

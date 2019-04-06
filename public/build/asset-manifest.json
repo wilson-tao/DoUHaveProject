@@ -1,7 +1,7 @@
 {
-  "main.css": "/static/css/main.1e3819b2.chunk.css",
-  "main.js": "/static/js/main.e1921329.chunk.js",
-  "main.js.map": "/static/js/main.e1921329.chunk.js.map",
+  "main.css": "/static/css/main.e0d434e4.chunk.css",
+  "main.js": "/static/js/main.d89d5f12.chunk.js",
+  "main.js.map": "/static/js/main.d89d5f12.chunk.js.map",
   "static/css/1.1f04020d.chunk.css": "/static/css/1.1f04020d.chunk.css",
   "static/js/1.d36ead06.chunk.js": "/static/js/1.d36ead06.chunk.js",
   "static/js/1.d36ead06.chunk.js.map": "/static/js/1.d36ead06.chunk.js.map",
@@ -23,9 +23,9 @@
   "static/media/002-twitter.svg": "/static/media/002-twitter.c28239e1.svg",
   "static/media/003-youtube-logotype.svg": "/static/media/003-youtube-logotype.516f1701.svg",
   "static/media/004-linkedin-button.svg": "/static/media/004-linkedin-button.ccf2239d.svg",
-  "static/css/main.1e3819b2.chunk.css.map": "/static/css/main.1e3819b2.chunk.css.map",
+  "static/css/main.e0d434e4.chunk.css.map": "/static/css/main.e0d434e4.chunk.css.map",
   "static/css/1.1f04020d.chunk.css.map": "/static/css/1.1f04020d.chunk.css.map",
   "index.html": "/index.html",
-  "precache-manifest.758d3980c352a6a9263c3e6c806a1ac8.js": "/precache-manifest.758d3980c352a6a9263c3e6c806a1ac8.js",
+  "precache-manifest.c9fb8768240c44ae04fd15688f206dc2.js": "/precache-manifest.c9fb8768240c44ae04fd15688f206dc2.js",
   "service-worker.js": "/service-worker.js"
 }

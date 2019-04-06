@@ -7,7 +7,7 @@ class About extends Component {
     return (
       <div className="About">
         <h1>About</h1>
-        <img src={logo} alt="DoUHaveLogo" />
+        <img className="logowbg" src={logo} alt="DoUHaveLogo" />
         <h3>The Ethics Company -2018-</h3>
         <label>Director of IT:</label><p>Umair Shahbaz</p>
         <label>Developer & Analytics:</label><p>Regan Lussier</p>
