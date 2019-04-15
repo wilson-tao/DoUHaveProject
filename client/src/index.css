@@ -64,6 +64,10 @@ code {
   min-width: 800px;
 }
 
+.mobile-login {
+  display: none;
+}
+
 .mobile-login-img {
   width: 50px;
   height: 50px;
