@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Login from './Login';
 import Logo from '../img/DoUHaveLogoSmall.png';
+import MobileLogin from './MobileLogin';
 
 
 class Header extends Component {
@@ -20,7 +21,10 @@ class Header extends Component {
         <div className="login-box">
           <Login isAuth={isAuth} userName={userName} firstName={firstName} />
         </div>
-        
+        <div className="mobile-login">
+          <MobileLogin isAuth={isAuth} userName={userName} firstName={firstName} />
+        </div>
+
       </div>
     );
   }
