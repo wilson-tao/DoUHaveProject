@@ -44,11 +44,19 @@ class ItemFull extends Component {
       })
   }
 
-  onClose() {
+  onClose = () => {
+    const {closed} = this.state;
     console.log("On Close Function");
-    this.setState({
-      closed: true
-    })
+    if (!closed) {
+      this.setState({
+        closed: true
+      })
+    } else {
+      this.setState({
+        closed: false
+      })
+    }
+
   }
 
 
@@ -65,7 +73,7 @@ class ItemFull extends Component {
     console.log("IMAGE SRC", imgSrc);
 
     return (
-      <div className="ItemFull" style={{display: this.state.closed ? 'none' : 'block'}}>
+      <div className="ItemFull" onClick={this.onClose} style={{display: this.state.closed ? 'none' : 'block'}}>
       <div className="item-panel">
         <div className="close-panel" onClick={this.onClose}>X</div>
 
