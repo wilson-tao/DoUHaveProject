@@ -37,7 +37,7 @@ class ItemFull extends Component {
             itemFetch: json.item,
             imgSrc: json.item.itemImg.substring(
               json.item.itemImg.lastIndexOf("/") - 17,
-              json.item.itemImg.lastIndexOf(".") + 4
+              json.item.itemImg.length
             )
           })
         }
