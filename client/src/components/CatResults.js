@@ -181,7 +181,7 @@ class CatResults extends Component {
             <div className="itemRow">
               <div id="itemPic" onClick={() => this.onItemFull(model._id)}><img src={model.itemImg.substring(
                 model.itemImg.lastIndexOf("/") - 17,
-                model.itemImg.lastIndexOf(".") + 4
+                model.itemImg.length
               )} /> </div>
               <h1 id="itemName">{model.name} </h1>
               <h3 id="itemBudget">Budget: ${model.budget.toLocaleString(navigator.language, { minimumFractionDigits: 0 })} </h3>
