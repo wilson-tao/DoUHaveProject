@@ -184,7 +184,7 @@ class CatResults extends Component {
                 model.itemImg.lastIndexOf(".") + 4
               )} /> </div>
               <h1 id="itemName">{model.name} </h1>
-              <h3 id="itemBudget">Budget: {model.budget} </h3>
+              <h3 id="itemBudget">Budget: ${model.budget.toLocaleString(navigator.language, { minimumFractionDigits: 0 })} </h3>
             </div>
             <hr />
             <div className="itemRow">
