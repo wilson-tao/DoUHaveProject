@@ -423,8 +423,7 @@ router.delete('/item/:itemId', (req, res, next) => {
           message: 'Item Deleted!',
           request: {
             type: 'DELETE',
-            url: '/items/',
-            data: { name: 'String', price: 'Number'}
+            url: '/items/'
           }
         });
       })

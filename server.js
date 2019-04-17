@@ -17,7 +17,8 @@ app.use(express.static(path.join(__dirname, 'public/build')));
 //require("./routes/api/signin")(app);
 const userRoutes = require('./routes/api/user');
 const itemRoutes = require('./routes/api/items');
-const savelistRoutes = require('./routes/api/savelist')
+const savelistRoutes = require('./routes/api/savelist');
+const offerRoutes = require('./routes/api/offers');
 
 //Required Middleware
 app.use(morgan('dev'));
@@ -55,6 +56,7 @@ mongoose.connect(db, { useNewUrlParser: true, useCreateIndex: true })
 app.use('/user', userRoutes);
 app.use('/items', itemRoutes);
 app.use('/savelist', savelistRoutes);
+app.use('/offers', offerRoutes);
 
 
 
