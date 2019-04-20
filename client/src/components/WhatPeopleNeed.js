@@ -8,7 +8,7 @@ class WhatPeopleNeed extends Component {
     super(props);
 
     this.state = {
-      category: ''
+      category: '',
     };
 
     //this.changeCategory = this.changeCategory.bind(this);
@@ -17,17 +17,23 @@ class WhatPeopleNeed extends Component {
 
 
   render() {
+
     const {
       category
     } = this.state;
+    
+    let isAuth = this.props.isAuth;
+    let userName = this.props.userName;
+    let firstName = this.props.firstName;
+    let userId = this.props.userId;
 
+    console.log("WhatPeopleNeed.js isAuth:", isAuth);
 
     return (
       <div className="WhatPeopleNeed">
 
 
-
-        <CatResults category={category} />
+        <CatResults category={category} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />
 
       </div>
     );

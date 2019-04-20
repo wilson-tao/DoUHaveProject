@@ -38,6 +38,7 @@ router.get('/', (req, res, next) => {
 })
 */
 
+//Get all items 
 router.get('/', (req, res, next) => {
   Item.find()
       .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')

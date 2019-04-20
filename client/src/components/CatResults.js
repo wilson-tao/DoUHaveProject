@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Search from './Search';
 import SearchCategory from './SearchCategory';
 import ItemFull from './ItemFull';
+import OfferSubmit from './OfferSubmit';
 
 
 class CatResults extends Component {
@@ -17,11 +18,13 @@ class CatResults extends Component {
       singleResult: '',
       showResults: true,
       closed: true,
-      clickToShow: false
+      clickToShow: false,
+      showOfferSubmit: false,
+
     };
     this.onItemFull = this.onItemFull.bind(this);
     this.changeCategory = this.changeCategory.bind(this);
-
+    this.onOfferSubmit = this.onOfferSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -122,13 +125,31 @@ class CatResults extends Component {
     }
   }
 
-  onHamburger = () => {
+  onOfferSubmit = (id) => {
+    const {
+      showOfferSubmit,
+      singleResult
+    } = this.state;
+    if (singleResult !== '' && singleResult !== id) {
+      this.setState({
+        singleResult: id,
+        showOfferSubmit: true
+      });
+    } else {
+      if (!showOfferSubmit) {
+        this.setState({
+          singleResult: id,
+          showOfferSubmit: true
+        })
+      } else {
+        this.setState({
+          showOfferSubmit: false,
+          singleResult: ''
+        })
+      }
+    }
 
   }
-
-
-
-
 
 
   render() {
@@ -140,13 +161,18 @@ class CatResults extends Component {
       showItem,
       singleResult,
       showResults,
-      closed
+      closed,
     } = this.state;
 
-
+    let isAuth = this.props.isAuth
+    let userName = this.props.userName
+    let firstName = this.props.firstName
+    let userId = this.props.userId
 
     console.log(models);
     console.log('Category:CatResults:', category);
+
+    console.log('CatResults.js isAuth:', isAuth);
 
 
 
@@ -275,6 +301,23 @@ class CatResults extends Component {
                 ) : (null)
               }
 
+              <div className="offer-button">
+                <button onClick={() => this.onOfferSubmit(model._id)}>Make Offer</button>
+              </div>
+              {
+              //Check if Logged in and fetch user data in component
+              //If component does not get user data, return "Please Log In"
+              //If Logged in, pass itemId, ownerId, component will have offerer id from fetch
+              }
+              {
+                this.state.showOfferSubmit && (singleResult === model._id) ?
+                <OfferSubmit itemId={model._id} ownerId={model.submittedby1} userName={userName} firstName={firstName} userId={userId} isAuth={isAuth} /> :
+                (null)
+              }
+              {
+                //Single Result, if state is showItem and there is singleResult with model._id
+
+              }
               {
                 this.state.showItem && (singleResult === model._id) ?
                 <ItemFull itemId={singleResult} closed={closed}/> :

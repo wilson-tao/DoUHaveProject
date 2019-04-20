@@ -7,7 +7,12 @@ class Appliances extends Component {
     return (
       <div className="Appliances">
         <h1>Appliances</h1>
-        <CatResults category={'appliance'} />
+        <CatResults category={'appliance'}
+                    isAuth={this.props.isAuth}
+                    userName={this.props.userName}
+                    firstName={this.props.firstName}
+                    userId={this.props.userId}
+         />
       </div>
     );
   }

@@ -6,7 +6,12 @@ class Cell extends Component {
     return (
       <div className="Cell">
         <h1>Cell Phones</h1>
-        <CatResults category={'cell'} />
+        <CatResults category={'cell'}
+                    isAuth={this.props.isAuth}
+                    userName={this.props.userName}
+                    firstName={this.props.firstName}
+                    userId={this.props.userId}
+         />
       </div>
     );
   }
