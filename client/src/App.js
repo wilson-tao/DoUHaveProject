@@ -25,6 +25,10 @@ import Cell from './components/Cell';
 import Furniture from './components/Furniture';
 import Instruments from './components/Instruments';
 import Vidgame from './components/Vidgame';
+import HomeService from './components/HomeService';
+import AutoService from './components/AutoService';
+import Clothing from './components/Clothing';
+import Misc from './components/Misc';
 
 import UserPanel from './components/UserPanel';
 
@@ -135,8 +139,21 @@ class App extends Component {
               <Route path={'/instruments'}
                 render={(props) => <Instruments {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
               />
-              <Route path={'/games'}  
+              <Route path={'/games'}
                 render={(props) => <Vidgame {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+              />
+
+              <Route path={'/homeservice'}
+                render={(props) => <HomeService {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+              />
+              <Route path={'/autoservice'}
+                render={(props) => <AutoService {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+              />
+              <Route path={'/clothing'}
+                render={(props) => <Clothing {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+              />
+              <Route path={'/misc'}
+                render={(props) => <Misc {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
               />
 
               <Route path={'/userpanel'}

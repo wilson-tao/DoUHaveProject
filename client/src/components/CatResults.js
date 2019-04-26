@@ -188,8 +188,13 @@ class CatResults extends Component {
           | <a href="/moto"><label value='moto'>Moto/ATV/UTV</label></a> |
           | <a href="/cell"><label value='cell'>Cell Phones</label></a> |
           | <a href="/furniture"><label value='furniture'>Furniture</label></a> |
-          | <a href="instruments"><label value='instrument'>Musical Instruments</label></a> |
-          | <a href="games"><label value='game'>Video Games</label></a>
+          | <a href="/instruments"><label value='instrument'>Musical Instruments</label></a> |
+          | <a href="/games"><label value='game'>Video Games</label></a> |
+          | <a href="/homeservice"><label value='homeservice'>Home Services</label></a> |
+          | <a href="/autoservice"><label value='autoservice'>Auto Services</label></a> |
+          | <a href="/clothing"><label value='clothing'>Clothing & Accessories</label></a> |
+          | <a href="/misc"><label value='misc'>Everything Else</label></a> 
+
       </div>
         <hr />
         {

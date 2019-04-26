@@ -288,6 +288,10 @@ class NeedForm extends Component {
               <option value="furniture">Furniture</option>
               <option value="instrument">Musical Instruments</option>
               <option value="game">Video Games</option>
+              <option value="homeservice">Home Services</option>
+              <option value="autoservice">Auto Services</option>
+              <option value="clothing">Clothing & Accessories</option>
+              <option value="misc">Everything Else</option>
             </select><br />
           </div>
           <div id="itemBudget">

@@ -10,6 +10,10 @@ import motobg from '../img/motobg.jpg';
 import vidgamebg from '../img/vidgamebg.jpg';
 import beautybg from '../img/beautybg.jpg';
 import packagebg from '../img/packagebg.jpg';
+import homeservicebg from '../img/homeservicebg.jpeg';
+import clothingbg from '../img/clothingbg.jpg';
+import miscbg from '../img/miscbg.jpg';
+import autoservicebg from '../img/autoservicebg.png';
 
 
 
@@ -25,12 +29,16 @@ class Categories extends Component {
       { label: 'Musical Instruments', link: '/instruments', bg: instrumentbg },
       { label: 'Video Games', link: '/games', bg: vidgamebg },
       { label: 'Beauty', link: '/beauty', bg: beautybg },
-      { label: 'Package Deals', link: '/packagedeals', bg: packagebg}
+      { label: 'Package Deals', link: '/packagedeals', bg: packagebg},
+      { label: 'Home Service', link: '/homeservice', bg: homeservicebg },
+      { label: 'Auto Service', link: '/autoservice', bg: autoservicebg },
+      { label: 'Clothing, Apparel, & Accessories', link: '/clothing', bg: clothingbg },
+      { label: 'Everything Else', link: '/misc', bg: miscbg }
     ];
 
     return (
       <div className="Categories">
-        
+    
         <Category catLinks={catLinks[0]} />
         <Category catLinks={catLinks[1]} />
         <Category catLinks={catLinks[2]} />
@@ -40,6 +48,10 @@ class Categories extends Component {
         <Category catLinks={catLinks[6]} />
         <Category catLinks={catLinks[7]} />
         <Category catLinks={catLinks[8]} />
+        <Category catLinks={catLinks[9]} />
+        <Category catLinks={catLinks[10]} />
+        <Category catLinks={catLinks[11]} />
+        <Category catLinks={catLinks[12]} />
 
 
       </div>

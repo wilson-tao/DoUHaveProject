@@ -1,0 +1,21 @@
+import React, { Component } from 'react';
+import CatResults from './CatResults';
+
+
+class AutoService extends Component {
+  render() {
+    return (
+      <div className="AutoService">
+        <h1>Auto Services</h1>
+        <CatResults category={'autoservice'}
+                    isAuth={this.props.isAuth}
+                    userName={this.props.userName}
+                    firstName={this.props.firstName}
+                    userId={this.props.userId}
+         />
+      </div>
+    );
+  }
+}
+
+export default AutoService;
