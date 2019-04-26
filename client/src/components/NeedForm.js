@@ -1,5 +1,19 @@
 import React, { Component } from 'react';
 
+import autobg from '../img/autobg.jpg';
+import appliancebg from '../img/appliancebg.jpg';
+import cellbg from '../img/cellbg.jpg';
+import furniturebg from '../img/furniturebg.jpg';
+import instrumentbg from '../img/instrumentbg.jpg';
+import motobg from '../img/motobg.jpg';
+import vidgamebg from '../img/vidgamebg.jpg';
+import beautybg from '../img/beautybg.jpg';
+import packagebg from '../img/packagebg.jpg';
+import homeservicebg from '../img/homeservicebg.jpeg';
+import clothingbg from '../img/clothingbg.jpg';
+import miscbg from '../img/miscbg.jpg';
+import autoservicebg from '../img/autoservicebg.png';
+
 
 class NeedForm extends Component {
 
@@ -146,6 +160,7 @@ class NeedForm extends Component {
   }
 
 
+
   onSubmit() {
     const {
       submitError,
@@ -170,9 +185,13 @@ class NeedForm extends Component {
       contactinfo
     } = this.state;
 
+
+
     var data = new FormData();
     data.append('name', name);
-    data.append('itemImg', itemImg);
+    if (itemImg) {
+      data.append('itemImg', itemImg);
+    }
     data.append('budget', budget);
     data.append('category', category);
     data.append('condition', condition);
@@ -193,42 +212,82 @@ class NeedForm extends Component {
 
     console.log('Data: ', itemImg);
 
-    fetch('/items', {
-      method: 'POST',
-      body: data,
-    }).then(res => res.json())
-    .then(json => {
-      console.log(json.message);
-      if (json.message === "Item created in /items") {
-        console.log('it worked');
-        this.setState({
-          submitError: json.message,
-          name: '',
-          itemImg: '',
-          budget: '',
-          category: '',
-          condition: '',
-          description: '',
-          location: '',
-          locationState: '',
-          submittedby: '',
-          submittedby1: '',
-          carmake: '',
-          carmodel: '',
-          caryear: '',
-          cellmake: '',
-          cellmodel: '',
-          cellcarrier: '',
-          cellos: '',
-          gamesystem: '',
-          contactinfo: '',
-        });
-      } else {
-        this.setState({
-          submitError: json.error.message
-        });
-      }
-    });
+    if (itemImg) {
+      fetch('/items', {
+        method: 'POST',
+        body: data,
+      }).then(res => res.json())
+      .then(json => {
+        console.log(json.message);
+        if (json.message === "Item created in /items") {
+          console.log('it worked');
+          this.setState({
+            submitError: json.message,
+            name: '',
+            itemImg: '',
+            budget: '',
+            category: '',
+            condition: '',
+            description: '',
+            location: '',
+            locationState: '',
+            submittedby: '',
+            submittedby1: '',
+            carmake: '',
+            carmodel: '',
+            caryear: '',
+            cellmake: '',
+            cellmodel: '',
+            cellcarrier: '',
+            cellos: '',
+            gamesystem: '',
+            contactinfo: '',
+          });
+        } else {
+          this.setState({
+            submitError: json.error.message
+          });
+        }
+      });
+    } else {
+      fetch('/items/nopic', {
+        method: 'POST',
+        body: data,
+      }).then(res => res.json())
+      .then(json => {
+        console.log(json.message);
+        if (json.message === "Item created in /items") {
+          console.log('it worked');
+          this.setState({
+            submitError: json.message,
+            name: '',
+            itemImg: '',
+            budget: '',
+            category: '',
+            condition: '',
+            description: '',
+            location: '',
+            locationState: '',
+            submittedby: '',
+            submittedby1: '',
+            carmake: '',
+            carmodel: '',
+            caryear: '',
+            cellmake: '',
+            cellmodel: '',
+            cellcarrier: '',
+            cellos: '',
+            gamesystem: '',
+            contactinfo: '',
+          });
+        } else {
+          this.setState({
+            submitError: json.error.message
+          });
+        }
+      });
+    }
+
   }
 
   render() {
@@ -271,7 +330,7 @@ class NeedForm extends Component {
         <input type="hidden" value={submittedby1} />
         <div id="itemName">
           <label>Item Name</label><br />
-          <input type="text" placeholder="Item's name..." value={name} onChange={this.onTextChangeName} /><br />
+          <input type="text" placeholder="Item's name..." value={name} onChange={this.onTextChangeName} required /><br />
         </div>
         <div id="itemImg">
           <input type="file" name="itemImg" id="itemImg" onChange={this.onChangeItemImg}  />
@@ -279,7 +338,7 @@ class NeedForm extends Component {
         <div className="itemRow">
           <div id="itemCategory">
             <label>Category</label><br />
-            <select name={category} onChange={this.onTextChangeCategory}>
+            <select required name={category} onChange={this.onTextChangeCategory}>
               <option value=""></option>
               <option value="auto">Car's and Trucks</option>
               <option value="appliance">Appliances</option>
@@ -296,11 +355,11 @@ class NeedForm extends Component {
           </div>
           <div id="itemBudget">
             <label>Budget</label><br />
-            <input type="text" placeholder="How much are you willing to pay?" value={budget} onChange={this.onTextChangeBudget} /><br />
+            <input required type="text" placeholder="How much are you willing to pay?" value={budget} onChange={this.onTextChangeBudget} /><br />
           </div>
           <div id="itemCondition">
             <label>Condition</label><br />
-            <select name={condition} onChange={this.onTextChangeCondition}>
+            <select required name={condition} onChange={this.onTextChangeCondition}>
               <option value=""></option>
               <option value="new">New</option>
               <option value="likeNew">Like New</option>
@@ -313,14 +372,18 @@ class NeedForm extends Component {
           </div>
         </div>
         <label>Description</label><br />
-        <textarea rows="4" cols="50" placeholder="Provide a short description of the item..." value={description} onChange={this.onTextChangeDescription} /><br />
+        <textarea minlength="25" maxlength="1000" rows="4" cols="50" placeholder="Provide a short description of the item..." value={description} onChange={this.onTextChangeDescription} /><br />
         <label>Location</label><br />
         <input type="text" placeholder="City..." value={location} onChange={this.onTextChangeLocation} /><br />
-        <input type="text" placeholder="State..." value={locationState} onChange={this.onTextChangeLocationState} /><br />
 
+        State: <select name={locationState} onChange={this.onTextChangeLocationState}>
+          <option value="TX">TX</option>
+          <option value="OK">OK</option>
+        </select>
+        <p>*currently limited to TX & OK</p>
         <label>Submitted by (Name or Username)</label><br />
-        <input type="text" placeholder="Your Name" value={submittedby} onChange={this.onTextChangeSubmittedby} /><br />
-        <input type="text" placeholder="Your Contact Number" value={contactinfo} onChange={this.onTextChangeContactInfo} /><br />
+        <input required type="text" placeholder="Your Name" value={submittedby} onChange={this.onTextChangeSubmittedby} /><br />
+        <input required type="text" placeholder="Your Contact Number" value={contactinfo} onChange={this.onTextChangeContactInfo} /><br />
         <br />
         <label>Car Make</label><br />
         <input type="text" placeholder="Toyota, Honda, etc..." value={carmake} onChange={this.onTextChangeCarmake} /><br />

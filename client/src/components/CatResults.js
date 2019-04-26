@@ -193,7 +193,7 @@ class CatResults extends Component {
           | <a href="/homeservice"><label value='homeservice'>Home Services</label></a> |
           | <a href="/autoservice"><label value='autoservice'>Auto Services</label></a> |
           | <a href="/clothing"><label value='clothing'>Clothing & Accessories</label></a> |
-          | <a href="/misc"><label value='misc'>Everything Else</label></a> 
+          | <a href="/misc"><label value='misc'>Everything Else</label></a>
 
       </div>
         <hr />
@@ -305,10 +305,12 @@ class CatResults extends Component {
                   </>
                 ) : (null)
               }
+              {
+              //  <div className="offer-button">
+              //    <button onClick={() => this.onOfferSubmit(model._id)}>Make Offer</button>
+              //  </div>
+              }
 
-              <div className="offer-button">
-                <button onClick={() => this.onOfferSubmit(model._id)}>Make Offer</button>
-              </div>
               {
               //Check if Logged in and fetch user data in component
               //If component does not get user data, return "Please Log In"
