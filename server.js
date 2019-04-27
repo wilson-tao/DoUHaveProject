@@ -63,13 +63,15 @@ app.use('/offers', offerRoutes);
 
 
 app.get('*', (req, res) => {
-  res.redirect('https://' + req.headers.host + req.url);
+
   res.sendFile(path.join(__dirname+'/public/build/index.html'));
+  res.redirect('https://' + req.headers.host + req.url);
 });
 
 app.get('/*', function(req, res) {
-  res.redirect('https://' + req.headers.host + req.url);
+
   res.sendFile(path.join(__dirname, 'public/build', 'index.html'));
+  res.redirect('https://' + req.headers.host + req.url);
 });
 
 
