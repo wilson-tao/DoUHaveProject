@@ -5,6 +5,8 @@ const compression = require('compression');
 const morgan = require('morgan');
 const path = require('path');
 
+const https = require('https');
+const fs = require('fs');
 
 const app = express();
 
@@ -85,8 +87,19 @@ app.use((error, req,res, next) => {
   });
 });
 
+
+//SSL Certs
+const options = {
+  cert: fs.readFileSync('/etc/letsencrypt/live/douhave.org/fullchain.pem'),
+  key: fs.readFileSync('/etc/letsencrypt/live/douhave.org/privkey.pem')
+};
+
+
 //Declare Port and Start Server
 const normalizePort = port => parseInt(port, 10);
 const port = normalizePort(process.env.PORT || 5000);
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
+
+//SSL Secure Server
+https.createServer(options, app).listen(443, () => console.log(`HTTPS Server running on port 443`));
