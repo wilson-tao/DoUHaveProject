@@ -89,10 +89,10 @@ app.use((error, req,res, next) => {
 
 
 //SSL Certs
-const options = {
-  cert: fs.readFileSync('/etc/letsencrypt/live/douhave.org/fullchain.pem'),
-  key: fs.readFileSync('/etc/letsencrypt/live/douhave.org/privkey.pem')
-};
+//const options = {
+//  cert: fs.readFileSync('/etc/letsencrypt/live/douhave.org/fullchain.pem', 'utf8'),
+//  key: fs.readFileSync('/etc/letsencrypt/live/douhave.org/privkey.pem', 'utf8')
+//};
 
 
 //Declare Port and Start Server
@@ -102,4 +102,4 @@ const port = normalizePort(process.env.PORT || 5000);
 app.listen(port, () => console.log(`Server started on port ${port}`));
 
 //SSL Secure Server
-https.createServer(options, app).listen(443, () => console.log(`HTTPS Server running on port 443`));
+//https.createServer(options, app).listen(443, () => console.log(`HTTPS Server running on port 443`));
