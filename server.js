@@ -77,9 +77,9 @@ app.get('/*', function(req, res) {
 
 //SSL Redirect
 
-app.get("*", function(request, response){
-  response.redirect("https://" + request.headers.host + request.url);
-});
+//app.get("*", function(request, response){
+//  response.redirect("https://" + request.headers.host + request.url);
+//});
 
 //app.use(function(request, response) {
 //  if (!request.secure){
@@ -121,6 +121,19 @@ app.use((error, req,res, next) => {
 //Declare Port and Start Server
 const normalizePort = port => parseInt(port, 10);
 const port = normalizePort(process.env.PORT || 5000);
+
+//More SSL Redirect tries...
+app.enable('trust proxy');
+app.use (function (req, res, next) {
+        if (req.secure) {
+                // request was via https, so do no special handling
+                next();
+        } else {
+                // request was via http, so redirect to https
+                res.redirect('https://' + req.headers.host + req.url);
+        }
+});
+
 
 app.listen(port, () => console.log(`Server started on port ${port}`));
 
