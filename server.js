@@ -74,12 +74,24 @@ app.get('/*', function(req, res) {
   //res.redirect('https://' + req.headers.host + req.url);
 });
 
+
 //SSL Redirect
-app.use(function(request, response) {
-  if (request.protocol === "http"){
-    response.redirect("https://" + request.headers.host + request.url);
-  }
+
+app.get("*", function(request, response){
+  response.redirect("https://" + request.headers.host + request.url);
 });
+
+//app.use(function(request, response) {
+//  if (!request.secure){
+//    response.redirect("https://" + request.headers.host + request.url);
+//  }
+//});
+
+//app.use(function(request, response) {
+//  if (request.protocol === "http"){
+//    response.redirect("https://" + request.headers.host + request.url);
+//  }
+//});
 
 
 //Error Handling
