@@ -76,7 +76,7 @@ app.get('/*', function(req, res) {
 
 //SSL Redirect
 app.use(function(request, response) {
-  if (!request.secure){
+  if (request.protocol === "http"){
     response.redirect("https://" + request.headers.host + request.url);
   }
 });
