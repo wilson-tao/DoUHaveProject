@@ -135,7 +135,7 @@ app.use (function (req, res, next) {
 });
 
 
-app.listen(443, () => console.log(`Server started on port ${port}`));
+app.listen(port, () => console.log(`Server started on port ${port}`));
 
 //SSL Secure Server
 //https.createServer(options, app).listen(443, () => console.log(`HTTPS Server running on port 443`));
