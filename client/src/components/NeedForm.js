@@ -376,7 +376,8 @@ class NeedForm extends Component {
         <label>Location</label><br />
         <input type="text" placeholder="City..." value={location} onChange={this.onTextChangeLocation} /><br />
 
-        State: <select name={locationState} onChange={this.onTextChangeLocationState}>
+        State: <select required name={locationState} onChange={this.onTextChangeLocationState}>
+          <option value=""></option>
           <option value="TX">TX</option>
           <option value="OK">OK</option>
         </select>
