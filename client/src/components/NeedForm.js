@@ -1,18 +1,6 @@
 import React, { Component } from 'react';
 
-import autobg from '../img/autobg.jpg';
-import appliancebg from '../img/appliancebg.jpg';
-import cellbg from '../img/cellbg.jpg';
-import furniturebg from '../img/furniturebg.jpg';
-import instrumentbg from '../img/instrumentbg.jpg';
-import motobg from '../img/motobg.jpg';
-import vidgamebg from '../img/vidgamebg.jpg';
-import beautybg from '../img/beautybg.jpg';
-import packagebg from '../img/packagebg.jpg';
-import homeservicebg from '../img/homeservicebg.jpeg';
-import clothingbg from '../img/clothingbg.jpg';
-import miscbg from '../img/miscbg.jpg';
-import autoservicebg from '../img/autoservicebg.png';
+
 
 
 class NeedForm extends Component {
@@ -347,10 +335,15 @@ class NeedForm extends Component {
               <option value="furniture">Furniture</option>
               <option value="instrument">Musical Instruments</option>
               <option value="game">Video Games</option>
-              <option value="homeservice">Home Services</option>
-              <option value="autoservice">Auto Services</option>
               <option value="clothing">Clothing & Accessories</option>
+              <option value="collectible">Antiques & Collectibles</option>
+              <option value="beauty">Beauty & Cosmetics</option>
+              <option value="comequip">Commercial & Restaurant Equipment</option>
               <option value="misc">Everything Else</option>
+              <option value="housing">Housing & Places to Live</option>
+              <option value="autoservice">Auto Services</option>
+              <option value="homeservice">Home Services</option>
+
             </select><br />
           </div>
           <div id="itemBudget">

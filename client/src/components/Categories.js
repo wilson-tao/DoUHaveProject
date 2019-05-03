@@ -14,6 +14,9 @@ import homeservicebg from '../img/homeservicebg.jpeg';
 import clothingbg from '../img/clothingbg.jpg';
 import miscbg from '../img/miscbg.jpg';
 import autoservicebg from '../img/autoservicebg.png';
+import collectiblesbg from '../img/collectiblesbg.jpg';
+import comequipbg from '../img/comequipbg.jpg';
+import housingbg from '../img/housingbg.jpg';
 
 
 
@@ -28,17 +31,22 @@ class Categories extends Component {
       { label: 'Furniture', link: '/furniture', bg: furniturebg },
       { label: 'Musical Instruments', link: '/instruments', bg: instrumentbg },
       { label: 'Video Games', link: '/games', bg: vidgamebg },
-      { label: 'Beauty', link: '/beauty', bg: beautybg },
-      { label: 'Package Deals', link: '/packagedeals', bg: packagebg},
-      { label: 'Home Service', link: '/homeservice', bg: homeservicebg },
-      { label: 'Auto Service', link: '/autoservice', bg: autoservicebg },
       { label: 'Clothing, Apparel, & Accessories', link: '/clothing', bg: clothingbg },
-      { label: 'Everything Else', link: '/misc', bg: miscbg }
+      { label: 'Antiques & Collectibles', link: '/collectibles', bg: collectiblesbg },
+      { label: 'Beauty', link: '/beauty', bg: beautybg },
+      { label: 'Commercial & Restaurant Equipment', link: '/comequip', bg: comequipbg },
+      { label: 'Everything Else', link: '/misc', bg: miscbg },
+      { label: 'Housing & Places to Live', link: '/housing', bg: housingbg },
+      { label: 'Auto Service', link: '/autoservice', bg: autoservicebg },
+      { label: 'Home Service', link: '/homeservice', bg: homeservicebg },
+      { label: 'Package Deals', link: '/packagedeals', bg: packagebg}
+
+
     ];
 
     return (
       <div className="Categories">
-    
+
         <Category catLinks={catLinks[0]} />
         <Category catLinks={catLinks[1]} />
         <Category catLinks={catLinks[2]} />
@@ -52,6 +60,8 @@ class Categories extends Component {
         <Category catLinks={catLinks[10]} />
         <Category catLinks={catLinks[11]} />
         <Category catLinks={catLinks[12]} />
+        <Category catLinks={catLinks[13]} />
+
 
 
       </div>

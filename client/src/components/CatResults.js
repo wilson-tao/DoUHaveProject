@@ -190,10 +190,15 @@ class CatResults extends Component {
           | <a href="/furniture"><label value='furniture'>Furniture</label></a> |
           | <a href="/instruments"><label value='instrument'>Musical Instruments</label></a> |
           | <a href="/games"><label value='game'>Video Games</label></a> |
-          | <a href="/homeservice"><label value='homeservice'>Home Services</label></a> |
-          | <a href="/autoservice"><label value='autoservice'>Auto Services</label></a> |
           | <a href="/clothing"><label value='clothing'>Clothing & Accessories</label></a> |
-          | <a href="/misc"><label value='misc'>Everything Else</label></a>
+          | <a href="/collectibles"><label value='collectible'>Antiques & Collectibles</label></a> |
+          | <a href="/beauty"><label value='beauty'>Beauty & Cosmetics</label></a> |
+          | <a href="/comequip"><label value='comequip'>Commercial & Restaurant Equipment</label></a> |
+          | <a href="/misc"><label value='misc'>Everything Else</label></a> |
+          | <a href="/housing"><label value='housing'>Housing & Places to Live</label></a> |
+          | <a href="/autoservice"><label value='autoservice'>Auto Services</label></a> |
+          | <a href="/homeservice"><label value='homeservice'>Home Services</label></a>         
+
 
       </div>
         <hr />

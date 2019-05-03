@@ -29,6 +29,10 @@ import HomeService from './components/HomeService';
 import AutoService from './components/AutoService';
 import Clothing from './components/Clothing';
 import Misc from './components/Misc';
+import Collectibles from './components/Collectibles';
+import ComEquip from './components/ComEquip';
+import Housing from './components/Housing';
+import Beauty from './components/Beauty';
 
 import UserPanel from './components/UserPanel';
 
@@ -154,6 +158,18 @@ class App extends Component {
               />
               <Route path={'/misc'}
                 render={(props) => <Misc {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+              />
+              <Route path={'/collectibles'}
+                render={(props) => <Collectibles {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+              />
+              <Route path={'/comequip'}
+                render={(props) => <ComEquip {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+              />
+              <Route path={'/housing'}
+                render={(props) => <Housing {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+              />
+              <Route path={'/beauty'}
+                render={(props) => <Beauty {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
               />
 
               <Route path={'/userpanel'}
