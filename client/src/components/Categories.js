@@ -61,6 +61,7 @@ class Categories extends Component {
         <Category catLinks={catLinks[11]} />
         <Category catLinks={catLinks[12]} />
         <Category catLinks={catLinks[13]} />
+        <Category catLinks={catLinks[14]} />
 
 
 
