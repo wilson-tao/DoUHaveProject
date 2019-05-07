@@ -24,7 +24,7 @@ class Categories extends Component {
   render() {
 
     let catLinks = [
-      { label: 'Cars and Trucks', link: '/auto', bg: autobg },
+      { label: 'Cars & Trucks', link: '/auto', bg: autobg },
       { label: 'Appliances', link: '/appliances', bg: appliancebg },
       { label: 'Moto/ATV/UTV', link: '/moto', bg: motobg },
       { label: 'Cell Phones', link: '/cell', bg: cellbg },
