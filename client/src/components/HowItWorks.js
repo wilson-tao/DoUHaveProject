@@ -13,6 +13,10 @@ class HowItWorks extends Component {
         <h2>Make Money (Sell It)</h2>
         <p>People want to make money. People have things laying around that they don’t know it’s worth something. Want to make money? Go to the website and look at what people need and start letting them know you have what they want. Search “What people need” Tab and contact them if you have what they are looking for near their location. We discourage cash and prefer users to use the quality one way apps. for transitions.</p>
         <hr />
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/u5gRs9d70z8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/94HZAkkfbPo" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <hr />
         <p>Please have patience as this is our Beta site and is still in development. A new site that will take time to build up multiple classified ad posts where it is beneficial. Please help us post items that you want.</p>
       </div>
     );
