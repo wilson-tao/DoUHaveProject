@@ -206,7 +206,7 @@ input {
   /* padding-top: 20px; */
   /* background-color: #565656; */
   background-color: #242b2e;
-  box-shadow: 0px 40px 40px 40px rgba(0,0,0,0.4);
+  box-shadow: 0px 30px 40px 40px rgba(0,0,0,0.4);
   z-index: 300;
 }
 

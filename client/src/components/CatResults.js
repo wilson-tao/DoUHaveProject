@@ -197,7 +197,7 @@ class CatResults extends Component {
           | <a href="/misc"><label value='misc'>Everything Else</label></a> |
           | <a href="/housing"><label value='housing'>Housing & Places to Live</label></a> |
           | <a href="/autoservice"><label value='autoservice'>Auto Services</label></a> |
-          | <a href="/homeservice"><label value='homeservice'>Home Services</label></a>         
+          | <a href="/homeservice"><label value='homeservice'>Home Services</label></a>
 
 
       </div>
@@ -243,9 +243,7 @@ class CatResults extends Component {
             <div id="itemDate">
               <h5>Submitted On:</h5> {model.createdAt}
             </div>
-            <div id="itemExpire">
-              <h5>Expires On:</h5> {model.expirationDate}
-            </div>
+            
 
               {
                 (model.carmake !== '' && model.carmake !== null && model.carmake !== undefined) ? (
