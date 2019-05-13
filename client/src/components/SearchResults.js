@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ItemFull from './ItemFull';
+import OfferSubmit from './OfferSubmit';
+
 
 
 class SearchResults extends Component {
@@ -8,54 +10,124 @@ class SearchResults extends Component {
     super(props);
 
     this.state = {
-      results: this.props.results,
+      searchResults: this.props.searchResults,
       showItem: false,
       singleResult: '',
+      closed: true,
+      clickToShow: false,
+      showOfferSubmit: false
     };
 
     this.onItemFull = this.onItemFull.bind(this);
+    this.onOfferSubmit = this.onOfferSubmit.bind(this);
   }
 
   onItemFull(id) {
     this.setState({
       singleResult: id,
-      showItem: true
+      showItem: true,
+      closed: false
     })
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(nextProps.searchResults !== this.props.searchResults){
+      this.setState({searchResults: nextProps.searchResults});
+      console.log('ComponentWIllReceiveProps');
+    }
+  }
+
+  onClickToShow = () => {
+    const {clickToShow} = this.state;
+    if (!clickToShow) {
+      this.setState({
+        clickToShow: true
+      })
+    } else {
+      this.setState({
+        clickToShow: false
+      })
+    }
+  }
+
+  onOfferSubmit = (id) => {
+    const {
+      showOfferSubmit,
+      singleResult
+    } = this.state;
+    if (singleResult !== '' && singleResult !== id) {
+      this.setState({
+        singleResult: id,
+        showOfferSubmit: true
+      });
+    } else {
+      if (!showOfferSubmit) {
+        this.setState({
+          singleResult: id,
+          showOfferSubmit: true
+        })
+      } else {
+        this.setState({
+          showOfferSubmit: false,
+          singleResult: ''
+        })
+      }
+    }
+  }
 
 
   render() {
 
     const {
-      results,
+      searchResults,
       showItem,
-      singleResult
+      singleResult,
+      closed
+
     } = this.state;
 
-    console.log("SearchResults: Results:", results);
+    let isAuth = this.props.isAuth
+    let userName = this.props.userName
+    let firstName = this.props.firstName
+    let userId = this.props.userId
+
+    console.log("SearchResults: Results:", searchResults);
     console.log('Single result', singleResult);
     return (
       <div className="SearchResults">
-        Got Results!
+      <div className="categoryResults">
+        {searchResults.map(model =>
+          <div className="resultItem" key={model._id} >
 
+          <div className="itemRow">
+            <div id="itemPic" onClick={() => this.onItemFull(model._id)}><img src={model.itemImg.substring(
+              model.itemImg.lastIndexOf("/") - 17,
+              model.itemImg.length
+            )} /> </div>
+            <h1 id="itemName">{model.name} </h1>
+            <h3 id="itemBudget">Budget: ${model.budget.toLocaleString(navigator.language, { minimumFractionDigits: 0 })} </h3>
+          </div>
+          <hr />
+          <div className="itemRow">
+            <h5 id="itemCategory">Category: {model.category} </h5>
+            <h5 id="itemLocation">Location: {model.location}, {model.locationState}</h5>
 
-
-        {results.map(model =>
-          <div key={model._id} onClick={() => this.onItemFull(model._id)}>
-
-
-
-
-            <label>Name: {model.name} </label> <br />
-            <label>Budget: {model.budget} </label> <br />
-            <label>Category: {model.category} </label> <br />
-            <label>Condition: {model.condition} </label> <br />
-            <label>Description: {model.description} </label> <br />
-            <label>Location: {model.location} </label> <br />
-            <label>Submitted By: {model.submittedby} </label> <br />
-            <label>Submitted On: {model.createdAt} </label> <br />
-            <label>Expires On: {model.expirationDate} </label> <br />
+            <h5 id="itemCondition">Condition: {model.condition} </h5>
+          </div>
+          <div id="itemDescription">
+            <h5 >Description: </h5><p>{model.description}</p>
+          </div>
+          <div id="itemSubmittedby">
+            <h5>Submitted By: </h5> <p> {model.submittedby}</p><br />
+            <h5>Contact Number: </h5> {
+              this.state.clickToShow ? (
+                model.contactinfo
+              ) : <p onClick={this.onClickToShow}>Click To Show</p>
+            }
+          </div>
+          <div id="itemDate">
+            <h5>Submitted On:</h5> {model.createdAt}
+          </div>
 
 
             {
@@ -121,21 +193,40 @@ class SearchResults extends Component {
                 </>
               ) : (null)
             }
+            {
+            //  <div className="offer-button">
+            //    <button onClick={() => this.onOfferSubmit(model._id)}>Make Offer</button>
+            //  </div>
+            }
 
             {
+            //Check if Logged in and fetch user data in component
+            //If component does not get user data, return "Please Log In"
+            //If Logged in, pass itemId, ownerId, component will have offerer id from fetch
+            }
+            {
+              this.state.showOfferSubmit && (singleResult === model._id) ?
+              <OfferSubmit itemId={model._id} ownerId={model.submittedby1} userName={userName} firstName={firstName} userId={userId} isAuth={isAuth} /> :
+              (null)
+            }
+            {
+              //Single Result, if state is showItem and there is singleResult with model._id
+
+            }
+            {
               this.state.showItem && (singleResult === model._id) ?
-              <ItemFull itemId={singleResult} /> :
+              <ItemFull itemId={singleResult} closed={closed}/> :
               (null)
             }
 
 
-
-
             <hr />
-
-
           </div>
         )}
+      </div>
+
+
+
 
 
       </div>

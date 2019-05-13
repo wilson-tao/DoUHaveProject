@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Search from './Search';
+
 import Categories from './Categories';
 import CatResults from './CatResults';
 
@@ -30,7 +30,7 @@ class Home extends Component {
     return (
       <div className="Home">
 
-        <Search />
+
 
         <Categories />
 

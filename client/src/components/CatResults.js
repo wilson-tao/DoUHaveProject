@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import Search from './Search';
-import SearchCategory from './SearchCategory';
 import ItemFull from './ItemFull';
 import OfferSubmit from './OfferSubmit';
 
@@ -201,14 +199,8 @@ class CatResults extends Component {
 
 
       </div>
-        <hr />
-        {
-          category === '' ? (
-            <Search showResults={showResults} />
-          ) : (
-            <SearchCategory showResults={showResults} category={category} />
-          )
-        }
+
+
         <hr />
         <div className="categoryResults">
           {models.map(model =>
@@ -243,7 +235,7 @@ class CatResults extends Component {
             <div id="itemDate">
               <h5>Submitted On:</h5> {model.createdAt}
             </div>
-            
+
 
               {
                 (model.carmake !== '' && model.carmake !== null && model.carmake !== undefined) ? (

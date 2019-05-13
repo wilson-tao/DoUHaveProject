@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
 
 import {
   getFromStorage,
@@ -36,6 +36,9 @@ import Beauty from './components/Beauty';
 
 import UserPanel from './components/UserPanel';
 
+import Search from './components/Search';
+import SearchResults from './components/SearchResults';
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -45,8 +48,53 @@ class App extends Component {
       isAuth: false,
       userName: '',
       firstName: '',
-      userId: ''
+      userId: '',
+      searchTerm: '',
+      searchResults: [],
+      showResults: false
     };
+
+    this.onTextChange = this.onTextChange.bind(this);
+    this.onSearch = this.onSearch.bind(this);
+  }
+
+  onTextChange(event) {
+    this.setState({
+      searchTerm: event.target.value
+    });
+  }
+
+  onSearch() {
+    const {
+      searchTerm,
+      searchResults,
+      showResults
+    } = this.state;
+
+    if(!showResults) {
+      this.setState({
+        showResults:true
+      });
+    }
+
+    console.log("Search Term:", searchTerm);
+
+    fetch('items/search2/' + searchTerm, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(json => {
+        console.log("Search Response:", json);
+        if (json.count > 0) {
+          this.setState({
+            searchResults: json.items
+          });
+
+        }
+      });
   }
 
   componentDidMount() {
@@ -92,7 +140,10 @@ class App extends Component {
       isAuth,
       userName,
       firstName,
-      userId
+      userId,
+      searchTerm,
+      searchResults,
+      showResults
     } = this.state;
 
     console.log("App.js isAuth:", isAuth);
@@ -107,76 +158,92 @@ class App extends Component {
         }
         <Header isAuth={isAuth} userName={userName} firstName={firstName} />
         <MobileMenu />
+
+        
+        <div className="Search">
+          <input type="text" placeholder="Search" value={searchTerm} onChange={this.onTextChange} /><button onClick={this.onSearch}>Search</button>
+
+        </div>
         <SideBar />
 
 
         <div className="mycontainer">
-          <BrowserRouter>
-            <Switch>
-              <Route exact path={'/'} component={Home} />
-              <Route path={'/WhatPeopleNeed'}
-                render={(props) => <WhatPeopleNeed {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
-              />
-              <Route path={'/WhatYouNeed'}
-                render={(props) => <WhatYouNeed {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
-              />
-              <Route path={'/HowItWorks'} component={HowItWorks} />
-              <Route path={'/About'} component={About} />
-              <Route path={'/Contact'} component={Contact} />
-              <Route path={'/Register'} component={Register} />
 
-              <Route path={'/auto'}
-                render={(props) => <Auto {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
-              />
-              <Route path={'/appliances'}
-                render={(props) => <Appliances {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
-              />
-              <Route path={'/moto'}
-                render={(props) => <Moto {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
-              />
-              <Route path={'/cell'}
-                render={(props) => <Cell {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
-              />
-              <Route path={'/furniture'}
-                render={(props) => <Furniture {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
-              />
-              <Route path={'/instruments'}
-                render={(props) => <Instruments {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
-              />
-              <Route path={'/games'}
-                render={(props) => <Vidgame {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
-              />
+          {
+            this.state.showResults ?
+            <SearchResults isAuth={isAuth} userId={userId} searchResults={searchResults} /> :
+            (
+              <BrowserRouter>
+                <Switch>
+                  <Route exact path={'/'} component={Home} />
+                  <Route path={'/WhatPeopleNeed'}
+                    render={(props) => <WhatPeopleNeed {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                  />
+                  <Route path={'/WhatYouNeed'}
+                    render={(props) => <WhatYouNeed {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                  />
+                  <Route path={'/HowItWorks'} component={HowItWorks} />
+                  <Route path={'/About'} component={About} />
+                  <Route path={'/Contact'} component={Contact} />
+                  <Route path={'/Register'} component={Register} />
 
-              <Route path={'/homeservice'}
-                render={(props) => <HomeService {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
-              />
-              <Route path={'/autoservice'}
-                render={(props) => <AutoService {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
-              />
-              <Route path={'/clothing'}
-                render={(props) => <Clothing {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
-              />
-              <Route path={'/misc'}
-                render={(props) => <Misc {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
-              />
-              <Route path={'/collectibles'}
-                render={(props) => <Collectibles {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
-              />
-              <Route path={'/comequip'}
-                render={(props) => <ComEquip {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
-              />
-              <Route path={'/housing'}
-                render={(props) => <Housing {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
-              />
-              <Route path={'/beauty'}
-                render={(props) => <Beauty {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
-              />
+                  <Route path={'/auto'}
+                    render={(props) => <Auto {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                  />
+                  <Route path={'/appliances'}
+                    render={(props) => <Appliances {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                  />
+                  <Route path={'/moto'}
+                    render={(props) => <Moto {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                  />
+                  <Route path={'/cell'}
+                    render={(props) => <Cell {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                  />
+                  <Route path={'/furniture'}
+                    render={(props) => <Furniture {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                  />
+                  <Route path={'/instruments'}
+                    render={(props) => <Instruments {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                  />
+                  <Route path={'/games'}
+                    render={(props) => <Vidgame {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                  />
 
-              <Route path={'/userpanel'}
-                render={(props) => <UserPanel {...props} isAuth={isAuth} userId={userId} />}
-              />
-            </Switch>
-          </BrowserRouter>
+                  <Route path={'/homeservice'}
+                    render={(props) => <HomeService {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                  />
+                  <Route path={'/autoservice'}
+                    render={(props) => <AutoService {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                  />
+                  <Route path={'/clothing'}
+                    render={(props) => <Clothing {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                  />
+                  <Route path={'/misc'}
+                    render={(props) => <Misc {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                  />
+                  <Route path={'/collectibles'}
+                    render={(props) => <Collectibles {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                  />
+                  <Route path={'/comequip'}
+                    render={(props) => <ComEquip {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                  />
+                  <Route path={'/housing'}
+                    render={(props) => <Housing {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                  />
+                  <Route path={'/beauty'}
+                    render={(props) => <Beauty {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                  />
+
+                  <Route path={'/userpanel'}
+                    render={(props) => <UserPanel {...props} isAuth={isAuth} userId={userId} />}
+                  />
+
+                </Switch>
+              </BrowserRouter>
+            )
+          }
+
+
           <Footer />
         </div>
       </div>
