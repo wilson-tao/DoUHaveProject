@@ -147,9 +147,7 @@ class NeedForm extends Component {
     });
   }
 
-
-
-  onSubmit() {
+  onSubmit2() {
     const {
       submitError,
       name,
@@ -276,6 +274,93 @@ class NeedForm extends Component {
       });
     }
 
+  }
+
+  onSubmit() {
+    const {
+      submitError,
+      name,
+      itemImg,
+      budget,
+      category,
+      condition,
+      description,
+      location,
+      locationState,
+      submittedby,
+      submittedby1,
+      carmake,
+      carmodel,
+      caryear,
+      cellmake,
+      cellmodel,
+      cellcarrier,
+      cellos,
+      gamesystem,
+      contactinfo
+    } = this.state;
+
+
+
+    var data = new FormData();
+    data.append('name', name);
+    data.append('itemImg', itemImg);
+    data.append('budget', budget);
+    data.append('category', category);
+    data.append('condition', condition);
+    data.append('description', description);
+    data.append('location', location);
+    data.append('locationState', locationState);
+    data.append('submittedby', submittedby);
+    data.append('submittedby1', submittedby1);
+    data.append('carmake', carmake);
+    data.append('carmodel', carmodel);
+    data.append('caryear', caryear);
+    data.append('cellmake', cellmake);
+    data.append('cellmodel', cellmodel);
+    data.append('cellcarrier', cellcarrier);
+    data.append('cellos', cellos);
+    data.append('gamesystem', gamesystem);
+    data.append('contactinfo', contactinfo);
+
+    console.log('Data: ', itemImg);
+
+    fetch('/items', {
+      method: 'POST',
+      body: data,
+    }).then(res => res.json())
+    .then(json => {
+      console.log(json.message);
+      if (json.message === "Item created in /items") {
+        console.log('it worked');
+        this.setState({
+          submitError: json.message,
+          name: '',
+          itemImg: '',
+          budget: '',
+          category: '',
+          condition: '',
+          description: '',
+          location: '',
+          locationState: '',
+          submittedby: '',
+          submittedby1: '',
+          carmake: '',
+          carmodel: '',
+          caryear: '',
+          cellmake: '',
+          cellmodel: '',
+          cellcarrier: '',
+          cellos: '',
+          gamesystem: '',
+          contactinfo: '',
+        });
+      } else {
+        this.setState({
+          submitError: json.error.message
+        });
+      }
+    });
   }
 
   render() {

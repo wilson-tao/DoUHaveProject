@@ -363,6 +363,7 @@ router.post('/', upload.single('itemImg'), (req, res, next) => {
       });
 });
 
+/*
 router.post('/nopic', upload.none(), (req, res, next) => {
   console.log('ReqFile: ', req.file);
   const item = new Item({
@@ -428,6 +429,7 @@ router.post('/nopic', upload.none(), (req, res, next) => {
         })
       });
 });
+*/
 
 router.get('/item/:itemId', (req, res, next) => {
   console.log('Get Works');
