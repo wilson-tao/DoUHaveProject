@@ -320,15 +320,11 @@ input {
 }
 
 .category {
-  //display: grid;
-  display: inline-block;
+  display: grid;
   background-color: #FFFAFA;
   margin: auto;
   overflow: hidden;
   position: relative;
-  width: 25%;
-  padding-bottom: 25%;
-  margin-bottom: -6px;
 }
 
 .category img {
@@ -393,9 +389,9 @@ input {
 
 .Categories {
   text-align: left;
-  //display: grid;
+  display: grid;
   //grid-template-columns: auto auto auto;
-  //grid-template-columns: repeat(auto-fill, 350px);
+  grid-template-columns: repeat(auto-fill, 350px);
   //grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
 
   /*
@@ -676,7 +672,6 @@ input {
     width: 100%;
     display: block;
     height: 300px;
-    margin-bottom: 0px;
   }
 
   .site-title img {
@@ -695,12 +690,12 @@ input {
 
 @media only screen and (min-width: 600px) {
   .Categories {
-    //grid-template-columns: repeat(auto-fill, 450px);
+    grid-template-columns: repeat(auto-fill, 450px);
   }
 
   .category {
-    //min-height: 450px;
-    //min-width: 450px;
+    min-height: 450px;
+    min-width: 450px;
   }
 
   .WhatYouNeed {
@@ -717,81 +712,81 @@ input {
 
 @media only screen and (min-width: 992px) {
   .Categories {
-    //grid-template-columns: repeat(auto-fill, 350px);
+    grid-template-columns: repeat(auto-fill, 350px);
   }
 
   .category {
-    //min-height: 350px;
-    //min-width: 350px;
+    min-height: 350px;
+    min-width: 350px;
   }
 }
 
 @media only screen and (min-width: 1200px) {
   .Categories {
-    //grid-template-columns: repeat(auto-fill, 300px);
+    grid-template-columns: repeat(auto-fill, 300px);
   }
 
   .category {
-    //min-height: 300px;
-    //min-width: 300px;
+    min-height: 300px;
+    min-width: 300px;
   }
 }
 
 @media only screen and (min-width: 1350px) {
   .Categories {
-    //grid-template-columns: repeat(auto-fill, 350px);
+    grid-template-columns: repeat(auto-fill, 350px);
   }
 
   .category {
-    //min-height: 350px;
-    //min-width: 350px;
+    min-height: 350px;
+    min-width: 350px;
   }
 
 }
 
 @media only screen and (min-width: 1500px) {
   .Categories {
-    //grid-template-columns: repeat(auto-fill, 300px);
+    grid-template-columns: repeat(auto-fill, 300px);
   }
 
   .category {
-    //min-height: 300px;
-    //min-width: 300px;
+    min-height: 300px;
+    min-width: 300px;
   }
 
 }
 
 @media only screen and (min-width: 1600px) {
   .Categories {
-    //grid-template-columns: repeat(auto-fill, 420px);
+    grid-template-columns: repeat(auto-fill, 420px);
   }
 
   .category {
-    //min-height: 420px;
-    //min-width: 420px;
+    min-height: 420px;
+    min-width: 420px;
   }
 
 }
 
 @media only screen and (min-width: 1700px) {
   .Categories {
-    //grid-template-columns: repeat(auto-fill, 350px);
+    grid-template-columns: repeat(auto-fill, 350px);
   }
 
   .category {
-    //min-height: 350px;
-    //min-width: 350px;
+    min-height: 350px;
+    min-width: 350px;
   }
 
 }
 @media only screen and (min-width: 1800px) {
   .Categories {
-    //grid-template-columns: repeat(auto-fill, 370px);
+    grid-template-columns: repeat(auto-fill, 370px);
   }
 
   .category {
-    //min-height: 370px;
-    //min-width: 370px;
+    min-height: 370px;
+    min-width: 370px;
   }
 
 }
