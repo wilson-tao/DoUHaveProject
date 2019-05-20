@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const checkAuth = require('../middleware/check-auth');
 
 const Savelist = require('../../models/Savelist');
 const Item = require('../../models/Item');
 
-router.get('/', (req, res, next) => {
+router.get('/', checkAuth, (req, res, next) => {
   Savelist.find()
           .select('item quantity _id')
           .exec()
@@ -32,7 +33,7 @@ router.get('/', (req, res, next) => {
           });
 });
 
-router.post('/', (req, res, next) => {
+router.post('/', checkAuth, (req, res, next) => {
   Item.findById(req.body.itemId)
       .then(item => {
         if (!item) {
@@ -70,7 +71,7 @@ router.post('/', (req, res, next) => {
       });
 });
 
-router.get('/:savelistId', (req, res, next) => {
+router.get('/:savelistId', checkAuth, (req, res, next) => {
   Savelist.findById(req.params.savelistId)
       .exec()
       .then(savelist => {
@@ -94,13 +95,13 @@ router.get('/:savelistId', (req, res, next) => {
       });
 });
 
-router.patch('/:savelistId', (req, res, next) => {
+router.patch('/:savelistId', checkAuth, (req, res, next) => {
   res.status(200).json({
     message: 'Updated SaveList!'
   })
 });
 
-router.delete('/:savelistId', (req, res, next) => {
+router.delete('/:savelistId', checkAuth, (req, res, next) => {
   Savelist.remove({ _id: req.params.savelistId })
       .exec()
       .then(result => {

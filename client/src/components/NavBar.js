@@ -9,7 +9,7 @@ class NavBar extends Component {
       <div className="NavBar">
         <ul>
           {navLinks.map((navLinks, index) =>
-            <a href={navLinks.link}><li key={index}>{navLinks.label}</li></a>
+            <a key={index} href={navLinks.link}><li key={index}>{navLinks.label}</li></a>
           )}
         </ul>
       </div>

@@ -10,6 +10,7 @@ class NeedForm extends Component {
     let firstName = this.props.firstName;
     let userName = this.props.userName;
     let userId = this.props.userId;
+    let token = this.props.token;
 
     this.state = {
       submitError: '',
@@ -171,7 +172,7 @@ class NeedForm extends Component {
       contactinfo
     } = this.state;
 
-
+    let token = this.props.token;
 
     var data = new FormData();
     data.append('name', name);
@@ -201,6 +202,9 @@ class NeedForm extends Component {
     if (itemImg) {
       fetch('/items', {
         method: 'POST',
+        headers: {
+          'Authorization': 'Bearer ' + token
+        },
         body: data,
       }).then(res => res.json())
       .then(json => {
@@ -268,7 +272,7 @@ class NeedForm extends Component {
           });
         } else {
           this.setState({
-            submitError: json.error.message
+            submitError: json.message
           });
         }
       });
@@ -300,7 +304,7 @@ class NeedForm extends Component {
       contactinfo
     } = this.state;
 
-
+    let token = this.props.token;
 
     var data = new FormData();
     data.append('name', name);
@@ -327,6 +331,9 @@ class NeedForm extends Component {
 
     fetch('/items', {
       method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`
+      },
       body: data,
     }).then(res => res.json())
     .then(json => {
@@ -392,9 +399,7 @@ class NeedForm extends Component {
     let userName = this.props.userName;
     let userId = this.props.userId;
 
-    console.log(userName);
-    console.log(firstName);
-    console.log(userId);
+
 
 
     return (
@@ -450,7 +455,7 @@ class NeedForm extends Component {
           </div>
         </div>
         <label>Description</label><br />
-        <textarea minlength="25" maxlength="1000" rows="4" cols="50" placeholder="Provide a short description of the item..." value={description} onChange={this.onTextChangeDescription} /><br />
+        <textarea minLength="25" maxLength="1000" rows="4" cols="50" placeholder="Provide a short description of the item..." value={description} onChange={this.onTextChangeDescription} /><br />
         <label>Location</label><br />
         <input type="text" placeholder="City..." value={location} onChange={this.onTextChangeLocation} /><br />
 

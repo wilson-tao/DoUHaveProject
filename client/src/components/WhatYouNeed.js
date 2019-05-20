@@ -7,12 +7,13 @@ class WhatYouNeed extends Component {
     let firstName = this.props.firstName;
     let userName = this.props.userName;
     let userId = this.props.userId;
+    let token = this.props.token;
 
     if (isAuth) {
       return (
         <div className="WhatYouNeed">
           <h1>Post What You Need</h1>
-          <NeedForm userName={userName} firstName={firstName} userId={userId} />
+          <NeedForm userName={userName} firstName={firstName} userId={userId} token={token} />
         </div>
       )
     } else {

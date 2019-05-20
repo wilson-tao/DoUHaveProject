@@ -30,7 +30,7 @@ class MobileMenu extends Component {
 
 
   render() {
-    console.log('ShowMenu: ', this.state.showMenu);
+    
 
     let navLinks = [
       { label: 'Home', link: '/' },

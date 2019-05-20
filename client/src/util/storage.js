@@ -6,8 +6,7 @@ export function getFromStorage(key) {
   try {
     const valueStr = localStorage.getItem(key);
     if (valueStr) {
-      console.log('Parsing...', valueStr);
-      console.log(JSON.parse(valueStr));
+      
       return JSON.parse(valueStr);
     }
     return null;

@@ -171,8 +171,6 @@ class Login extends Component {
 
 
 
-    console.log('Passed Token Login', isAuth);
-
     return (
       <div className="Login">
         {

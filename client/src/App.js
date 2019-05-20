@@ -98,22 +98,19 @@ class App extends Component {
   }
 
   componentDidMount() {
-      console.log('Mounting...');
+      console.log('Mounting APP');
       const obj = getFromStorage('the_main_app');
       if (obj && obj.token) {
         const { token } = obj;
         //Verify
         console.log('Checking Token...');
-        console.log(token);
+        
         fetch('/user/verify/' + token)
           .then(res => res.json())
           .then(json => {
-            console.log(json.message);
-            console.log(json.user);
-            console.log(json.userName);
-            console.log(json.firstName);
+
             if (json.message === 'User Verified') {
-              console.log('Made it');
+              console.log('TOKEN VERIFIED');
               this.setState({
                 token,
                 userName: json.userName,
@@ -143,23 +140,19 @@ class App extends Component {
       userId,
       searchTerm,
       searchResults,
-      showResults
+      showResults,
+      token
     } = this.state;
 
-    console.log("App.js isAuth:", isAuth);
-    console.log(userName);
-    console.log(firstName);
-    console.log(userId);
+
 
     return (
       <div className="App">
-        {
-          console.log('Passed Token App:', isAuth)
-        }
+
         <Header isAuth={isAuth} userName={userName} firstName={firstName} />
         <MobileMenu />
 
-        
+
         <div className="Search">
           <input type="text" placeholder="Search" value={searchTerm} onChange={this.onTextChange} /><button onClick={this.onSearch}>Search</button>
 
@@ -171,7 +164,7 @@ class App extends Component {
 
           {
             this.state.showResults ?
-            <SearchResults isAuth={isAuth} userId={userId} searchResults={searchResults} /> :
+            <SearchResults isAuth={isAuth} userId={userId} searchResults={searchResults} token={token} /> :
             (
               <BrowserRouter>
                 <Switch>
@@ -180,7 +173,7 @@ class App extends Component {
                     render={(props) => <WhatPeopleNeed {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
                   />
                   <Route path={'/WhatYouNeed'}
-                    render={(props) => <WhatYouNeed {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                    render={(props) => <WhatYouNeed {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
                   />
                   <Route path={'/HowItWorks'} component={HowItWorks} />
                   <Route path={'/About'} component={About} />
@@ -235,7 +228,7 @@ class App extends Component {
                   />
 
                   <Route path={'/userpanel'}
-                    render={(props) => <UserPanel {...props} isAuth={isAuth} userId={userId} />}
+                    render={(props) => <UserPanel {...props} isAuth={isAuth} userId={userId} token={token} />}
                   />
 
                 </Switch>

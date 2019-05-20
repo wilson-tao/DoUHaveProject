@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const multer = require('multer');
+const checkAuth = require('../middleware/check-auth');
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -296,7 +297,7 @@ router.get('/search1/:category/:term', (req, res, next) => {
 
 // End Search Route
 
-router.post('/', upload.single('itemImg'), (req, res, next) => {
+router.post('/', checkAuth, upload.single('itemImg'), (req, res, next) => {
   console.log('ReqFile: ', req.file);
   const item = new Item({
     _id: new mongoose.Types.ObjectId(),
@@ -458,7 +459,7 @@ router.get('/item/:itemId', (req, res, next) => {
       });
 });
 
-router.patch('/item/:itemId', (req, res, next) => {
+router.patch('/item/:itemId', checkAuth, (req, res, next) => {
   const id = req.params.itemId;
   const updateOps = {};
   for (const ops of req.body) {
@@ -483,7 +484,7 @@ router.patch('/item/:itemId', (req, res, next) => {
       });
 });
 
-router.delete('/item/:itemId', (req, res, next) => {
+router.delete('/item/:itemId', checkAuth, (req, res, next) => {
   const id = req.params.itemId;
   Item.remove({_id: id})
       .exec()

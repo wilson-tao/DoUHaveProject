@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
+const checkAuth = require('../middleware/check-auth');
 
 const Offer = require('../../models/Offer');
 
 //Route to get All Offers for Item
-router.get('/item/:itemId', (req, res, next) => {
+router.get('/item/:itemId', checkAuth, (req, res, next) => {
   Offer.find({ itemId: req.params.itemId })
         .select('_id itemId itemOwner submittedAt myOffer submittedBy contactPhone contactEmail offerMessage accepted messageBack')
         .exec()
@@ -43,7 +44,7 @@ router.get('/item/:itemId', (req, res, next) => {
 });
 
 //Route to get Offers of all Items posted by User who Posted Item
-router.get('/itemowner/:userId', (req, res, next) => {
+router.get('/itemowner/:userId', checkAuth, (req, res, next) => {
   Offer.find({ itemOwner: req.params.userId })
         .select('_id itemId itemOwner submittedAt myOffer submittedBy contactPhone contactEmail offerMessage accepted messageBack')
         .exec()
@@ -82,7 +83,7 @@ router.get('/itemowner/:userId', (req, res, next) => {
 
 //Route to get All Offers by User who submitted them on single Item???
 //Better: Check if User has already put offer on item
-router.get('/check/:itemId/:userId', (req, res, next) => {
+router.get('/check/:itemId/:userId', checkAuth, (req, res, next) => {
   Offer.find({ itemId: req.params.itemId, submittedBy: req.params.userId})
       .select('_id itemId submittedBy')
       .exec()
@@ -103,7 +104,7 @@ router.get('/check/:itemId/:userId', (req, res, next) => {
 
 
 //Route to get Offers User submitted on all items
-router.get('/myoffers/:userId', (req, res, next) => {
+router.get('/myoffers/:userId', checkAuth, (req, res, next) => {
   Offer.find({ submittedBy: req.params.userId })
         .select('_id itemId itemOwner submittedAt myOffer submittedBy contactPhone contactEmail offerMessage accepted messageBack')
         .exec()
@@ -143,7 +144,7 @@ router.get('/myoffers/:userId', (req, res, next) => {
 
 
 //Route to post Offer on Item
-router.post('/', (req, res, next) => {
+router.post('/', checkAuth, (req, res, next) => {
   const offer = new Offer({
     _id: new mongoose.Types.ObjectId(),
     itemId: req.body.itemId,
@@ -181,7 +182,7 @@ router.post('/', (req, res, next) => {
 });
 
 //Route to post Message Back to Offerer, or make changes to offer
-router.patch('/offer/:offerId', (req, res, next) => {
+router.patch('/offer/:offerId', checkAuth, (req, res, next) => {
   const id = req.params.offerId;
   const updateOps = {};
   for (const ops of req.body) {
@@ -208,7 +209,7 @@ router.patch('/offer/:offerId', (req, res, next) => {
 
 
 //Route to Delete Offer
-router.delete('/offer/:offerId', (req, res, next) => {
+router.delete('/offer/:offerId', checkAuth, (req, res, next) => {
   const id = req.params.offerId;
   Offer.remove({_id: id})
        .exec()

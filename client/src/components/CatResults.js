@@ -26,6 +26,7 @@ class CatResults extends Component {
   }
 
   componentDidMount() {
+    console.log('Mounting CatResults');
     const {
       isLoaded,
       models,
@@ -35,6 +36,7 @@ class CatResults extends Component {
     } = this.state;
 
     let category = this.props.category;
+    console.log('CatResults Category:', category);
 
     fetch('/items/' + category, {
       method: 'GET',
@@ -44,11 +46,9 @@ class CatResults extends Component {
     })
       .then(res => res.json())
       .then(json => {
-        console.log(json);
-        console.log(json.count);
-        console.log(json.items);
+
         if (json) {
-          console.log('It Worked');
+          console.log('CatResults Fetched');
           this.setState({
             isLoaded: true,
             models: json.items
@@ -167,10 +167,7 @@ class CatResults extends Component {
     let firstName = this.props.firstName
     let userId = this.props.userId
 
-    console.log(models);
-    console.log('Category:CatResults:', category);
 
-    console.log('CatResults.js isAuth:', isAuth);
 
 
 

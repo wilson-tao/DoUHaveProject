@@ -11,8 +11,6 @@ class Header extends Component {
     let userName = this.props.userName;
     let firstName = this.props.firstName;
 
-    console.log('Passed Token Header:', isAuth);
-
 
     return (
       <div className="Header">
