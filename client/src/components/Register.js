@@ -14,6 +14,7 @@ class Register extends Component {
       signUpLastName: '',
       signUpEmail: '',
       signUpPassword: '',
+      passwordConfirm: '',
       signUpStreetAddress: '',
       signUpCity: '',
       signUpState: '',
@@ -28,6 +29,8 @@ class Register extends Component {
     this.onTextboxChangeSignUpCity = this.onTextboxChangeSignUpCity.bind(this);
     this.onTextboxChangeSignUpState = this.onTextboxChangeSignUpState.bind(this);
     this.onTextboxChangeSignUpZip = this.onTextboxChangeSignUpZip.bind(this);
+    this.onTextboxChangePasswordConfirm = this.onTextboxChangePasswordConfirm.bind(this);
+
 
 
     this.onSignUp = this.onSignUp.bind(this);
@@ -82,6 +85,14 @@ class Register extends Component {
     });
   }
 
+  onTextboxChangePasswordConfirm(event) {
+    this.setState({
+      passwordConfirm: event.target.value,
+    });
+  }
+
+
+
   onSignUp() {
     //Grab state
     const {
@@ -90,6 +101,7 @@ class Register extends Component {
       signUpLastName,
       signUpEmail,
       signUpPassword,
+      passwordConfirm,
       signUpStreetAddress,
       signUpCity,
       signUpState,
@@ -100,48 +112,54 @@ class Register extends Component {
       isLoading: true,
     });
 
+    if (signUpPassword === passwordConfirm) {
+      fetch('/user/signup', {
+        method: 'POST',
+        headers: {
+          'Content-type': 'application/json'
+        },
+        body: JSON.stringify({
+          userName: signUpUsername,
+          firstName: signUpFirstName,
+          lastName: signUpLastName,
+          email: signUpEmail,
+          password: signUpPassword,
+          streetAddress: signUpStreetAddress,
+          city: signUpCity,
+          state: signUpState,
+          zip: signUpZip,
+        }),
+      }).then(res => res.json())
+      .then(json => {
+        console.log(json.message);
+        if (json.message === "User Created") {
+          console.log('it worked');
+          this.setState({
+            signUpError: json.message,
+            isLoading: false,
+            signUpEmail: '',
+            signUpPassword: '',
+            signUpFirstName: '',
+            signUpLastName: '',
+            signUpUsername: '',
+            signUpStreetAddress: '',
+            signUpCity: '',
+            signUpState: '',
+            signUpZip: ''
+          });
+        } else {
+          this.setState({
+            signUpError: json.error.message,
+            isLoading: false
+          });
+        }
+      });
+    } else {
+      alert("Password Fields Do Not Match!");
+
+    }
     //Post request to backend
-    fetch('/user/signup', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify({
-        userName: signUpUsername,
-        firstName: signUpFirstName,
-        lastName: signUpLastName,
-        email: signUpEmail,
-        password: signUpPassword,
-        streetAddress: signUpStreetAddress,
-        city: signUpCity,
-        state: signUpState,
-        zip: signUpZip,
-      }),
-    }).then(res => res.json())
-    .then(json => {
-      console.log(json.message);
-      if (json.message === "User Created") {
-        console.log('it worked');
-        this.setState({
-          signUpError: json.message,
-          isLoading: false,
-          signUpEmail: '',
-          signUpPassword: '',
-          signUpFirstName: '',
-          signUpLastName: '',
-          signUpUsername: '',
-          signUpStreetAddress: '',
-          signUpCity: '',
-          signUpState: '',
-          signUpZip: ''
-        });
-      } else {
-        this.setState({
-          signUpError: json.error.message,
-          isLoading: false
-        });
-      }
-    });
+
   }
 
   render() {
@@ -153,6 +171,7 @@ class Register extends Component {
       signUpLastName,
       signUpEmail,
       signUpPassword,
+      passwordConfirm,
       signUpStreetAddress,
       signUpCity,
       signUpState,
@@ -168,6 +187,7 @@ class Register extends Component {
         <input type="text" placeholder="Last Name" value={signUpLastName} onChange={this.onTextboxChangeLastName} /><br />
         <input type="email" placeholder="Email" value={signUpEmail} onChange={this.onTextboxChangeSignUpEmail} /><br />
         <input type="password" placeholder="Password" value={signUpPassword} onChange={this.onTextboxChangeSignUpPassword} /><br />
+        <input type="password" placeholder="Confirm Password" value={passwordConfirm} onChange={this.onTextboxChangePasswordConfirm} /><br />
         <br />
         <input type="text" placeholder="Street Address" value={signUpStreetAddress} onChange={this.onTextboxChangeSignUpStreetAddress} /><br />
         <input type="text" placeholder="City" value={signUpCity} onChange={this.onTextboxChangeSignUpCity} /><br />
