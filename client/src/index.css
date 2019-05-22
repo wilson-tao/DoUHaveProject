@@ -694,6 +694,16 @@ input {
 }
 
 @media only screen and (min-width: 600px) {
+
+  .cat-title {
+    font-size: 150%;
+  }
+
+  .cat-title p:after {
+    font-size: 100%;
+    top: -20px;
+  }
+
   .Categories {
     //grid-template-columns: repeat(auto-fill, 450px);
   }
@@ -712,6 +722,7 @@ input {
 }
 
 @media only screen and (min-width: 768px) {
+
 
 }
 
@@ -738,6 +749,16 @@ input {
 }
 
 @media only screen and (min-width: 1350px) {
+
+  .cat-title {
+    font-size: 250%;
+  }
+
+  .cat-title p:after {
+    font-size: 200%;
+    top: -50px;
+  }
+
   .Categories {
     //grid-template-columns: repeat(auto-fill, 350px);
   }
