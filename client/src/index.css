@@ -695,6 +695,11 @@ input {
 
 @media only screen and (min-width: 600px) {
 
+  .site-title img {
+    width: 250px;
+  }
+
+
   .cat-title {
     font-size: 150%;
   }
@@ -749,6 +754,10 @@ input {
 }
 
 @media only screen and (min-width: 1350px) {
+
+  .site-title img {
+    width: 350px;
+  }
 
   .cat-title {
     font-size: 250%;
