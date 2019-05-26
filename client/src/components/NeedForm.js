@@ -55,6 +55,7 @@ class NeedForm extends Component {
     this.onTextChangeContactInfo = this.onTextChangeContactInfo.bind(this);
 
     this.onSubmit = this.onSubmit.bind(this);
+    this.validateForm = this.validateForm.bind(this);
   }
 
   onTextChangeName(event) {
@@ -280,7 +281,88 @@ class NeedForm extends Component {
 
   }
 
+  validateForm() {
+    const {
+      name,
+      itemImg,
+      budget,
+      category,
+      condition,
+      description,
+      location,
+      locationState,
+      submittedby,
+      submitError,
+      contactinfo
+    } = this.state;
+
+    if (name === '') {
+      this.setState({
+        submitError: 'Item Name Cannot Be Empty'
+      });
+      return
+    } else if (itemImg == null) {
+      this.setState({
+        submitError: 'Please Include Image'
+      });
+      return
+    } else if (category === '') {
+      this.setState({
+        submitError: 'Please Choose a Category'
+      });
+      return
+    } else if (budget === '') {
+      this.setState({
+        submitError: 'Budget Cannot Be Empty'
+      });
+      return
+    } else if (isNaN(budget)) {
+      this.setState({
+        submitError: 'Please Include Only Numbers in Budget'
+      });
+      return 
+    } else if (condition === '') {
+      this.setState({
+        submitError: 'Please Choose a Condition'
+      });
+      return
+    } else if (description === '') {
+      this.setState({
+        submitError: 'Description Cannot be Empty'
+      });
+      return
+    } else if (description.length < 20) {
+      this.setState({
+        submitError: 'Description Needs to be at least 20 characters'
+      });
+      return
+    } else if (location === ''){
+      this.setState({
+        submitError: 'Please Include City where Item is Located'
+      });
+      return
+    } else if (locationState === '') {
+      this.setState({
+        submitError: 'Please Choose a State'
+      });
+      return
+    } else if (submittedby === '') {
+      this.setState({
+        submitError: 'Please Include Your Name'
+      });
+      return
+    } else if (contactinfo === '') {
+      this.setState({
+        submitError: 'Please Include a Contact Number or Email Address'
+      });
+      return
+    } else {
+      this.onSubmit()
+    }
+  }
+
   onSubmit() {
+
     const {
       submitError,
       name,
@@ -368,6 +450,8 @@ class NeedForm extends Component {
         });
       }
     });
+
+
   }
 
   render() {
@@ -438,7 +522,7 @@ class NeedForm extends Component {
           </div>
           <div id="itemBudget">
             <label>Budget</label><br />
-            <input required type="text" placeholder="How much are you willing to pay?" value={budget} onChange={this.onTextChangeBudget} /><br />
+            $<input required type="text" placeholder="How much are you willing to pay?" value={budget} onChange={this.onTextChangeBudget} />.00<br />
           </div>
           <div id="itemCondition">
             <label>Condition</label><br />
@@ -487,7 +571,7 @@ class NeedForm extends Component {
         <br />
         <label>Gaming System</label><br />
         <input type="text" placeholder="Playstation 4, XBox One, PC, etc..." value={gamesystem} onChange={this.onTextChangeGamesystem} /><br />
-        <button onClick={this.onSubmit}>Submit</button>
+        <button onClick={this.validateForm}>Submit</button>
         {console.log(submitError)}
         {
           (submitError) ? (
