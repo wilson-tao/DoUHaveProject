@@ -468,20 +468,37 @@ router.get('/item/:itemId', (req, res, next) => {
 
 router.patch('/item/:itemId', checkAuth, (req, res, next) => {
   const id = req.params.itemId;
-  const updateOps = {};
-  for (const ops of req.body) {
-    updateOps[ops.propName] = ops.value;
-  }
-  Item.update({_id: id}, { $set: updateOps })
+  Item.findById(id)
+      .select('submittedby1')
       .exec()
       .then(result => {
-        res.status(200).json({
-          message: 'Item updated!',
-          request: {
-            type: 'PATCH',
-            url: '/items/' + id
+        if (result.submittedby1 != req.userData.userId) {
+          return res.status(401).json({
+            message: 'Auth Failed 5'
+          });
+        } else {
+          const updateOps = {};
+          for (const ops of req.body) {
+            updateOps[ops.propName] = ops.value;
           }
-        });
+          Item.update({_id: id}, { $set: updateOps })
+              .exec()
+              .then(result => {
+                res.status(200).json({
+                  message: 'Item updated!',
+                  request: {
+                    type: 'PATCH',
+                    url: '/items/' + id
+                  }
+                });
+              })
+              .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                  error: err
+                });
+              });
+        }
       })
       .catch(err => {
         console.log(err);
@@ -493,16 +510,33 @@ router.patch('/item/:itemId', checkAuth, (req, res, next) => {
 
 router.delete('/item/:itemId', checkAuth, (req, res, next) => {
   const id = req.params.itemId;
-  Item.remove({_id: id})
+  Item.findById(id)
+      .select('submittedby1')
       .exec()
       .then(result => {
-        res.status(200).json({
-          message: 'Item Deleted!',
-          request: {
-            type: 'DELETE',
-            url: '/items/'
-          }
-        });
+        if (result.submittedby1 != req.userData.userId) {
+          return res.status(401).json({
+            message: 'Auth Failed 5'
+          });
+        } else {
+          Item.remove({_id: id})
+              .exec()
+              .then(result => {
+                res.status(200).json({
+                  message: 'Item Deleted!',
+                  request: {
+                    type: 'DELETE',
+                    url: '/items/'
+                  }
+                });
+              })
+              .catch(err => {
+                console.log(err);
+                res.status(500).json({
+                  error: err
+                });
+              });
+        }
       })
       .catch(err => {
         console.log(err);
@@ -510,6 +544,7 @@ router.delete('/item/:itemId', checkAuth, (req, res, next) => {
           error: err
         });
       });
+
 });
 
 
