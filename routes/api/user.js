@@ -132,25 +132,31 @@ router.get('/user/:userId', checkAuth, (req,res,next) => {
 })
 
 router.delete('/:userId', checkAuth, (req, res, next) => {
-  User.remove({_id: req.params.userId})
-      .exec()
-      .then(result => {
-        if (req.params.userId != req.userData.userId) {
-          return res.status(401).json({
-            message: 'Auth Failed 5'
+  if (req.params.userId != req.userData.userId) {
+    return res.status(401).json({
+      message: 'Auth Failed 5'
+    });
+  } else {
+    User.remove({_id: req.params.userId})
+        .exec()
+        .then(result => {
+          if (req.params.userId != req.userData.userId) {
+            return res.status(401).json({
+              message: 'Auth Failed 5'
+            });
+          } else {
+            res.status(200).json({
+              message: 'User Deleted'
+            });
+          }
+        })
+        .catch(err => {
+          console.log(err);
+          res.status(500).json({
+            error: err
           });
-        } else {
-          res.status(200).json({
-            message: 'User Deleted'
-          });
-        }
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json({
-          error: err
-        });
-      })
+        })
+  }
 });
 
 //Verify user
