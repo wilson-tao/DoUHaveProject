@@ -298,70 +298,77 @@ router.get('/search1/:category/:term', (req, res, next) => {
 // End Search Route
 
 router.post('/', checkAuth, upload.single('itemImg'), (req, res, next) => {
-  console.log('ReqFile: ', req.file);
-  const item = new Item({
-    _id: new mongoose.Types.ObjectId(),
-    name: req.body.name,
-    itemImg: req.file.path,
-    budget: req.body.budget,
-    category: req.body.category,
-    condition: req.body.condition,
-    description: req.body.description,
-    location: req.body.location,
-    locationState: req.body.locationState,
-    submittedby: req.body.submittedby,
-    submittedby1: req.body.submittedby1,
-    carmake: req.body.carmake,
-    carmodel: req.body.carmodel,
-    caryear: req.body.caryear,
-    cellcarrier: req.body.cellcarrier,
-    cellmodel: req.body.cellmodel,
-    cellmake: req.body.cellmake,
-    cellos: req.body.cellos,
-    gamesystem: req.body.gamesystem,
-    contactinfo: req.body.contactinfo
-  });
-  item.save()
-      .then(result => {
-        console.log(result);
-        res.status(201).json({
-          message: 'Item created in /items',
-          createdItem: {
-            name: result.name,
-            itemImg: result.itemImg,
-            budget: result.budget,
-            _id: result._id,
-            category: result.category,
-            condition: result.condition,
-            description: result.description,
-            location: result.location,
-            locationState: result.locationState,
-            submittedby: result.submittedby,
-            submittedby1: result.submittedby1,
-            carmake: result.carmake,
-            carmodel: result.carmodel,
-            caryear: result.caryear,
-            cellmake: result.cellmake,
-            cellmodel: result.cellmodel,
-            cellcarrier: result.cellcarrier,
-            cellos: result.cellos,
-            gamesystem: result.gamesystem,
-            createdAt: result.createdAt,
-            expirationDate: result.expirationDate,
-            contactinfo: result.contactinfo,
-            request: {
-              type: 'POST',
-              url: '/items/' + result._id
+  if (req.body.submittedby1 != req.userData.userId) {
+    return res.status(401).json({
+      message: 'Auth Failed 5'
+    });
+  } else {
+    console.log('ReqFile: ', req.file);
+    const item = new Item({
+      _id: new mongoose.Types.ObjectId(),
+      name: req.body.name,
+      itemImg: req.file.path,
+      budget: req.body.budget,
+      category: req.body.category,
+      condition: req.body.condition,
+      description: req.body.description,
+      location: req.body.location,
+      locationState: req.body.locationState,
+      submittedby: req.body.submittedby,
+      submittedby1: req.body.submittedby1,
+      carmake: req.body.carmake,
+      carmodel: req.body.carmodel,
+      caryear: req.body.caryear,
+      cellcarrier: req.body.cellcarrier,
+      cellmodel: req.body.cellmodel,
+      cellmake: req.body.cellmake,
+      cellos: req.body.cellos,
+      gamesystem: req.body.gamesystem,
+      contactinfo: req.body.contactinfo
+    });
+    item.save()
+        .then(result => {
+          console.log(result);
+          res.status(201).json({
+            message: 'Item created in /items',
+            createdItem: {
+              name: result.name,
+              itemImg: result.itemImg,
+              budget: result.budget,
+              _id: result._id,
+              category: result.category,
+              condition: result.condition,
+              description: result.description,
+              location: result.location,
+              locationState: result.locationState,
+              submittedby: result.submittedby,
+              submittedby1: result.submittedby1,
+              carmake: result.carmake,
+              carmodel: result.carmodel,
+              caryear: result.caryear,
+              cellmake: result.cellmake,
+              cellmodel: result.cellmodel,
+              cellcarrier: result.cellcarrier,
+              cellos: result.cellos,
+              gamesystem: result.gamesystem,
+              createdAt: result.createdAt,
+              expirationDate: result.expirationDate,
+              contactinfo: result.contactinfo,
+              request: {
+                type: 'POST',
+                url: '/items/' + result._id
+              }
             }
-          }
-        });
-      })
-      .catch(err => {
-        console.log(err);
-        res.status(500).json({
-          error: err
+          });
         })
-      });
+        .catch(err => {
+          console.log(err);
+          res.status(500).json({
+            error: err
+          })
+        });
+  }
+
 });
 
 /*
