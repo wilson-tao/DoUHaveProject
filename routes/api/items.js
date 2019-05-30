@@ -140,6 +140,55 @@ router.get('/:category', (req, res, next) => {
       });
 });
 
+router.get('/user/:userId', (req, res, next) => {
+  Item.find({submittedby1: req.params.userId})
+      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .exec()
+      .then(docs => {
+        const response = {
+          count: docs.length,
+          items: docs.map(doc => {
+            return {
+              name: doc.name,
+              budget: doc.budget,
+              itemImg: doc.itemImg,
+              pic: doc.pic,
+              _id: doc._id,
+              category: doc.category,
+              condition: doc.condition,
+              description: doc.description,
+              location: doc.location,
+              locationState: doc.locationState,
+              submittedby: doc.submittedby,
+              submittedby1: doc.submittedby1,
+              carmake: doc.carmake,
+              carmodel: doc.carmodel,
+              caryear: doc.caryear,
+              cellmake: doc.cellmake,
+              cellmodel: doc.cellmodel,
+              cellcarrier: doc.cellcarrier,
+              cellos: doc.cellos,
+              gamesystem: doc.gamesystem,
+              createdAt: doc.createdAt,
+              expirationDate: doc.expirationDate,
+              contactinfo: doc.contactinfo,
+              request: {
+                type: 'GET',
+                url: '/items/' + doc._id
+              }
+            }
+          })
+        };
+        res.status(200).json(response);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+});
+
 // End Category Routes
 
 // Search Route: Category AND Name

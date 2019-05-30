@@ -159,6 +159,40 @@ router.delete('/:userId', checkAuth, (req, res, next) => {
   }
 });
 
+router.patch('/edit/:userId', checkAuth, (req, res, next) => {
+  if (req.params.userId != req.userData.userId) {
+    return res.status(401).json({
+      message: 'Auth Failed 5'
+    });
+  } else {
+    User.update({_id: req.params.userId}, {$set: {
+      userName: req.body.userName,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      streetAddress: req.body.streetAddress,
+      city: req.body.city,
+      state: req.body.state,
+      zip: req.body.zip
+    }})
+        .exec()
+        .then(result => {
+          res.status(200).json({
+            message: 'User Updated!',
+            request: {
+              type: 'PATCH',
+              url: '/user/' + req.params.userId
+            }
+          });
+        })
+        .catch(err => {
+          console.log(err);
+          res.status(500).json({
+            error: err
+          });
+        });
+  }
+});
+
 //Verify user
 router.get('/verify/:token', (req, res, next) => {
   const token = req.params.token;
