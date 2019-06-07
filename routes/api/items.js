@@ -140,6 +140,7 @@ router.get('/:category', (req, res, next) => {
       });
 });
 
+//GET All Items posted by User
 router.get('/user/:userId', (req, res, next) => {
   Item.find({submittedby1: req.params.userId})
       .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
@@ -515,7 +516,8 @@ router.get('/item/:itemId', (req, res, next) => {
       });
 });
 
-router.patch('/item/:itemId', checkAuth, (req, res, next) => {
+//EDIT ITEM
+router.patch('/item/edit/:itemId', checkAuth, (req, res, next) => {
   const id = req.params.itemId;
   Item.findById(id)
       .select('submittedby1')
@@ -526,11 +528,10 @@ router.patch('/item/:itemId', checkAuth, (req, res, next) => {
             message: 'Auth Failed 5'
           });
         } else {
-          const updateOps = {};
-          for (const ops of req.body) {
-            updateOps[ops.propName] = ops.value;
-          }
-          Item.update({_id: id}, { $set: updateOps })
+
+          Item.update({_id: id}, { $set: {
+            name: req.body.name
+          }})
               .exec()
               .then(result => {
                 res.status(200).json({

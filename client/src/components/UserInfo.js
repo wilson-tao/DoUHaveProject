@@ -8,7 +8,6 @@ class UserInfo extends Component {
     super(props);
     this.state = {
       userId: this.props.userId,
-      isAuth: this.props.isAuth,
       token: this.props.token,
       userName: '',
       firstName: '',
@@ -121,7 +120,6 @@ class UserInfo extends Component {
   componentDidMount() {
     const {
       userId,
-      isAuth,
       userName,
       firstName,
       lastName,

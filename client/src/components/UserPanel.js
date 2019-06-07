@@ -23,6 +23,7 @@ class UserPanel extends Component {
           <h1>User Panel</h1>
           <h2>Info</h2>
           <UserInfo userId={userId} token={token} />
+          <hr />
           <h2>Items You Posted</h2>
           <UserItems userId={userId} token={token} />
 
