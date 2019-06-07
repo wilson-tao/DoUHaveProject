@@ -94,6 +94,13 @@ class EditItem extends Component {
       },
       body: JSON.stringify({
         name: itemName,
+        budget: itemBudget,
+        category: itemCategory,
+        location: itemLocation,
+        locationState: itemState,
+        condition: itemCondition,
+        description: itemDescription,
+        submittedby: itemSubmittedby
       })
     })
       .then(res => res.json())
@@ -101,7 +108,7 @@ class EditItem extends Component {
         console.log(json.message);
         if (json.message === 'Item updated!') {
           console.log('Update Worked');
-          window.location.reload();
+          //window.location.reload();
 
         } else {
           console.log('Update Did Not Work');
@@ -132,10 +139,44 @@ class EditItem extends Component {
         <label>Budget</label><br />
         <input type="text" placeholder={item.budget} value={itemBudget} onChange={this.onChangeBudget} /><br />
         <label>Category</label><br />
+        <select value={itemCategory} onChange={this.onChangeCategory}>
+          <option value=""></option>
+          <option value="auto">Car's and Trucks</option>
+          <option value="appliance">Appliances</option>
+          <option value="moto">Moto/ATV/UTV</option>
+          <option value="cell">Cell Phones</option>
+          <option value="furniture">Furniture</option>
+          <option value="instrument">Musical Instruments</option>
+          <option value="game">Video Games</option>
+          <option value="clothing">Clothing & Accessories</option>
+          <option value="collectible">Antiques & Collectibles</option>
+          <option value="beauty">Beauty & Cosmetics</option>
+          <option value="comequip">Commercial & Restaurant Equipment</option>
+          <option value="misc">Everything Else</option>
+          <option value="housing">Housing & Places to Live</option>
+          <option value="autoservice">Auto Services</option>
+          <option value="homeservice">Home Services</option>
+
+        </select><br />
         <label>City</label><br />
         <input type="text" placeholder={item.location} value={itemLocation} onChange={this.onChangeLocation} /><br />
         <label>State</label><br />
+        <select value={itemState} onChange={this.onChangeState}>
+          <option value=""></option>
+          <option value="OK">OK</option>
+          <option value="TX">TX</option>
+        </select><br />
         <label>Condition</label><br />
+        <select value={itemCondition} onChange={this.onChangeCondition}>
+          <option value=""></option>
+          <option value="new">New</option>
+          <option value="likeNew">Like New</option>
+          <option value="lightlyUsed">Lightly Used</option>
+          <option value="used">Used</option>
+          <option value="wellUsed">Well Used</option>
+          <option value="needRepair">Needs Some Repair</option>
+          <option value="parts">Parts</option>
+        </select><br />
         <label>Description</label><br />
         <textarea minLength="25" maxLength="1000" rows="4" cols="50" placeholder={item.description} value={itemDescription} onChange={this.onChangeDescription} /><br />
         <label>Your Name</label><br />

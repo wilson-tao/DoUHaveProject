@@ -530,7 +530,14 @@ router.patch('/item/edit/:itemId', checkAuth, (req, res, next) => {
         } else {
 
           Item.update({_id: id}, { $set: {
-            name: req.body.name
+            name: req.body.name,
+            budget: req.body.budget,
+            category: req.body.category,
+            location: req.body.location,
+            locationState: req.body.locationState,
+            condition: req.body.condition,
+            description: req.body.description,
+            submittedby: req.body.submittedby
           }})
               .exec()
               .then(result => {
