@@ -496,6 +496,7 @@ class NeedForm extends Component {
         </div>
         <div id="itemImg">
           <input type="file" name="itemImg" id="itemImg" onChange={this.onChangeItemImg}  />
+          <p>*required (choose pic that best represents what you need)</p> 
         </div>
         <div className="itemRow">
           <div id="itemCategory">
