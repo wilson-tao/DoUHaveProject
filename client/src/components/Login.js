@@ -98,6 +98,8 @@ class Login extends Component {
       signInPassword,
     } = this.state;
 
+    const signInEmailLower = signInEmail.toLowerCase();
+
     this.setState({
       isLoading: true,
     });
@@ -109,7 +111,7 @@ class Login extends Component {
         'Content-type': 'application/json'
       },
       body: JSON.stringify({
-        email: signInEmail,
+        email: signInEmailLower,
         password: signInPassword,
       }),
     }).then(res => res.json())
