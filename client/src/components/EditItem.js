@@ -108,7 +108,7 @@ class EditItem extends Component {
         console.log(json.message);
         if (json.message === 'Item updated!') {
           console.log('Update Worked');
-          //window.location.reload();
+          window.location.reload();
 
         } else {
           console.log('Update Did Not Work');
@@ -182,6 +182,7 @@ class EditItem extends Component {
         <label>Your Name</label><br />
         <input type="text" placeholder={item.submittedby} value={itemSubmittedby} onChange={this.onChangeSubmittedby} /><br />
         <button onClick={this.onSubmitEdits}>Save</button>
+        <button onClick={this.props.onCancel}>Cancel</button>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import EditItem from './EditItem';
+import DeleteItem from './DeleteItem';
 
 
 
@@ -13,8 +14,10 @@ class UserItems extends Component {
       items: [],
       count: '',
       edit: false,
-      singleResult: ''
+      singleResult: '',
+      deletethis: false
     }
+    this.onCancel = this.onCancel.bind(this);
   }
 
   componentDidMount() {
@@ -58,9 +61,39 @@ class UserItems extends Component {
     } else {
       this.setState({
         singleResult: id,
-        edit: true
+        edit: true,
+        deletethis: false
       })
     }
+  }
+
+  onDeleteItem(id) {
+    const {
+      singleResult,
+      deletethis
+    } = this.state;
+    if (deletethis && (singleResult === id)) {
+      this.setState({
+        deletethis: false
+      });
+    } else if (deletethis) {
+      this.setState({
+        singleResult: id
+      });
+    } else {
+      this.setState({
+        singleResult: id,
+        deletethis: true,
+        edit: false
+      });
+    }
+  }
+
+  onCancel() {
+    this.setState({
+      edit: false,
+      deletethis: false
+    });
   }
 
   render() {
@@ -70,7 +103,8 @@ class UserItems extends Component {
       count,
       singleResult,
       edit,
-      token
+      token,
+      deletethis
     } = this.state;
 
     return (
@@ -101,11 +135,17 @@ class UserItems extends Component {
           <h5>Submitted On:</h5> {model.createdAt}
         </div>
         <button onClick={() => this.onEditItem(model._id)}>Edit</button>
-        <button>Delete</button>
+        <button onClick={() => this.onDeleteItem(model._id)}>Delete</button>
+
+        {
+          this.state.deletethis && (singleResult === model._id) ?
+          <DeleteItem item={model._id} deletethis={deletethis} token={token} onCancel={this.onCancel} /> :
+          (null)
+        }
 
         {
           this.state.edit && (singleResult === model._id) ?
-          <EditItem item={model} edit={edit} token={token} /> :
+          <EditItem item={model} edit={edit} token={token} onCancel={this.onCancel }/> :
           (null)
         }
 
