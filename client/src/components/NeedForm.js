@@ -320,7 +320,7 @@ class NeedForm extends Component {
       this.setState({
         submitError: 'Please Include Only Numbers in Budget'
       });
-      return 
+      return
     } else if (condition === '') {
       this.setState({
         submitError: 'Please Choose a Condition'
@@ -552,25 +552,50 @@ class NeedForm extends Component {
         <label>Submitted by (Name or Username)</label><br />
         <input required type="text" placeholder="Your Name" value={submittedby} onChange={this.onTextChangeSubmittedby} /><br />
         <input required type="text" placeholder="Your Contact Number" value={contactinfo} onChange={this.onTextChangeContactInfo} /><br />
+
+        {
+          (category === 'auto') ? (
+            <>
+            <br />
+            <label>Car Make</label><br />
+            <input type="text" placeholder="Toyota, Honda, etc..." value={carmake} onChange={this.onTextChangeCarmake} /><br />
+            <label>Car Model</label><br />
+            <input type="text" placeholder="Camry, Civic, etc..." value={carmodel} onChange={this.onTextChangeCarmodel} /><br />
+            <label>Car Year</label><br />
+            <input type="text" placeholder="2018, 2017, etc..." value={caryear} onChange={this.onTextChangeCaryear} /><br />
+            </>
+          ) : (null)
+        }
+
+
+        {
+          (category === 'cell') ? (
+            <>
+            <br />
+            <label>Cell Make</label><br />
+            <input type="text" placeholder="Apple, Samsung, LG, etc..." value={cellmake} onChange={this.onTextChangeCellmake} /><br />
+            <label>Cell Model</label><br />
+            <input type="text" placeholder="iPhone, Galaxy S10, V30, etc..." value={cellmodel} onChange={this.onTextChangeCellmodel} /><br />
+            <label>Cell Carrier</label><br />
+            <input type="text" placeholder="T-Mobile, Spring, Verizon, etc..." value={cellcarrier} onChange={this.onTextChangeCellcarrier} /><br />
+            <label>Cell Operating System</label><br />
+            <input type="text" placeholder="iOS, Android, Windows Phone, etc..." value={cellos} onChange={this.onTextChangeCellos} /><br />
+            </>
+          ) : (null)
+        }
+
+
+        {
+          (category === 'game') ? (
+            <>
+            <br />
+            <label>Gaming System</label><br />
+            <input type="text" placeholder="Playstation 4, XBox One, PC, etc..." value={gamesystem} onChange={this.onTextChangeGamesystem} /><br />
+
+            </>
+          ) : (null)
+        }
         <br />
-        <label>Car Make</label><br />
-        <input type="text" placeholder="Toyota, Honda, etc..." value={carmake} onChange={this.onTextChangeCarmake} /><br />
-        <label>Car Model</label><br />
-        <input type="text" placeholder="Camry, Civic, etc..." value={carmodel} onChange={this.onTextChangeCarmodel} /><br />
-        <label>Car Year</label><br />
-        <input type="text" placeholder="2018, 2017, etc..." value={caryear} onChange={this.onTextChangeCaryear} /><br />
-        <br />
-        <label>Cell Make</label><br />
-        <input type="text" placeholder="Apple, Samsung, LG, etc..." value={cellmake} onChange={this.onTextChangeCellmake} /><br />
-        <label>Cell Model</label><br />
-        <input type="text" placeholder="iPhone, Galaxy S10, V30, etc..." value={cellmodel} onChange={this.onTextChangeCellmodel} /><br />
-        <label>Cell Carrier</label><br />
-        <input type="text" placeholder="T-Mobile, Spring, Verizon, etc..." value={cellcarrier} onChange={this.onTextChangeCellcarrier} /><br />
-        <label>Cell Operating System</label><br />
-        <input type="text" placeholder="iOS, Android, Windows Phone, etc..." value={cellos} onChange={this.onTextChangeCellos} /><br />
-        <br />
-        <label>Gaming System</label><br />
-        <input type="text" placeholder="Playstation 4, XBox One, PC, etc..." value={gamesystem} onChange={this.onTextChangeGamesystem} /><br />
         <button onClick={this.validateForm}>Submit</button>
         {console.log(submitError)}
         {
