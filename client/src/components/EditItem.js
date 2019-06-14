@@ -15,7 +15,7 @@ class EditItem extends Component {
       itemCondition: item.condition,
       itemDescription: item.description,
       itemSubmittedby: item.submittedby,
-
+      submitError: ''
     }
 
     this.onChangeName = this.onChangeName.bind(this);
@@ -27,6 +27,7 @@ class EditItem extends Component {
     this.onChangeDescription = this.onChangeDescription.bind(this);
     this.onChangeSubmittedby = this.onChangeSubmittedby.bind(this);
 
+    this.validateForm = this.validateForm.bind(this);
     this.onSubmitEdits = this.onSubmitEdits.bind(this);
   }
 
@@ -117,6 +118,74 @@ class EditItem extends Component {
       })
   }
 
+  validateForm() {
+    const {
+      itemName,
+      itemBudget,
+      itemCategory,
+      itemLocation,
+      itemState,
+      itemCondition,
+      itemDescription,
+      itemSubmittedby,
+      submitError
+    } = this.state;
+
+    if (itemName === '') {
+      this.setState({
+        submitError: 'Item Name Cannot Be Empty'
+      });
+      return
+    } else if (itemCategory === '') {
+      this.setState({
+        submitError: 'Please Choose a Category'
+      });
+      return
+    } else if (itemBudget === '') {
+      this.setState({
+        submitError: 'Budget Cannot Be Empty'
+      });
+      return
+    } else if (isNaN(itemBudget)) {
+      this.setState({
+        submitError: 'Please Include Only Numbers in Budget'
+      });
+      return
+    } else if (itemCondition === '') {
+      this.setState({
+        submitError: 'Please Choose a Condition'
+      });
+      return
+    } else if (itemDescription === '') {
+      this.setState({
+        submitError: 'Description Cannot be Empty'
+      });
+      return
+    } else if (itemDescription.length < 20) {
+      this.setState({
+        submitError: 'Description Needs to be at least 20 characters'
+      });
+      return
+    } else if (itemLocation === ''){
+      this.setState({
+        submitError: 'Please Include City where Item is Located'
+      });
+      return
+    } else if (itemState === '') {
+      this.setState({
+        submitError: 'Please Choose a State'
+      });
+      return
+    } else if (itemSubmittedby === '') {
+      this.setState({
+        submitError: 'Please Include Your Name'
+      });
+      return
+    } else {
+      this.onSubmitEdits()
+    }
+  }
+
 
   render() {
     console.log(this.props.item);
@@ -129,7 +198,8 @@ class EditItem extends Component {
       itemState,
       itemCondition,
       itemDescription,
-      itemSubmittedby
+      itemSubmittedby,
+      submitError
     } = this.state;
     return (
       <div className="EditItem">
@@ -181,8 +251,13 @@ class EditItem extends Component {
         <textarea minLength="25" maxLength="1000" rows="4" cols="50" placeholder={item.description} value={itemDescription} onChange={this.onChangeDescription} /><br />
         <label>Your Name</label><br />
         <input type="text" placeholder={item.submittedby} value={itemSubmittedby} onChange={this.onChangeSubmittedby} /><br />
-        <button onClick={this.onSubmitEdits}>Save</button>
+        <button onClick={this.validateForm}>Save</button>
         <button onClick={this.props.onCancel}>Cancel</button>
+        {
+          (submitError) ? (
+            <p>{submitError}</p>
+          ) : (null)
+        }
       </div>
     );
   }

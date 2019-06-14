@@ -18,7 +18,7 @@ class UserInfo extends Component {
       state: '',
       zip: '',
       edit: false,
-
+      submitError: ''
 
     }
     this.onTextboxChangeUsername = this.onTextboxChangeUsername.bind(this);
@@ -29,7 +29,7 @@ class UserInfo extends Component {
     this.onTextboxChangeState = this.onTextboxChangeState.bind(this);
     this.onTextboxChangeZip = this.onTextboxChangeZip.bind(this);
 
-
+    this.validateForm = this.validateForm.bind(this);
     this.onSubmitEdits = this.onSubmitEdits.bind(this);
 
     this.onEditClick = this.onEditClick.bind(this);
@@ -174,6 +174,62 @@ class UserInfo extends Component {
     }
   }
 
+  validateForm() {
+    const {
+      userName,
+      firstName,
+      lastName,
+      streetAddress,
+      city,
+      state,
+      zip
+    } = this.state;
+
+    if (userName === '') {
+      this.setState({
+        submitError: 'Username Cannot Be Empty'
+      });
+      return
+    } else if (firstName === '') {
+      this.setState({
+        submitError: 'First Name Cannot Be Empty'
+      });
+      return
+    } else if (lastName === '') {
+      this.setState({
+        submitError: 'Last Name Cannot Be Empty'
+      });
+      return
+    } else if (streetAddress === '') {
+      this.setState({
+        submitError: 'Address Cannot Be Empty'
+      });
+      return
+    } else if (city === '') {
+      this.setState({
+        submitError: 'City Cannot Be Empty'
+      });
+      return
+    } else if (state === '') {
+      this.setState({
+        submitError: 'Must Choose State'
+      });
+      return
+    } else if (zip === '') {
+      this.setState({
+        submitError: 'Zip Cannot Be Empty'
+      });
+      return
+    } else if (zip.length !== 5 ) {
+      this.setState({
+        submitError: 'Not a Valid Zip Code'
+      });
+      return
+    } else {
+      this.onSubmitEdits()
+    }
+  }
+
 
 
   render() {
@@ -194,7 +250,7 @@ class UserInfo extends Component {
       signUpCity,
       signUpState,
       signUpZip,
-
+      submitError
     } = this.state;
 
     if (!edit) {
@@ -222,9 +278,19 @@ class UserInfo extends Component {
           <br />
           <input type="text" placeholder={streetAddress} value={streetAddress} onChange={this.onTextboxChangeStreetAddress} /><br />
           <input type="text" placeholder={city} value={city} onChange={this.onTextboxChangeCity} /><br />
-          <input type="text" placeholder={state} value={state} onChange={this.onTextboxChangeState} /><br />
+          <select value={state} onChange={this.onTextboxChangeState}>
+            <option value=""></option>
+            <option value="OK">OK</option>
+            <option value="TX">TX</option>
+          </select>
+          <br />
           <input type="text" placeholder={zip} value={zip} onChange={this.onTextboxChangeZip} /><br />
-          <button onClick={this.onSubmitEdits}>Save</button> <button onClick={this.onEditClick}>Cancel</button>
+          <button onClick={this.validateForm}>Save</button> <button onClick={this.onEditClick}>Cancel</button>
+          {
+            (submitError) ? (
+              <p>{submitError}</p>
+            ) : (null)
+          }
         </div>
       );
     }

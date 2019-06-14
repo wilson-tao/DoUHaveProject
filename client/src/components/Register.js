@@ -191,7 +191,12 @@ class Register extends Component {
         <br />
         <input type="text" placeholder="Street Address" value={signUpStreetAddress} onChange={this.onTextboxChangeSignUpStreetAddress} /><br />
         <input type="text" placeholder="City" value={signUpCity} onChange={this.onTextboxChangeSignUpCity} /><br />
-        <input type="text" placeholder="State" value={signUpState} onChange={this.onTextboxChangeSignUpState} /><br />
+        State: <select value={signUpCity} onChange={this.onTextBoxChangeSignUpState}>
+          <option value=""></option>
+          <option value="OK">OK</option>
+          <option value="TX">TX</option>
+        </select><br />
+        
         <input type="text" placeholder="Zip Code" value={signUpZip} onChange={this.onTextboxChangeSignUpZip} /><br />
         <button onClick={this.onSignUp}>Sign Up</button>
         {console.log(signUpError)}
