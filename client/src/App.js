@@ -49,6 +49,7 @@ class App extends Component {
       userName: '',
       firstName: '',
       userId: '',
+      email: '',
       searchTerm: '',
       searchResults: [],
       showResults: false
@@ -104,7 +105,7 @@ class App extends Component {
         const { token } = obj;
         //Verify
         console.log('Checking Token...');
-        
+
         fetch('/user/verify/' + token)
           .then(res => res.json())
           .then(json => {
@@ -116,6 +117,7 @@ class App extends Component {
                 userName: json.userName,
                 firstName: json.firstName,
                 userId: json.userId,
+                email: json.email,
                 isAuth: true
               });
             } else {
@@ -141,7 +143,8 @@ class App extends Component {
       searchTerm,
       searchResults,
       showResults,
-      token
+      token,
+      email
     } = this.state;
 
 
@@ -173,7 +176,7 @@ class App extends Component {
                     render={(props) => <WhatPeopleNeed {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
                   />
                   <Route path={'/WhatYouNeed'}
-                    render={(props) => <WhatYouNeed {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
+                    render={(props) => <WhatYouNeed {...props} isAuth={isAuth} email={email} userName={userName} firstName={firstName} userId={userId} token={token} />}
                   />
                   <Route path={'/HowItWorks'} component={HowItWorks} />
                   <Route path={'/About'} component={About} />

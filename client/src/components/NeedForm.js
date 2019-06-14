@@ -11,6 +11,7 @@ class NeedForm extends Component {
     let userName = this.props.userName;
     let userId = this.props.userId;
     let token = this.props.token;
+    let email = this.props.email;
 
     this.state = {
       submitError: '',
@@ -32,7 +33,8 @@ class NeedForm extends Component {
       cellcarrier: '',
       cellos: '',
       gamesystem: '',
-      contactinfo: ''
+      contactinfo: '',
+      phone: ''
     };
     this.onTextChangeName = this.onTextChangeName.bind(this);
     this.onChangeItemImg = this.onChangeItemImg.bind(this);
@@ -53,6 +55,7 @@ class NeedForm extends Component {
     this.onTextChangeCellos = this.onTextChangeCellos.bind(this);
     this.onTextChangeGamesystem = this.onTextChangeGamesystem.bind(this);
     this.onTextChangeContactInfo = this.onTextChangeContactInfo.bind(this);
+    this.onChangePhone = this.onChangePhone.bind(this);
 
     this.onSubmit = this.onSubmit.bind(this);
     this.validateForm = this.validateForm.bind(this);
@@ -146,6 +149,11 @@ class NeedForm extends Component {
   onTextChangeContactInfo(event) {
     this.setState({
       contactinfo: event.target.value
+    });
+  }
+  onChangePhone(event) {
+    this.setState({
+      phone: event.target.value
     });
   }
 
@@ -475,13 +483,15 @@ class NeedForm extends Component {
       cellcarrier,
       cellos,
       gamesystem,
-      contactinfo
+      contactinfo,
+      phone
     } = this.state;
 
 
     let firstName = this.props.firstName;
     let userName = this.props.userName;
     let userId = this.props.userId;
+    let email = this.props.email;
 
 
 
@@ -496,7 +506,7 @@ class NeedForm extends Component {
         </div>
         <div id="itemImg">
           <input type="file" name="itemImg" id="itemImg" onChange={this.onChangeItemImg}  />
-          <p>*required (choose pic that best represents what you need)</p> 
+          <p>*required (choose pic that best represents what you need)</p>
         </div>
         <div className="itemRow">
           <div id="itemCategory">
@@ -552,7 +562,18 @@ class NeedForm extends Component {
         <p>*currently limited to TX & OK</p>
         <label>Submitted by (Name or Username)</label><br />
         <input required type="text" placeholder="Your Name" value={submittedby} onChange={this.onTextChangeSubmittedby} /><br />
-        <input required type="text" placeholder="Your Contact Number" value={contactinfo} onChange={this.onTextChangeContactInfo} /><br />
+        Contact: <select required value={contactinfo} onChange={this.onTextChangeContactInfo}>
+          <option value={email}>My Email: {email}</option>
+          <option value={phone}>Phone</option>
+
+
+        </select>
+        {
+          (contactinfo !== email) ? (
+            <input required type="text" placeholder="Your Contact Number" value={phone} onChange={this.onChangePhone} />
+          ) : (null)
+        }
+        <br />
 
         {
           (category === 'auto') ? (

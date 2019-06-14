@@ -217,7 +217,8 @@ router.get('/verify/:token', (req, res, next) => {
             token: token,
             userName: result.userName,
             firstName: result.firstName,
-            userId: result._id
+            userId: result._id,
+            email: result.email,
           });
         })
         .catch(err => {
