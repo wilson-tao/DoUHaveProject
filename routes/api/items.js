@@ -294,56 +294,629 @@ router.get('/search1/:category/:term', (req, res, next) => {
         });
   });
 
-//General Advanced Search: Category AND Condition AND Name OR Description
-  router.get('/search3/:category/:condition/:term', (req, res, next) => {
-    const regex = RegExp(req.params.term, 'i');
-    Item.find({ category: req.params.category, condition: req.params.condition, $or :[{name: regex},{description: regex}]})
-        .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
-        .exec()
-        .then(docs => {
-          const response = {
-            count: docs.length,
-            items: docs.map(doc => {
-              return {
-                name: doc.name,
-                itemImg: doc.itemImg,
-                budget: doc.budget,
-                pic: doc.pic,
-                _id: doc._id,
-                category: doc.category,
-                condition: doc.condition,
-                description: doc.description,
-                location: doc.location,
-                locationState: doc.locationState,
-                submittedby: doc.submittedby,
-                submittedby1: doc.submittedby1,
-                carmake: doc.carmake,
-                carmodel: doc.carmodel,
-                caryear: doc.caryear,
-                cellmake: doc.cellmake,
-                cellmodel: doc.cellmodel,
-                cellcarrier: doc.cellcarrier,
-                cellos: doc.cellos,
-                gamesystem: doc.gamesystem,
-                createdAt: doc.createdAt,
-                expirationDate: doc.expirationDate,
-                contactinfo: doc.contactinfo,
-                request: {
-                  type: 'GET',
-                  url: '/items/' + doc._id
-                }
+//Advanced Search: Category AND Condition AND Name OR Description
+router.get('/search3/:category/:condition/:term', (req, res, next) => {
+  const regex = RegExp(req.params.term, 'i');
+  Item.find({ category: req.params.category, condition: req.params.condition, $or :[{name: regex},{description: regex}]})
+      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .exec()
+      .then(docs => {
+        const response = {
+          count: docs.length,
+          items: docs.map(doc => {
+            return {
+              name: doc.name,
+              itemImg: doc.itemImg,
+              budget: doc.budget,
+              pic: doc.pic,
+              _id: doc._id,
+              category: doc.category,
+              condition: doc.condition,
+              description: doc.description,
+              location: doc.location,
+              locationState: doc.locationState,
+              submittedby: doc.submittedby,
+              submittedby1: doc.submittedby1,
+              carmake: doc.carmake,
+              carmodel: doc.carmodel,
+              caryear: doc.caryear,
+              cellmake: doc.cellmake,
+              cellmodel: doc.cellmodel,
+              cellcarrier: doc.cellcarrier,
+              cellos: doc.cellos,
+              gamesystem: doc.gamesystem,
+              createdAt: doc.createdAt,
+              expirationDate: doc.expirationDate,
+              contactinfo: doc.contactinfo,
+              request: {
+                type: 'GET',
+                url: '/items/' + doc._id
               }
-            })
-          };
-          res.status(200).json(response);
-        })
-        .catch(err => {
-          console.log(err);
-          res.status(500).json({
-            error: err
-          });
+            }
+          })
+        };
+        res.status(200).json(response);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
         });
-  });
+      });
+});
+
+//Advanced Search All Parameters: Category AND Condition AND State AND Name OR Description
+
+router.get('/search4/:state/:category/:condition/:term', (req, res, next) => {
+  const regex = RegExp(req.params.term, 'i');
+  Item.find({ locationState: req.params.state, category: req.params.category, condition: req.params.condition, $or :[{name: regex},{description: regex}]})
+      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .exec()
+      .then(docs => {
+        const response = {
+          count: docs.length,
+          items: docs.map(doc => {
+            return {
+              name: doc.name,
+              itemImg: doc.itemImg,
+              budget: doc.budget,
+              pic: doc.pic,
+              _id: doc._id,
+              category: doc.category,
+              condition: doc.condition,
+              description: doc.description,
+              location: doc.location,
+              locationState: doc.locationState,
+              submittedby: doc.submittedby,
+              submittedby1: doc.submittedby1,
+              carmake: doc.carmake,
+              carmodel: doc.carmodel,
+              caryear: doc.caryear,
+              cellmake: doc.cellmake,
+              cellmodel: doc.cellmodel,
+              cellcarrier: doc.cellcarrier,
+              cellos: doc.cellos,
+              gamesystem: doc.gamesystem,
+              createdAt: doc.createdAt,
+              expirationDate: doc.expirationDate,
+              contactinfo: doc.contactinfo,
+              request: {
+                type: 'GET',
+                url: '/items/' + doc._id
+              }
+            }
+          })
+        };
+        res.status(200).json(response);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+});
+
+//Advanced Search State: State AND Category AND Name OR Description
+
+router.get('/search5/:state/:category/:term', (req, res, next) => {
+  const regex = RegExp(req.params.term, 'i');
+  Item.find({ locationState: req.params.state, category: req.params.category, $or :[{name: regex},{description: regex}]})
+      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .exec()
+      .then(docs => {
+        const response = {
+          count: docs.length,
+          items: docs.map(doc => {
+            return {
+              name: doc.name,
+              itemImg: doc.itemImg,
+              budget: doc.budget,
+              pic: doc.pic,
+              _id: doc._id,
+              category: doc.category,
+              condition: doc.condition,
+              description: doc.description,
+              location: doc.location,
+              locationState: doc.locationState,
+              submittedby: doc.submittedby,
+              submittedby1: doc.submittedby1,
+              carmake: doc.carmake,
+              carmodel: doc.carmodel,
+              caryear: doc.caryear,
+              cellmake: doc.cellmake,
+              cellmodel: doc.cellmodel,
+              cellcarrier: doc.cellcarrier,
+              cellos: doc.cellos,
+              gamesystem: doc.gamesystem,
+              createdAt: doc.createdAt,
+              expirationDate: doc.expirationDate,
+              contactinfo: doc.contactinfo,
+              request: {
+                type: 'GET',
+                url: '/items/' + doc._id
+              }
+            }
+          })
+        };
+        res.status(200).json(response);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+});
+
+//Advanced Search State: State AND Name OR Description
+
+router.get('/search6/:state/:term', (req, res, next) => {
+  const regex = RegExp(req.params.term, 'i');
+  Item.find({ locationState: req.params.state, $or :[{name: regex},{description: regex}]})
+      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .exec()
+      .then(docs => {
+        const response = {
+          count: docs.length,
+          items: docs.map(doc => {
+            return {
+              name: doc.name,
+              itemImg: doc.itemImg,
+              budget: doc.budget,
+              pic: doc.pic,
+              _id: doc._id,
+              category: doc.category,
+              condition: doc.condition,
+              description: doc.description,
+              location: doc.location,
+              locationState: doc.locationState,
+              submittedby: doc.submittedby,
+              submittedby1: doc.submittedby1,
+              carmake: doc.carmake,
+              carmodel: doc.carmodel,
+              caryear: doc.caryear,
+              cellmake: doc.cellmake,
+              cellmodel: doc.cellmodel,
+              cellcarrier: doc.cellcarrier,
+              cellos: doc.cellos,
+              gamesystem: doc.gamesystem,
+              createdAt: doc.createdAt,
+              expirationDate: doc.expirationDate,
+              contactinfo: doc.contactinfo,
+              request: {
+                type: 'GET',
+                url: '/items/' + doc._id
+              }
+            }
+          })
+        };
+        res.status(200).json(response);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+});
+
+//Advanced Search Condition: Condition AND Name OR Description
+
+router.get('/search7/:condition/:term', (req, res, next) => {
+  const regex = RegExp(req.params.term, 'i');
+  Item.find({ condition: req.params.condition, $or :[{name: regex},{description: regex}]})
+      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .exec()
+      .then(docs => {
+        const response = {
+          count: docs.length,
+          items: docs.map(doc => {
+            return {
+              name: doc.name,
+              itemImg: doc.itemImg,
+              budget: doc.budget,
+              pic: doc.pic,
+              _id: doc._id,
+              category: doc.category,
+              condition: doc.condition,
+              description: doc.description,
+              location: doc.location,
+              locationState: doc.locationState,
+              submittedby: doc.submittedby,
+              submittedby1: doc.submittedby1,
+              carmake: doc.carmake,
+              carmodel: doc.carmodel,
+              caryear: doc.caryear,
+              cellmake: doc.cellmake,
+              cellmodel: doc.cellmodel,
+              cellcarrier: doc.cellcarrier,
+              cellos: doc.cellos,
+              gamesystem: doc.gamesystem,
+              createdAt: doc.createdAt,
+              expirationDate: doc.expirationDate,
+              contactinfo: doc.contactinfo,
+              request: {
+                type: 'GET',
+                url: '/items/' + doc._id
+              }
+            }
+          })
+        };
+        res.status(200).json(response);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+});
+
+//Advanced Search State: State AND Condition AND Name OR Description
+
+router.get('/search8/:state/:condition/:term', (req, res, next) => {
+  const regex = RegExp(req.params.term, 'i');
+  Item.find({ locationState: req.params.state, condition: req.params.condition, $or :[{name: regex},{description: regex}]})
+      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .exec()
+      .then(docs => {
+        const response = {
+          count: docs.length,
+          items: docs.map(doc => {
+            return {
+              name: doc.name,
+              itemImg: doc.itemImg,
+              budget: doc.budget,
+              pic: doc.pic,
+              _id: doc._id,
+              category: doc.category,
+              condition: doc.condition,
+              description: doc.description,
+              location: doc.location,
+              locationState: doc.locationState,
+              submittedby: doc.submittedby,
+              submittedby1: doc.submittedby1,
+              carmake: doc.carmake,
+              carmodel: doc.carmodel,
+              caryear: doc.caryear,
+              cellmake: doc.cellmake,
+              cellmodel: doc.cellmodel,
+              cellcarrier: doc.cellcarrier,
+              cellos: doc.cellos,
+              gamesystem: doc.gamesystem,
+              createdAt: doc.createdAt,
+              expirationDate: doc.expirationDate,
+              contactinfo: doc.contactinfo,
+              request: {
+                type: 'GET',
+                url: '/items/' + doc._id
+              }
+            }
+          })
+        };
+        res.status(200).json(response);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+});
+
+//BEGIN ALL SEARCH ROUTES WITHOUT SEARCH TERM ----
+//Advanced Search: Category AND Condition
+router.get('/search3/:category/:condition', (req, res, next) => {
+
+  Item.find({ category: req.params.category, condition: req.params.condition })
+      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .exec()
+      .then(docs => {
+        const response = {
+          count: docs.length,
+          items: docs.map(doc => {
+            return {
+              name: doc.name,
+              itemImg: doc.itemImg,
+              budget: doc.budget,
+              pic: doc.pic,
+              _id: doc._id,
+              category: doc.category,
+              condition: doc.condition,
+              description: doc.description,
+              location: doc.location,
+              locationState: doc.locationState,
+              submittedby: doc.submittedby,
+              submittedby1: doc.submittedby1,
+              carmake: doc.carmake,
+              carmodel: doc.carmodel,
+              caryear: doc.caryear,
+              cellmake: doc.cellmake,
+              cellmodel: doc.cellmodel,
+              cellcarrier: doc.cellcarrier,
+              cellos: doc.cellos,
+              gamesystem: doc.gamesystem,
+              createdAt: doc.createdAt,
+              expirationDate: doc.expirationDate,
+              contactinfo: doc.contactinfo,
+              request: {
+                type: 'GET',
+                url: '/items/' + doc._id
+              }
+            }
+          })
+        };
+        res.status(200).json(response);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+});
+
+//Advanced Search All Parameters: Category AND Condition AND State
+
+router.get('/search4/:state/:category/:condition', (req, res, next) => {
+
+  Item.find({ locationState: req.params.state, category: req.params.category, condition: req.params.condition })
+      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .exec()
+      .then(docs => {
+        const response = {
+          count: docs.length,
+          items: docs.map(doc => {
+            return {
+              name: doc.name,
+              itemImg: doc.itemImg,
+              budget: doc.budget,
+              pic: doc.pic,
+              _id: doc._id,
+              category: doc.category,
+              condition: doc.condition,
+              description: doc.description,
+              location: doc.location,
+              locationState: doc.locationState,
+              submittedby: doc.submittedby,
+              submittedby1: doc.submittedby1,
+              carmake: doc.carmake,
+              carmodel: doc.carmodel,
+              caryear: doc.caryear,
+              cellmake: doc.cellmake,
+              cellmodel: doc.cellmodel,
+              cellcarrier: doc.cellcarrier,
+              cellos: doc.cellos,
+              gamesystem: doc.gamesystem,
+              createdAt: doc.createdAt,
+              expirationDate: doc.expirationDate,
+              contactinfo: doc.contactinfo,
+              request: {
+                type: 'GET',
+                url: '/items/' + doc._id
+              }
+            }
+          })
+        };
+        res.status(200).json(response);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+});
+
+//Advanced Search State: State AND Category
+
+router.get('/search5/:state/:category', (req, res, next) => {
+
+  Item.find({ locationState: req.params.state, category: req.params.category })
+      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .exec()
+      .then(docs => {
+        const response = {
+          count: docs.length,
+          items: docs.map(doc => {
+            return {
+              name: doc.name,
+              itemImg: doc.itemImg,
+              budget: doc.budget,
+              pic: doc.pic,
+              _id: doc._id,
+              category: doc.category,
+              condition: doc.condition,
+              description: doc.description,
+              location: doc.location,
+              locationState: doc.locationState,
+              submittedby: doc.submittedby,
+              submittedby1: doc.submittedby1,
+              carmake: doc.carmake,
+              carmodel: doc.carmodel,
+              caryear: doc.caryear,
+              cellmake: doc.cellmake,
+              cellmodel: doc.cellmodel,
+              cellcarrier: doc.cellcarrier,
+              cellos: doc.cellos,
+              gamesystem: doc.gamesystem,
+              createdAt: doc.createdAt,
+              expirationDate: doc.expirationDate,
+              contactinfo: doc.contactinfo,
+              request: {
+                type: 'GET',
+                url: '/items/' + doc._id
+              }
+            }
+          })
+        };
+        res.status(200).json(response);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+});
+
+//Advanced Search State: State
+
+router.get('/search6/:state', (req, res, next) => {
+
+  Item.find({ locationState: req.params.state })
+      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .exec()
+      .then(docs => {
+        const response = {
+          count: docs.length,
+          items: docs.map(doc => {
+            return {
+              name: doc.name,
+              itemImg: doc.itemImg,
+              budget: doc.budget,
+              pic: doc.pic,
+              _id: doc._id,
+              category: doc.category,
+              condition: doc.condition,
+              description: doc.description,
+              location: doc.location,
+              locationState: doc.locationState,
+              submittedby: doc.submittedby,
+              submittedby1: doc.submittedby1,
+              carmake: doc.carmake,
+              carmodel: doc.carmodel,
+              caryear: doc.caryear,
+              cellmake: doc.cellmake,
+              cellmodel: doc.cellmodel,
+              cellcarrier: doc.cellcarrier,
+              cellos: doc.cellos,
+              gamesystem: doc.gamesystem,
+              createdAt: doc.createdAt,
+              expirationDate: doc.expirationDate,
+              contactinfo: doc.contactinfo,
+              request: {
+                type: 'GET',
+                url: '/items/' + doc._id
+              }
+            }
+          })
+        };
+        res.status(200).json(response);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+});
+
+//Advanced Search Condition: Condition
+
+router.get('/search7/:condition', (req, res, next) => {
+
+  Item.find({ condition: req.params.condition })
+      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .exec()
+      .then(docs => {
+        const response = {
+          count: docs.length,
+          items: docs.map(doc => {
+            return {
+              name: doc.name,
+              itemImg: doc.itemImg,
+              budget: doc.budget,
+              pic: doc.pic,
+              _id: doc._id,
+              category: doc.category,
+              condition: doc.condition,
+              description: doc.description,
+              location: doc.location,
+              locationState: doc.locationState,
+              submittedby: doc.submittedby,
+              submittedby1: doc.submittedby1,
+              carmake: doc.carmake,
+              carmodel: doc.carmodel,
+              caryear: doc.caryear,
+              cellmake: doc.cellmake,
+              cellmodel: doc.cellmodel,
+              cellcarrier: doc.cellcarrier,
+              cellos: doc.cellos,
+              gamesystem: doc.gamesystem,
+              createdAt: doc.createdAt,
+              expirationDate: doc.expirationDate,
+              contactinfo: doc.contactinfo,
+              request: {
+                type: 'GET',
+                url: '/items/' + doc._id
+              }
+            }
+          })
+        };
+        res.status(200).json(response);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+});
+
+//Advanced Search State: State AND Condition
+
+router.get('/search8/:state/:condition', (req, res, next) => {
+
+  Item.find({ locationState: req.params.state, condition: req.params.condition })
+      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .exec()
+      .then(docs => {
+        const response = {
+          count: docs.length,
+          items: docs.map(doc => {
+            return {
+              name: doc.name,
+              itemImg: doc.itemImg,
+              budget: doc.budget,
+              pic: doc.pic,
+              _id: doc._id,
+              category: doc.category,
+              condition: doc.condition,
+              description: doc.description,
+              location: doc.location,
+              locationState: doc.locationState,
+              submittedby: doc.submittedby,
+              submittedby1: doc.submittedby1,
+              carmake: doc.carmake,
+              carmodel: doc.carmodel,
+              caryear: doc.caryear,
+              cellmake: doc.cellmake,
+              cellmodel: doc.cellmodel,
+              cellcarrier: doc.cellcarrier,
+              cellos: doc.cellos,
+              gamesystem: doc.gamesystem,
+              createdAt: doc.createdAt,
+              expirationDate: doc.expirationDate,
+              contactinfo: doc.contactinfo,
+              request: {
+                type: 'GET',
+                url: '/items/' + doc._id
+              }
+            }
+          })
+        };
+        res.status(200).json(response);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+});
+
 
 // End Search Route
 
