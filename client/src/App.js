@@ -38,6 +38,7 @@ import UserPanel from './components/UserPanel';
 
 import Search from './components/Search';
 import SearchResults from './components/SearchResults';
+import AdvancedSearch from './components/AdvancedSearch';
 
 class App extends Component {
   constructor(props) {
@@ -232,6 +233,10 @@ class App extends Component {
 
                   <Route path={'/userpanel'}
                     render={(props) => <UserPanel {...props} isAuth={isAuth} userId={userId} token={token} />}
+                  />
+
+                  <Route path={'/advanced'}
+                    render={(props) => <AdvancedSearch {...props} isAuth={isAuth} userId={userId} token={token} />}
                   />
 
                 </Switch>

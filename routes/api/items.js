@@ -397,7 +397,7 @@ router.get('/search4/:state/:category/:condition/:term', (req, res, next) => {
       });
 });
 
-//Advanced Search State: State AND Category AND Name OR Description
+//Advanced Search State & Category: State AND Category AND Name OR Description
 
 router.get('/search5/:state/:category/:term', (req, res, next) => {
   const regex = RegExp(req.params.term, 'i');
@@ -553,7 +553,7 @@ router.get('/search7/:condition/:term', (req, res, next) => {
       });
 });
 
-//Advanced Search State: State AND Condition AND Name OR Description
+//Advanced Search State & Condition: State AND Condition AND Name OR Description
 
 router.get('/search8/:state/:condition/:term', (req, res, next) => {
   const regex = RegExp(req.params.term, 'i');
