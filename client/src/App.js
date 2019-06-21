@@ -81,7 +81,7 @@ class App extends Component {
 
     console.log("Search Term:", searchTerm);
 
-    fetch('items/search2/' + searchTerm, {
+    fetch('/items/search2/' + searchTerm, {
       method: 'GET',
       headers: {
         'Content-type': 'application/json'
@@ -159,7 +159,7 @@ class App extends Component {
 
         <div className="Search">
           <input type="text" placeholder="Search" value={searchTerm} onChange={this.onTextChange} /><button onClick={this.onSearch}>Search</button>
-
+          <a href='/advanced/'>Advanced Search</a>
         </div>
         <SideBar />
 

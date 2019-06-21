@@ -35,13 +35,15 @@ code {
   margin-left: 275px;
   margin-right: 0;
   padding: 0;
-  margin-top: -50px;
+  margin-top: -74px;
 
 }
 .space-break {
   width: 10px;
   display: inline-block;
 }
+
+
 
 /* ------------------- */
 
@@ -214,6 +216,16 @@ input {
   width: 75%;
   border-radius: 10px 0 0 10px;
   height: 40px;
+}
+
+.advanced {
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.advanced input {
+  max-width: 480px;
 }
 
 /* --------------- */

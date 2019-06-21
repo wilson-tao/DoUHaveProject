@@ -86,28 +86,28 @@ class AdvancedSearch extends Component {
 
     if (category === '' && condition === '' && locationState === '') {
       console.log("Search Term:", searchTerm);
-      this.fetchSearch('items/search2/', searchTerm);
+      this.fetchSearch('/items/search2/', searchTerm);
     } else if (condition === '' && locationState === '') {
       console.log('Category Only');
-      this.fetchSearch(`items/search1/${category}/`, searchTerm);
+      this.fetchSearch(`/items/search1/${category}/`, searchTerm);
     } else if (category === '' && locationState === '') {
       console.log('Condition Only');
-      this.fetchSearch(`items/search7/${condition}/`, searchTerm);
+      this.fetchSearch(`/items/search7/${condition}/`, searchTerm);
     } else if (category === '' && condition === '') {
       console.log('State Only');
-      this.fetchSearch(`items/search6/${locationState}/`, searchTerm);
+      this.fetchSearch(`/items/search6/${locationState}/`, searchTerm);
     } else if (locationState === '') {
       console.log('Category & Condition');
-      this.fetchSearch(`items/search3/${category}/${condition}/`, searchTerm);
+      this.fetchSearch(`/items/search3/${category}/${condition}/`, searchTerm);
     } else if (category === '') {
       console.log('Condition & State');
-      this.fetchSearch(`items/search8/${locationState}/${condition}/`, searchTerm);
+      this.fetchSearch(`/items/search8/${locationState}/${condition}/`, searchTerm);
     } else if (condition === '') {
       console.log('Category & State');
-      this.fetchSearch(`items/search5/${locationState}/${category}/`, searchTerm);
+      this.fetchSearch(`/items/search5/${locationState}/${category}/`, searchTerm);
     } else {
       console.log('All');
-      this.fetchSearch(`items/search4/${locationState}/${category}/${condition}/`, searchTerm);
+      this.fetchSearch(`/items/search4/${locationState}/${category}/${condition}/`, searchTerm);
     }
 
 
@@ -130,7 +130,7 @@ class AdvancedSearch extends Component {
       <div className="AdvancedSearch">
         <div className="Search advanced">
           <input type="text" placeholder="Search" value={searchTerm} onChange={this.onTextChange} /><button onClick={this.onSearch}>Search</button>
-
+          <br />
           <select required name={category} onChange={this.onTextChangeCategory}>
             <option value="">--Category--</option>
             <option value="auto">Car's and Trucks</option>
