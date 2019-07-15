@@ -25,7 +25,7 @@ class CatResults extends Component {
     this.onItemFull = this.onItemFull.bind(this);
     this.changeCategory = this.changeCategory.bind(this);
     this.onOfferSubmit = this.onOfferSubmit.bind(this);
-    this.onSaveItem = this.onSaveItem.bind(this);
+    //this.onSaveItem = this.onSaveItem.bind(this);
   }
 
   componentDidMount() {
@@ -306,9 +306,9 @@ class CatResults extends Component {
               //  </div>
               }
               {
-                <div className="save-button">
-                  <button onClick={() => this.onSaveItem(model._id)}>Save Item</button>
-                </div>
+              //  <div className="save-button">
+              //    <button onClick={() => this.onSaveItem(model._id)}>Save Item</button>
+              //  </div>
               }
 
               {
@@ -321,8 +321,9 @@ class CatResults extends Component {
                 <OfferSubmit itemId={model._id} ownerId={model.submittedby1} userName={userName} firstName={firstName} userId={userId} isAuth={isAuth} /> :
                 (null)
               }
-              //Save Item
+
               {
+                //Save Item
                 this.state.showSaveItem && (singleResult === model._id) ?
                 <SaveItem model={model} userId={userId} firstName={firstName} isAuth={isAuth} /> :
                 (null)
