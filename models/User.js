@@ -6,7 +6,7 @@ const UserSchema = new mongoose.Schema({
   userName: {
     type: String,
     default: '',
-    required: true
+    required: false
   },
   firstName: {
     type: String,
@@ -38,17 +38,17 @@ const UserSchema = new mongoose.Schema({
   city: {
     type: String,
     default: '',
-    required: true
+    required: false
   },
   state: {
     type: String,
     default: '',
-    required: true
+    required: false
   },
   zip: {
     type: String,
     default: '',
-    required: true
+    required: false
   },
   isDeleted: {
     type: Boolean,

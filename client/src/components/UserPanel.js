@@ -4,6 +4,7 @@ import UserOffers from './UserOffers';
 import UserSaveList from './UserSaveList';
 import UserItems from './UserItems';
 
+
 class UserPanel extends Component {
 
 
@@ -26,7 +27,9 @@ class UserPanel extends Component {
           <hr />
           <h2>Items You Posted</h2>
           <UserItems userId={userId} token={token} />
-
+          <h2>Items You Saved</h2>
+          <UserSaveList userId={userId} token={token} />
+          
 
         </div>
       );

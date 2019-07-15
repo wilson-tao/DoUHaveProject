@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ItemFull from './ItemFull';
 import OfferSubmit from './OfferSubmit';
+import SaveItem from './SaveItem';
 
 
 class CatResults extends Component {
@@ -18,11 +19,13 @@ class CatResults extends Component {
       closed: true,
       clickToShow: false,
       showOfferSubmit: false,
+      showSaveItem: false
 
     };
     this.onItemFull = this.onItemFull.bind(this);
     this.changeCategory = this.changeCategory.bind(this);
     this.onOfferSubmit = this.onOfferSubmit.bind(this);
+    this.onSaveItem = this.onSaveItem.bind(this);
   }
 
   componentDidMount() {
@@ -302,6 +305,11 @@ class CatResults extends Component {
               //    <button onClick={() => this.onOfferSubmit(model._id)}>Make Offer</button>
               //  </div>
               }
+              {
+                <div className="save-button">
+                  <button onClick={() => this.onSaveItem(model._id)}>Save Item</button>
+                </div>
+              }
 
               {
               //Check if Logged in and fetch user data in component
@@ -311,6 +319,12 @@ class CatResults extends Component {
               {
                 this.state.showOfferSubmit && (singleResult === model._id) ?
                 <OfferSubmit itemId={model._id} ownerId={model.submittedby1} userName={userName} firstName={firstName} userId={userId} isAuth={isAuth} /> :
+                (null)
+              }
+              //Save Item
+              {
+                this.state.showSaveItem && (singleResult === model._id) ?
+                <SaveItem model={model} userId={userId} firstName={firstName} isAuth={isAuth} /> :
                 (null)
               }
               {

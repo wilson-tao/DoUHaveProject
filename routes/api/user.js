@@ -24,16 +24,10 @@ router.post('/signup', (req, res, next) => {
               } else {
                 const user = new User({
                   _id: new mongoose.Types.ObjectId(),
-                  userName: req.body.userName,
                   email: req.body.email,
                   password: hash,
                   firstName: req.body.firstName,
-                  lastName: req.body.lastName,
-                  streetAddress: req.body.streetAddress,
-                  city: req.body.city,
-                  state: req.body.state,
-                  zip: req.body.zip,
-
+                  lastName: req.body.lastName
                 });
                 user.save()
                     .then(result => {
