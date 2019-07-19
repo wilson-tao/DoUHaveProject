@@ -228,7 +228,7 @@ class CatResults extends Component {
               <h5>Submitted By: </h5> <p> {model.submittedby}</p><br />
               <h5>Contact Number: </h5> {
                 this.state.clickToShow ? (
-                  model.contactinfo
+                  isAuth ? (model.contactinfo) : <p>Please Log In</p> 
                 ) : <p onClick={this.onClickToShow}>Click To Show</p>
               }
             </div>

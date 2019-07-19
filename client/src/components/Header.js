@@ -15,7 +15,8 @@ class Header extends Component {
     return (
       <div className="Header">
 
-        <div className="site-title"><img src={Logo} alt="Logo" /></div>
+        <div className="site-title"><a href="/"><img src={Logo} alt="Logo" /></a></div>
+        <div className="post-button-box"><a href="/WhatYouNeed"><button>Post What You Need</button></a></div>
         <div className="login-box">
           <Login isAuth={isAuth} userName={userName} firstName={firstName} />
         </div>
