@@ -21,9 +21,9 @@ class NeedForm extends Component {
       category: '',
       condition: '',
       description: '',
-      location: '',
-      locationState: '',
-      submittedby: '',
+      location: 'Dallas',
+      locationState: 'TX',
+      submittedby: firstName,
       submittedby1: userId,
       carmake: '',
       carmodel: '',
@@ -33,7 +33,7 @@ class NeedForm extends Component {
       cellcarrier: '',
       cellos: '',
       gamesystem: '',
-      contactinfo: '',
+      contactinfo: email,
       phone: ''
     };
     this.onTextChangeName = this.onTextChangeName.bind(this);
@@ -552,28 +552,24 @@ class NeedForm extends Component {
         <label>Description</label><br />
         <textarea minLength="25" maxLength="1000" rows="4" cols="50" placeholder="Provide a short description of the item..." value={description} onChange={this.onTextChangeDescription} /><br />
         <label>Location</label><br />
-        <input type="text" placeholder="City..." value={location} onChange={this.onTextChangeLocation} /><br />
+        <input type="text" placeholder="City..." value={location} /><br />
 
         State: <select required name={locationState} onChange={this.onTextChangeLocationState}>
-          <option value=""></option>
+
           <option value="TX">TX</option>
-          <option value="OK">OK</option>
-        </select>
-        <p>*currently limited to TX & OK</p>
-        <label>Submitted by (Name or Username)</label><br />
-        <input required type="text" placeholder="Your Name" value={submittedby} onChange={this.onTextChangeSubmittedby} /><br />
-        Contact: <select required value={contactinfo} onChange={this.onTextChangeContactInfo}>
-          <option value={email}>My Email: {email}</option>
-          <option value={phone}>Phone</option>
-
 
         </select>
+        <p>*currently limited to Dallas, TX</p>
+
+        <input type="hidden" value={submittedby} />
+        <input type="hidden" value={contactinfo} />
+
         {
           (contactinfo !== email) ? (
             <input required type="text" placeholder="Your Contact Number" value={phone} onChange={this.onChangePhone} />
           ) : (null)
         }
-        <br />
+
 
         {
           (category === 'auto') ? (

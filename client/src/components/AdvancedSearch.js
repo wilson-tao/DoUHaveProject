@@ -15,7 +15,7 @@ class AdvancedSearch extends Component {
       token: this.props.token,
       category: '',
       condition: '',
-      locationState: ''
+      locationState: 'TX'
     };
     this.onTextChange = this.onTextChange.bind(this);
     this.onTextChangeCategory = this.onTextChangeCategory.bind(this);
@@ -162,11 +162,11 @@ class AdvancedSearch extends Component {
             <option value="parts">Parts</option>
           </select>
           <select required name={locationState} onChange={this.onTextChangeLocationState}>
-            <option value="">--State--</option>
+
             <option value="TX">TX</option>
-            <option value="OK">OK</option>
+
           </select>
-          <p>*currently limited to TX & OK</p>
+          <p>*currently limited to Dallas, TX</p>
         </div>
 
         {
