@@ -19,7 +19,8 @@ router.post('/signup', (req, res, next) => {
             bcrypt.hash(req.body.password, 10, (err, hash) => {
               if (err) {
                 return res.status(500).json({
-                  error: err
+                  error: err,
+                  message: err
                 });
               } else {
                 const user = new User({
@@ -39,7 +40,8 @@ router.post('/signup', (req, res, next) => {
                     .catch(err => {
                       console.log(err);
                       res.status(500).json({
-                        error: err
+                        error: err,
+                        message: err
                       });
                     });
                 }
@@ -90,7 +92,8 @@ router.post('/login', (req, res, next) => {
       .catch(err => {
         console.log(err);
         res.status(500).json({
-          error: err
+          error: err,
+          message: err
         });
       });
 });

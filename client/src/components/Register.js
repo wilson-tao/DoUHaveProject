@@ -70,6 +70,8 @@ class Register extends Component {
       passwordConfirm
     } = this.state;
 
+    const signUpEmailLower = signUpEmail.toLowerCase();
+
     this.setState({
       isLoading: true,
     });
@@ -83,7 +85,7 @@ class Register extends Component {
         body: JSON.stringify({
           firstName: signUpFirstName,
           lastName: signUpLastName,
-          email: signUpEmail,
+          email: signUpEmailLower,
           password: signUpPassword
         }),
       }).then(res => res.json())
@@ -97,11 +99,12 @@ class Register extends Component {
             signUpEmail: '',
             signUpPassword: '',
             signUpFirstName: '',
-            signUpLastName: ''
+            signUpLastName: '',
+            passwordConfirm: ''
           });
         } else {
           this.setState({
-            signUpError: json.error.message,
+            signUpError: json.message,
             isLoading: false
           });
         }

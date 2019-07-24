@@ -185,12 +185,7 @@ class UserInfo extends Component {
       zip
     } = this.state;
 
-    if (userName === '') {
-      this.setState({
-        submitError: 'Username Cannot Be Empty'
-      });
-      return
-    } else if (firstName === '') {
+    if (firstName === '') {
       this.setState({
         submitError: 'First Name Cannot Be Empty'
       });
@@ -256,7 +251,7 @@ class UserInfo extends Component {
     if (!edit) {
       return (
         <div className="UserInfo">
-          <label>Username: {userName}</label><br />
+
           <label>First Name: {firstName}</label><br />
           <label>Last Name: {lastName}</label><br />
           <label>Address: {streetAddress}</label><br />
@@ -272,7 +267,7 @@ class UserInfo extends Component {
         <div className="UserInfo">
           <h4>Edit</h4>
 
-          <input type="text" placeholder={userName} value={userName} onChange={this.onTextboxChangeUsername} /><br />
+          
           <input type="text" placeholder={firstName} value={firstName} onChange={this.onTextboxChangeFirstName} /><br />
           <input type="text" placeholder={lastName} value={lastName} onChange={this.onTextboxChangeLastName} /><br />
           <br />
