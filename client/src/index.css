@@ -75,7 +75,8 @@ code {
 
 .post-button-box {
   display: inline-block;
-  text-align: center;
+  text-align: right;
+  width: 69%;
 }
 
 .post-button-box button {
@@ -89,7 +90,7 @@ code {
 }
 
 .login-box {
-  display: inline-block;
+  display: none;
   text-align: right;
   position: absolute;
   right: 10px;
@@ -97,7 +98,7 @@ code {
 }
 
 .mobile-login {
-  display: none;
+  display: block;
 }
 
 .mobile-login-img {
@@ -109,11 +110,11 @@ code {
 }
 
 .mobile-login-panel {
-  width: 100%;
+  width: 70%;
   height: 140px;
   position: absolute;
   top: 0px;
-  left: 0px;
+  right: 0px;
   background-color: #231f20;
 }
 
