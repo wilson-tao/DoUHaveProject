@@ -36,8 +36,8 @@ router.get('/', checkAuth, (req, res, next) => {
 
 //Get Items in Savelist for specific User
 router.get('/:userId', checkAuth, (req, res, next) => {
-  Savelist.find({submittedby1: req.params.userId})
-          .select('name _id itemImg budget condition location locationState submittedby submittedby1 savedby savedby1')
+  Savelist.find({savedby1: req.params.userId})
+          .select('name _id itemImg budget condition category location locationState submittedby submittedby1 savedby savedby1')
           .exec()
           .then(docs => {
             const response = {
@@ -74,7 +74,7 @@ router.get('/:userId', checkAuth, (req, res, next) => {
 
 //Post item to Savelist
 router.post('/', checkAuth, (req, res, next) => {
-  if (req.body.submittedby1 != req.userData.userId) {
+  if (req.body.savedby1 != req.userData.userId) {
     return res.status(401).json({
       message: 'Auth Failed 5'
     });

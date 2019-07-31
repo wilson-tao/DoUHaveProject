@@ -19,13 +19,15 @@ class CatResults extends Component {
       closed: true,
       clickToShow: false,
       showOfferSubmit: false,
-      showSaveItem: false
+      showSaveItem: false,
+      token: this.props.token
 
     };
     this.onItemFull = this.onItemFull.bind(this);
     this.changeCategory = this.changeCategory.bind(this);
     this.onOfferSubmit = this.onOfferSubmit.bind(this);
-    //this.onSaveItem = this.onSaveItem.bind(this);
+    this.onSaveItem = this.onSaveItem.bind(this);
+    this.onCancel = this.onCancel.bind(this);
   }
 
   componentDidMount() {
@@ -149,9 +151,38 @@ class CatResults extends Component {
         })
       }
     }
-
   }
 
+  onSaveItem = (id) => {
+    const {
+      showSaveItem,
+      singleResult
+    } = this.state;
+    if (singleResult !== '' && singleResult !== id) {
+      this.setState({
+        singleResult: id,
+        showSaveItem: true
+      });
+    } else {
+      if (!showSaveItem) {
+        this.setState({
+          singleResult: id,
+          showSaveItem: true
+        });
+      } else {
+        this.setState({
+          showSaveItem: false,
+          singleResult: ''
+        });
+      }
+    }
+  }
+
+  onCancel() {
+    this.setState({
+      showSaveItem: false
+    });
+  }
 
   render() {
 
@@ -163,12 +194,14 @@ class CatResults extends Component {
       singleResult,
       showResults,
       closed,
+
     } = this.state;
 
     let isAuth = this.props.isAuth
     let userName = this.props.userName
     let firstName = this.props.firstName
     let userId = this.props.userId
+    let token = this.props.token
 
 
 
@@ -228,7 +261,7 @@ class CatResults extends Component {
               <h5>Submitted By: </h5> <p> {model.submittedby}</p><br />
               <h5>Contact Number: </h5> {
                 this.state.clickToShow ? (
-                  isAuth ? (model.contactinfo) : <p>Please Log In</p> 
+                  isAuth ? (model.contactinfo) : <p>Please Log In</p>
                 ) : <p onClick={this.onClickToShow}>Click To Show</p>
               }
             </div>
@@ -306,9 +339,9 @@ class CatResults extends Component {
               //  </div>
               }
               {
-              //  <div className="save-button">
-              //    <button onClick={() => this.onSaveItem(model._id)}>Save Item</button>
-              //  </div>
+                <div className="save-button">
+                  <button onClick={() => this.onSaveItem(model._id)}>Save Item</button>
+                </div>
               }
 
               {
@@ -325,7 +358,7 @@ class CatResults extends Component {
               {
                 //Save Item
                 this.state.showSaveItem && (singleResult === model._id) ?
-                <SaveItem model={model} userId={userId} firstName={firstName} isAuth={isAuth} /> :
+                <SaveItem model={model} userId={userId} firstName={firstName} isAuth={isAuth} token={token} onCancel={this.onCancel} /> :
                 (null)
               }
               {

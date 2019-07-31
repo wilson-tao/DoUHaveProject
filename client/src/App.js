@@ -174,7 +174,7 @@ class App extends Component {
                 <Switch>
                   <Route exact path={'/'} component={Home} />
                   <Route path={'/WhatPeopleNeed'}
-                    render={(props) => <WhatPeopleNeed {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                    render={(props) => <WhatPeopleNeed {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
                   />
                   <Route path={'/WhatYouNeed'}
                     render={(props) => <WhatYouNeed {...props} isAuth={isAuth} email={email} userName={userName} firstName={firstName} userId={userId} token={token} />}
@@ -185,50 +185,50 @@ class App extends Component {
                   <Route path={'/Register'} component={Register} />
 
                   <Route path={'/auto'}
-                    render={(props) => <Auto {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                    render={(props) => <Auto {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
                   />
                   <Route path={'/appliances'}
-                    render={(props) => <Appliances {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                    render={(props) => <Appliances {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
                   />
                   <Route path={'/moto'}
-                    render={(props) => <Moto {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                    render={(props) => <Moto {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
                   />
                   <Route path={'/cell'}
-                    render={(props) => <Cell {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                    render={(props) => <Cell {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
                   />
                   <Route path={'/furniture'}
-                    render={(props) => <Furniture {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                    render={(props) => <Furniture {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
                   />
                   <Route path={'/instruments'}
-                    render={(props) => <Instruments {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                    render={(props) => <Instruments {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
                   />
                   <Route path={'/games'}
-                    render={(props) => <Vidgame {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                    render={(props) => <Vidgame {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
                   />
 
                   <Route path={'/homeservice'}
-                    render={(props) => <HomeService {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                    render={(props) => <HomeService {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
                   />
                   <Route path={'/autoservice'}
-                    render={(props) => <AutoService {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                    render={(props) => <AutoService {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
                   />
                   <Route path={'/clothing'}
-                    render={(props) => <Clothing {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                    render={(props) => <Clothing {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
                   />
                   <Route path={'/misc'}
-                    render={(props) => <Misc {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                    render={(props) => <Misc {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
                   />
                   <Route path={'/collectibles'}
-                    render={(props) => <Collectibles {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                    render={(props) => <Collectibles {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
                   />
                   <Route path={'/comequip'}
-                    render={(props) => <ComEquip {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                    render={(props) => <ComEquip {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
                   />
                   <Route path={'/housing'}
-                    render={(props) => <Housing {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                    render={(props) => <Housing {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
                   />
                   <Route path={'/beauty'}
-                    render={(props) => <Beauty {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />}
+                    render={(props) => <Beauty {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
                   />
 
                   <Route path={'/userpanel'}

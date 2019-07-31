@@ -52,9 +52,11 @@ class UserSaveList extends Component {
       deletethis
     } = this.state;
 
+    console.log(items);
+
     return (
       <div className="UserSaveList">
-        <h1>Saved Items</h1>
+
         {//Beging Mapping
           items.map(model =>
           <div className="resultItem" key={model._id} >
@@ -80,10 +82,10 @@ class UserSaveList extends Component {
             <h5>Submitted On:</h5> {model.createdAt}
           </div>
 
-          <button onClick={() => this.onDeleteItem(model._id)}>Delete</button>
 
 
-          
+
+
 
 
 

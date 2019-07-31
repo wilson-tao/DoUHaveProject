@@ -53,7 +53,7 @@ class MobileLogin extends Component {
                   <div className="mobile-login-panel">
                     <Login isAuth={isAuth} userName={userName} firstName={firstName} />
                     <div className="mobile-login-exit" onClick={this.onLoginIcon}>
-                      <p>Exit</p>
+                      Exit
                     </div>
                   </div>
                 ) : null
@@ -64,7 +64,7 @@ class MobileLogin extends Component {
         {
           (isAuth) ? (
             <div className="mobile-login-box">
-              <p>Logged In! <a href="/userpanel">Welcome, {firstName}! ({userName})</a></p>
+              <p><a href="/userpanel">Welcome, {firstName}!</a></p>
               <a href="#" onClick={this.onLogout}>Logout</a><br />
             </div>
           ) : (null)

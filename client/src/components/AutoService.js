@@ -12,6 +12,7 @@ class AutoService extends Component {
                     userName={this.props.userName}
                     firstName={this.props.firstName}
                     userId={this.props.userId}
+                    token={this.props.token}
          />
       </div>
     );

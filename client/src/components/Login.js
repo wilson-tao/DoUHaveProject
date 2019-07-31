@@ -190,7 +190,7 @@ class Login extends Component {
         {
           (isAuth) ? (
             <>
-            <p>Logged In! <a href="/userpanel">Welcome, {firstName}! ({userName})</a></p>
+            <p><a href="/userpanel">Welcome, {firstName}!</a></p>
             <a href="#" onClick={this.onLogout}>Logout</a><br />
             </>
           ) : (null)

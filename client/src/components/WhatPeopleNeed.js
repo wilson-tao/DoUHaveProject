@@ -26,6 +26,7 @@ class WhatPeopleNeed extends Component {
     let userName = this.props.userName;
     let firstName = this.props.firstName;
     let userId = this.props.userId;
+    let token = this.props.token;
 
 
 
@@ -33,7 +34,7 @@ class WhatPeopleNeed extends Component {
       <div className="WhatPeopleNeed">
 
 
-        <CatResults category={category} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} />
+        <CatResults category={category} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />
 
       </div>
     );
