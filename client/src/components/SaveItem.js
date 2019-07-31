@@ -16,6 +16,7 @@ class SaveItem extends Component {
     const userId = this.props.userId;
 
     console.log(item);
+    console.log(userId);
 
 
     fetch('/savelist/', {

@@ -74,6 +74,8 @@ router.get('/:userId', checkAuth, (req, res, next) => {
 
 //Post item to Savelist
 router.post('/', checkAuth, (req, res, next) => {
+  console.log(req.body.savedby1);
+  console.log(req.userData.userId);
   if (req.body.savedby1 != req.userData.userId) {
     return res.status(401).json({
       message: 'Auth Failed 5'
