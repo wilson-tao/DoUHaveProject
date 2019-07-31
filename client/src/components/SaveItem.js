@@ -45,7 +45,7 @@ class SaveItem extends Component {
         console.log(json.message);
         if (json.message === 'List Saved') {
           console.log('Save Item Worked');
-          //window.location.reload();
+          window.location.reload();
         } else {
           console.log('Save Item Did Not Work');
           console.log(json.error.message);
