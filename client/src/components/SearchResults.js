@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ItemFull from './ItemFull';
 import OfferSubmit from './OfferSubmit';
-
+import SaveItem from './SaveItem';
 
 
 class SearchResults extends Component {
@@ -15,11 +15,15 @@ class SearchResults extends Component {
       singleResult: '',
       closed: true,
       clickToShow: false,
-      showOfferSubmit: false
+      showOfferSubmit: false,
+      showSaveItem: false,
+      token: this.props.token
     };
 
     this.onItemFull = this.onItemFull.bind(this);
     this.onOfferSubmit = this.onOfferSubmit.bind(this);
+    this.onSaveItem = this.onSaveItem.bind(this);
+    this.onCancel = this.onCancel.bind(this);
   }
 
   onItemFull(id) {
@@ -76,6 +80,37 @@ class SearchResults extends Component {
   }
 
 
+  onSaveItem = (id) => {
+    const {
+      showSaveItem,
+      singleResult
+    } = this.state;
+    if (singleResult !== '' && singleResult !== id) {
+      this.setState({
+        singleResult: id,
+        showSaveItem: true
+      });
+    } else {
+      if (!showSaveItem) {
+        this.setState({
+          singleResult: id,
+          showSaveItem: true
+        });
+      } else {
+        this.setState({
+          showSaveItem: false,
+          singleResult: ''
+        });
+      }
+    }
+  }
+
+  onCancel() {
+    this.setState({
+      showSaveItem: false
+    });
+  }
+
   render() {
 
     const {
@@ -90,6 +125,7 @@ class SearchResults extends Component {
     let userName = this.props.userName
     let firstName = this.props.firstName
     let userId = this.props.userId
+    let token = this.props.token
 
     console.log("SearchResults: Results:", searchResults);
     console.log('Single result', singleResult);
@@ -198,6 +234,11 @@ class SearchResults extends Component {
             //    <button onClick={() => this.onOfferSubmit(model._id)}>Make Offer</button>
             //  </div>
             }
+            {
+              <div className="save-button">
+                <button onClick={() => this.onSaveItem(model._id)}>Save Item</button>
+              </div>
+            }
 
             {
             //Check if Logged in and fetch user data in component
@@ -209,6 +250,14 @@ class SearchResults extends Component {
               <OfferSubmit itemId={model._id} ownerId={model.submittedby1} userName={userName} firstName={firstName} userId={userId} isAuth={isAuth} /> :
               (null)
             }
+
+            {
+              //Save Item
+              this.state.showSaveItem && (singleResult === model._id) ?
+              <SaveItem model={model} userId={userId} firstName={firstName} isAuth={isAuth} token={token} onCancel={this.onCancel} /> :
+              (null)
+            }
+
             {
               //Single Result, if state is showItem and there is singleResult with model._id
 

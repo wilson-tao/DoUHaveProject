@@ -168,7 +168,7 @@ class App extends Component {
 
           {
             this.state.showResults ?
-            <SearchResults isAuth={isAuth} userId={userId} searchResults={searchResults} token={token} /> :
+            <SearchResults isAuth={isAuth} userId={userId} searchResults={searchResults} token={token} firstName={firstName} /> :
             (
               <BrowserRouter>
                 <Switch>
@@ -236,7 +236,7 @@ class App extends Component {
                   />
 
                   <Route path={'/advanced'}
-                    render={(props) => <AdvancedSearch {...props} isAuth={isAuth} userId={userId} token={token} />}
+                    render={(props) => <AdvancedSearch {...props} isAuth={isAuth} userId={userId} token={token} firstName={firstName} />}
                   />
 
                 </Switch>

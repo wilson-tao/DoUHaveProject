@@ -15,7 +15,8 @@ class AdvancedSearch extends Component {
       token: this.props.token,
       category: '',
       condition: '',
-      locationState: 'TX'
+      locationState: 'TX',
+      firstName: this.props.firstName
     };
     this.onTextChange = this.onTextChange.bind(this);
     this.onTextChangeCategory = this.onTextChangeCategory.bind(this);
@@ -118,13 +119,15 @@ class AdvancedSearch extends Component {
     const {
       searchTerm,
       searchResults,
-      isAuth,
-      userId,
-      token,
       category,
       condition,
-      locationState
+      locationState,
     } = this.state;
+
+    let isAuth = this.props.isAuth;
+    let token = this.props.token;
+    let userId = this.props.userId;
+    let firstName = this.props.firstName
 
     return (
       <div className="AdvancedSearch">
@@ -171,7 +174,7 @@ class AdvancedSearch extends Component {
 
         {
           this.state.showResults ?
-          <SearchResults isAuth={isAuth} userId={userId} searchResults={searchResults} token={token} /> :
+          <SearchResults isAuth={isAuth} userId={userId} searchResults={searchResults} token={token} firstName={firstName} /> :
           (null)
         }
 

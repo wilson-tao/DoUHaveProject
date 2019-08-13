@@ -55,7 +55,7 @@ class SaveItem extends Component {
 
 
   render() {
-    const isAuth = this.props.isAuth;
+    let isAuth = this.props.isAuth;
 
     return (
       <div className="SaveItem">
