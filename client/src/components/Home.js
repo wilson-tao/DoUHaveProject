@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 
-import Categories from './Categories';
+
 import CatResults from './CatResults';
+import WhatPeopleNeed from './WhatPeopleNeed';
 
 
 class Home extends Component {
@@ -27,12 +28,19 @@ class Home extends Component {
       category
     } = this.state;
 
+    let isAuth = this.props.isAuth
+    let userName = this.props.userName
+    let firstName = this.props.firstName
+    let userId = this.props.userId
+    let token = this.props.token
+
     return (
       <div className="Home">
 
 
 
-        <Categories />
+
+        <WhatPeopleNeed isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />
 
 
       </div>

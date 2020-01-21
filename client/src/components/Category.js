@@ -7,7 +7,7 @@ class Category extends Component {
 
     return (
       <div className="category">
-        <a href={catLinks.link}><div className="cat-title"><p>{catLinks.label}<br /></p></div><img src={catLinks.bg} alt={catLinks.label} /></a>
+        <a href={catLinks.link}><img src={catLinks.bg} alt={catLinks.label} /><div className="cat-title"><p>{catLinks.label}</p></div></a>
       </div>
     );
   }

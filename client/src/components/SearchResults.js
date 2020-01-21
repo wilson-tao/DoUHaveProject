@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import ItemFull from './ItemFull';
 import OfferSubmit from './OfferSubmit';
 import SaveItem from './SaveItem';
+import Categories from './Categories';
 
+import saveicon from '../img/svg/001-save-file-option.svg';
+import shareicon from '../img/svg/002-share-option.svg';
+import contacticon from '../img/svg/003-contact.svg';
 
 class SearchResults extends Component {
 
@@ -131,113 +135,48 @@ class SearchResults extends Component {
     console.log('Single result', singleResult);
     return (
       <div className="SearchResults">
+      <h1>Search Results</h1>
+      <Categories />
       <div className="categoryResults">
         {searchResults.map(model =>
           <div className="resultItem" key={model._id} >
 
           <div className="itemRow">
-            <div id="itemPic" onClick={() => this.onItemFull(model._id)}><img src={model.itemImg.substring(
-              model.itemImg.lastIndexOf("/") - 17,
-              model.itemImg.length
-            )} /> </div>
-            <h1 id="itemName">{model.name} </h1>
-            <h3 id="itemBudget">Budget: ${model.budget.toLocaleString(navigator.language, { minimumFractionDigits: 0 })} </h3>
-          </div>
-          <hr />
-          <div className="itemRow">
-            <h5 id="itemCategory">Category: {model.category} </h5>
-            <h5 id="itemLocation">Location: {model.location}, {model.locationState}</h5>
+            <div id="rowContainer">
 
-            <h5 id="itemCondition">Condition: {model.condition} </h5>
-          </div>
-          <div id="itemDescription">
-            <h5 >Description: </h5><p>{model.description}</p>
-          </div>
-          <div id="itemSubmittedby">
-            <h5>Submitted By: </h5> <p> {model.submittedby}</p><br />
-            <h5>Contact Number: </h5> {
-              this.state.clickToShow ? (
-                model.contactinfo
-              ) : <p onClick={this.onClickToShow}>Click To Show</p>
-            }
-          </div>
-          <div id="itemDate">
-            <h5>Submitted On:</h5> {model.createdAt}
+              <div id="itemPic" onClick={() => this.onItemFull(model._id)}><img src={model.itemImg.substring(
+                model.itemImg.lastIndexOf("/") - 17,
+                model.itemImg.length
+              )} /> </div>
+              <h1 id="itemName">{model.name} </h1>
+              <h3 id="itemBudget">Budget: ${model.budget.toLocaleString(navigator.language, { minimumFractionDigits: 0 })} </h3>
+            </div>
+            <hr />
+            <div className="itemRow">
+              <h5 id="itemCategory">Category: {model.category} </h5>
+              <h5 id="itemLocation">Location: {model.location}, {model.locationState}</h5>
+            </div>
           </div>
 
+          <div className="buttonContainer">
+            <div className="share-button">
+              <img className="share-button-img" src={shareicon} />
+            </div>
+            <div className="save-button">
+              <img className="save-button-img" src={saveicon} onClick={() => this.onSaveItem(model._id)} />
+            </div>
+            <div className="contact-button">
+              <img className="contact-button-img" src={contacticon} onClick={this.onClickToShow} />
+            </div>
+          </div>
 
-            {
-              (model.carmake !== '' && model.carmake !== null && model.carmake !== undefined) ? (
-                <>
-                <label>Car Make: {model.carmake}</label><br />
-                </>
-              ) : (null)
-            }
-            {
-
-              (model.carmodel !== '' && model.carmodel !== null && model.carmodel !== undefined) ? (
-                <>
-                <label>Car Model: {model.carmodel}</label><br />
-                </>
-              ) : (null)
-            }
-            {
-
-              (model.caryear !== '' && model.caryear !== null && model.caryear !== undefined) ? (
-                <>
-                <label>Car Year: {model.caryear}</label><br />
-                </>
-              ) : (null)
-            }
-            {
-
-              (model.cellmake !== '' && model.cellmake !== null && model.cellmake !== undefined) ? (
-                <>
-                <label>Cell Make: {model.cellmake}</label><br />
-                </>
-              ) : (null)
-            }
-            {
-
-              (model.cellmodel !== '' && model.cellmodel !== null && model.cellmodel !== undefined) ? (
-                <>
-                <label>Cell Model: {model.cellmodel}</label><br />
-                </>
-              ) : (null)
-            }
-            {
-
-              (model.cellcarrier !== '' && model.cellcarrier !== null && model.cellcarrier !== undefined) ? (
-                <>
-                <label>Cell Carrier: {model.cellcarrier}</label><br />
-                </>
-              ) : (null)
-            }
-            {
-
-              (model.cellos !== '' && model.cellos !== null && model.cellos !== undefined) ? (
-                <>
-                <label>Cell Operating System: {model.cellos}</label><br />
-                </>
-              ) : (null)
-            }
-            {
-
-              (model.gamesystem !== '' && model.gamesystem !== null && model.gamesystem !== undefined) ? (
-                <>
-                <label>Game System: {model.gamesystem}</label><br />
-                </>
-              ) : (null)
-            }
             {
             //  <div className="offer-button">
             //    <button onClick={() => this.onOfferSubmit(model._id)}>Make Offer</button>
             //  </div>
             }
             {
-              <div className="save-button">
-                <button onClick={() => this.onSaveItem(model._id)}>Save Item</button>
-              </div>
+
             }
 
             {

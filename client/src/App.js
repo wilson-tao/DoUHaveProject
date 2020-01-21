@@ -172,7 +172,9 @@ class App extends Component {
             (
               <BrowserRouter>
                 <Switch>
-                  <Route exact path={'/'} component={Home} />
+                  <Route exact path={'/'}
+                    render={(props) => <Home {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
+                />
                   <Route path={'/WhatPeopleNeed'}
                     render={(props) => <WhatPeopleNeed {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
                   />

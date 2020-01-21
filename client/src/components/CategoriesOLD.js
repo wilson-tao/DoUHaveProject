@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
 import Category from './Category';
 
-import autobg from '../img/svg/001-sedan-car-front.svg';
-import appliancebg from '../img/svg/013-washing-machine.svg';
-import cellbg from '../img/svg/006-cell-phone.svg';
-import furniturebg from '../img/svg/014-couch.svg';
-import instrumentbg from '../img/svg/016-treble-clef.svg';
-import motobg from '../img/svg/007-motorcycle.svg';
-import vidgamebg from '../img/svg/017-console.svg';
-import beautybg from '../img/svg/022-lipstick.svg';
-import homeservicebg from '../img/svg/025-customer-support.svg';
-import clothingbg from '../img/svg/019-clothes.svg';
-import miscbg from '../img/svg/020-sideboard.svg';
-import autoservicebg from '../img/svg/024-car-repair.svg';
-import collectiblesbg from '../img/svg/021-grandfather-clock.svg';
-import comequipbg from '../img/svg/023-forklift-truck.svg';
-import housingbg from '../img/svg/004-home.svg';
-import packagebg from '../img/svg/005-gift.svg';
+import autobg from '../img/autobg.jpg';
+import appliancebg from '../img/appliancebg.jpg';
+import cellbg from '../img/cellbg.jpg';
+import furniturebg from '../img/furniturebg.jpg';
+import instrumentbg from '../img/instrumentbg.jpg';
+import motobg from '../img/motobg.jpg';
+import vidgamebg from '../img/vidgamebg.jpg';
+import beautybg from '../img/beautybg.jpg';
+import packagebg from '../img/packagebg.jpg';
+import homeservicebg from '../img/homeservicebg.jpeg';
+import clothingbg from '../img/clothingbg.jpg';
+import miscbg from '../img/miscbg.jpg';
+import autoservicebg from '../img/autoservicebg.png';
+import collectiblesbg from '../img/collectiblesbg.jpg';
+import comequipbg from '../img/comequipbg.jpg';
+import housingbg from '../img/housingbg.jpg';
 
 
 
