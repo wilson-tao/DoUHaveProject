@@ -13,6 +13,7 @@ const itemSchema = mongoose.Schema({
   description: { type: String, default: '', required: true },
   location: { type: String, default: '', required: true },
   locationState: { type: String, default: '', required: true },
+  locationZip: { type: String, default: '', required: true },
   submittedby: { type: String, default: '', required: true },
   createdAt: { type: Date, default: Date.now, required: true},
   expirationDate: { type: Date, default: () => Date.now() + 7*24*60*60*1000, required: true},
@@ -31,6 +32,7 @@ const itemSchema = mongoose.Schema({
 itemSchema.index({
   name: 'text',
   description: 'text',
+  locationZip: 'text',
   carmake: 'text',
   carmodel: 'text',
   caryear: 'text',

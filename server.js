@@ -21,6 +21,7 @@ const userRoutes = require('./routes/api/user');
 const itemRoutes = require('./routes/api/items');
 const savelistRoutes = require('./routes/api/savelist');
 const offerRoutes = require('./routes/api/offers');
+const zipRoutes = require('./routes/api/zips');
 
 //Required Middleware
 app.use(morgan('dev'));
@@ -59,6 +60,7 @@ app.use('/user', userRoutes);
 app.use('/items', itemRoutes);
 app.use('/savelist', savelistRoutes);
 app.use('/offers', offerRoutes);
+app.use('/zips', zipRoutes);
 
 
 

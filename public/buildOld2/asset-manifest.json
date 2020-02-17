@@ -1,7 +1,7 @@
 {
   "main.css": "/static/css/main.279f17a7.chunk.css",
-  "main.js": "/static/js/main.39fcd744.chunk.js",
-  "main.js.map": "/static/js/main.39fcd744.chunk.js.map",
+  "main.js": "/static/js/main.924725f8.chunk.js",
+  "main.js.map": "/static/js/main.924725f8.chunk.js.map",
   "static/css/1.131bf9ce.chunk.css": "/static/css/1.131bf9ce.chunk.css",
   "static/js/1.cbdf7927.chunk.js": "/static/js/1.cbdf7927.chunk.js",
   "static/js/1.cbdf7927.chunk.js.map": "/static/js/1.cbdf7927.chunk.js.map",
@@ -36,9 +36,9 @@
   "static/media/004-home.svg": "/static/media/004-home.569e8718.svg",
   "static/media/005-gift.svg": "/static/media/005-gift.ce6be9f7.svg",
   "static/media/index.css": "/static/media/RIVERHACK_CYR.a89f53e8.otf",
-  "static/css/1.131bf9ce.chunk.css.map": "/static/css/1.131bf9ce.chunk.css.map",
   "static/css/main.279f17a7.chunk.css.map": "/static/css/main.279f17a7.chunk.css.map",
+  "static/css/1.131bf9ce.chunk.css.map": "/static/css/1.131bf9ce.chunk.css.map",
   "index.html": "/index.html",
-  "precache-manifest.21dbbcee86a87b833aac6dbc2e427449.js": "/precache-manifest.21dbbcee86a87b833aac6dbc2e427449.js",
+  "precache-manifest.7a28704b03ebbe4e26cd6d059dc15da1.js": "/precache-manifest.7a28704b03ebbe4e26cd6d059dc15da1.js",
   "service-worker.js": "/service-worker.js"
 }

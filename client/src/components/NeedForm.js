@@ -21,8 +21,9 @@ class NeedForm extends Component {
       category: '',
       condition: '',
       description: '',
-      location: 'Dallas',
-      locationState: 'TX',
+      location: '',
+      locationState: '',
+      locationZip: '',
       submittedby: firstName,
       submittedby1: userId,
       carmake: '',
@@ -34,7 +35,8 @@ class NeedForm extends Component {
       cellos: '',
       gamesystem: '',
       contactinfo: email,
-      phone: ''
+      phone: '',
+      locationFetch: ''
     };
     this.onTextChangeName = this.onTextChangeName.bind(this);
     this.onChangeItemImg = this.onChangeItemImg.bind(this);
@@ -44,6 +46,7 @@ class NeedForm extends Component {
     this.onTextChangeDescription = this.onTextChangeDescription.bind(this);
     this.onTextChangeLocation = this.onTextChangeLocation.bind(this);
     this.onTextChangeLocationState = this.onTextChangeLocationState.bind(this);
+    this.onTextChangeLocationZip = this.onTextChangeLocationZip.bind(this);
     this.onTextChangeSubmittedby = this.onTextChangeSubmittedby.bind(this);
 
     this.onTextChangeCarmake = this.onTextChangeCarmake.bind(this);
@@ -56,6 +59,8 @@ class NeedForm extends Component {
     this.onTextChangeGamesystem = this.onTextChangeGamesystem.bind(this);
     this.onTextChangeContactInfo = this.onTextChangeContactInfo.bind(this);
     this.onChangePhone = this.onChangePhone.bind(this);
+    this.callZipInfo = this.callZipInfo.bind(this);
+    this.callZipInfo2 = this.callZipInfo2.bind(this);
 
     this.onSubmit = this.onSubmit.bind(this);
     this.validateForm = this.validateForm.bind(this);
@@ -99,6 +104,11 @@ class NeedForm extends Component {
   onTextChangeLocationState(event) {
     this.setState({
       locationState: event.target.value
+    });
+  }
+  onTextChangeLocationZip(event) {
+    this.setState({
+      locationZip: event.target.value
     });
   }
   onTextChangeSubmittedby(event) {
@@ -157,6 +167,90 @@ class NeedForm extends Component {
     });
   }
 
+  callZipInfo() {
+    const {
+      location,
+      locationZip,
+      locationState,
+    } = this.state;
+
+    fetch('/zips/' + locationZip, {
+      method: 'GET',
+      headers: {
+        'Content-type': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(json => {
+      console.log(json);
+      if (json.response) {
+        this.setState({
+          locationFetch: json.response,
+          locationZip: json.zip_code,
+          locationState: json.state,
+          locationCity: json.city
+        });
+      } else {
+        console.log('Zip Lookup Did Not Work');
+        console.log(json.error);
+      }
+    })
+  }
+
+  callZipInfo2() {
+    const {
+      location,
+      locationZip,
+      locationState,
+    } = this.state;
+
+    var isnum = /^\d+$/.test(locationZip);
+
+    if (locationZip === '') {
+      this.setState({
+        submitError: 'Please Include Zip'
+      });
+      return
+    } else if (locationZip.length !== 5) {
+      this.setState({
+        submitError: 'Invalid Zip'
+      });
+      return
+    } else if (!isnum) {
+      this.setState({
+        submitError: 'Invalid Zip'
+      });
+      return
+    } else {
+      this.setState({
+        submitError: ''
+      });
+    }
+
+
+    return fetch(`https://redline-redline-zipcode.p.rapidapi.com/rest/info.json/${locationZip}/degrees`, {
+      method: 'GET',
+      headers: {
+        'x-rapidapi-host': 'redline-redline-zipcode.p.rapidapi.com',
+    		'x-rapidapi-key': '47eaf9b3eemsh8821c07d555b84cp11d76cjsn3879605d5b16'
+      }
+    })
+    .then(response => response.json())
+    .then(response => {
+      console.log(response);
+      console.log(response.city);
+      console.log(response.state);
+      this.setState({
+        location: response.city,
+        locationState: response.state
+      });
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
+
   onSubmit2() {
     const {
       submitError,
@@ -168,6 +262,7 @@ class NeedForm extends Component {
       description,
       location,
       locationState,
+      locationZip,
       submittedby,
       submittedby1,
       carmake,
@@ -178,7 +273,8 @@ class NeedForm extends Component {
       cellcarrier,
       cellos,
       gamesystem,
-      contactinfo
+      contactinfo,
+      locationFetch
     } = this.state;
 
     let token = this.props.token;
@@ -194,6 +290,7 @@ class NeedForm extends Component {
     data.append('description', description);
     data.append('location', location);
     data.append('locationState', locationState);
+    data.append('locationZip', locationZip);
     data.append('submittedby', submittedby);
     data.append('submittedby1', submittedby1);
     data.append('carmake', carmake);
@@ -230,6 +327,7 @@ class NeedForm extends Component {
             description: '',
             location: '',
             locationState: '',
+            locationZip: '',
             submittedby: '',
             submittedby1: '',
             carmake: '',
@@ -267,6 +365,7 @@ class NeedForm extends Component {
             description: '',
             location: '',
             locationState: '',
+            locationZip: '',
             submittedby: '',
             submittedby1: '',
             carmake: '',
@@ -299,10 +398,13 @@ class NeedForm extends Component {
       description,
       location,
       locationState,
+      locationZip,
       submittedby,
       submitError,
       contactinfo
     } = this.state;
+
+    var isnum = /^\d+$/.test(locationZip);
 
     if (name === '') {
       this.setState({
@@ -344,6 +446,21 @@ class NeedForm extends Component {
         submitError: 'Description Needs to be at least 20 characters'
       });
       return
+    } else if (locationZip === '') {
+      this.setState({
+        submitError: 'Please Include Zip'
+      });
+      return
+    } else if (locationZip.length !== 5) {
+      this.setState({
+        submitError: 'Invalid Zip'
+      });
+      return
+    } else if (!isnum) {
+      this.setState({
+        submitError: 'Invalid Zip'
+      });
+      return
     } else if (location === ''){
       this.setState({
         submitError: 'Please Include City where Item is Located'
@@ -365,6 +482,7 @@ class NeedForm extends Component {
       });
       return
     } else {
+      
       this.onSubmit()
     }
   }
@@ -381,6 +499,7 @@ class NeedForm extends Component {
       description,
       location,
       locationState,
+      locationZip,
       submittedby,
       submittedby1,
       carmake,
@@ -405,6 +524,7 @@ class NeedForm extends Component {
     data.append('description', description);
     data.append('location', location);
     data.append('locationState', locationState);
+    data.append('locationZip', locationZip);
     data.append('submittedby', submittedby);
     data.append('submittedby1', submittedby1);
     data.append('carmake', carmake);
@@ -440,6 +560,7 @@ class NeedForm extends Component {
           description: '',
           location: '',
           locationState: '',
+          locationZip: '',
           submittedby: '',
           submittedby1: '',
           carmake: '',
@@ -473,6 +594,7 @@ class NeedForm extends Component {
       description,
       location,
       locationState,
+      locationZip,
       submittedby,
       submittedby1,
       carmake,
@@ -552,14 +674,13 @@ class NeedForm extends Component {
         <label>Description</label><br />
         <textarea minLength="25" maxLength="1000" rows="4" cols="50" placeholder="Provide a short description of the item..." value={description} onChange={this.onTextChangeDescription} /><br />
         <label>Location</label><br />
+        <input type="text" placeholder="Zip..." value={locationZip} onChange={this.onTextChangeLocationZip} onBlur={this.callZipInfo2}  /><br />
         <input type="text" placeholder="City..." value={location} /><br />
 
-        State: <select required name={locationState} onChange={this.onTextChangeLocationState}>
+        <input type="text" placeholder="State.." value={locationState} />
 
-          <option value="TX">TX</option>
 
-        </select>
-        <p>*currently limited to Dallas, TX</p>
+
 
         <input type="hidden" value={submittedby} />
         <input type="hidden" value={contactinfo} />
@@ -615,6 +736,7 @@ class NeedForm extends Component {
         }
         <br />
         <button onClick={this.validateForm}>Submit</button>
+
         {console.log(submitError)}
         {
           (submitError) ? (
