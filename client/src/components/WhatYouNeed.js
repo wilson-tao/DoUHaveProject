@@ -13,13 +13,30 @@ class WhatYouNeed extends Component {
     if (isAuth) {
       return (
         <div className="WhatYouNeed">
-          <h1>Post What You Need</h1>
+			<div className="WhatYouNeedHeaders">
+          <h1>WHAT ARE YOU LOOKING FOR?</h1>
+		  <h3 style={{
+            fontWeight:'400',
+			color:'#A9A9A9'
+        }}>Create a post listing the item you're in search of.</h3>
+		<hr style={{
+            backgroundColor:'#000000',
+			width: '65%',
+			marginBottom: '0.5rem'
+        }} />
+		<hr style={{
+			backgroundColor:'#000000',
+			width: '50%',
+			marginTop: '0rem'
+        }} />
+		</div>
           <NeedForm email={email} userName={userName} firstName={firstName} userId={userId} token={token} />
+		  
         </div>
       )
     } else {
       return (
-        <h3>Please Log In Above...</h3>
+        <h3 style={{textAlign: 'center'}}>Please Log In Above...</h3>
       )
     }
 

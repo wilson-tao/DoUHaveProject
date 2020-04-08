@@ -250,15 +250,18 @@ class UserInfo extends Component {
 
     if (!edit) {
       return (
-        <div className="UserInfo">
-
-          <label>First Name: {firstName}</label><br />
-          <label>Last Name: {lastName}</label><br />
+        <div style={{paddingTop:'30px'}} className="UserInfo">
+		<div style={{marginLeft: '400px', textAlign:'left'}}>
+			<h1>HI {firstName}</h1>
+			<button onClick={this.onEditClick}>Edit</button>
+         </div>
+		 <div>
           <label>Address: {streetAddress}</label><br />
           <label>City: {city}</label><br />
           <label>State: {state}</label><br />
           <label>Zip: {zip}</label><br />
-          <button onClick={this.onEditClick}>Edit</button>
+		  </div>
+          
         </div>
       );
 

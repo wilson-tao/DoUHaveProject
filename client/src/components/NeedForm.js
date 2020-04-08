@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PostButton from '../img/Button- Post It.png';
 
 
 
@@ -337,8 +337,7 @@ class NeedForm extends Component {
             cellmodel: '',
             cellcarrier: '',
             cellos: '',
-            gamesystem: '',
-            contactinfo: '',
+            gamesystem: ''
           });
         } else {
           this.setState({
@@ -375,8 +374,7 @@ class NeedForm extends Component {
             cellmodel: '',
             cellcarrier: '',
             cellos: '',
-            gamesystem: '',
-            contactinfo: '',
+            gamesystem: ''
           });
         } else {
           this.setState({
@@ -482,7 +480,7 @@ class NeedForm extends Component {
       });
       return
     } else {
-      
+
       this.onSubmit()
     }
   }
@@ -570,8 +568,7 @@ class NeedForm extends Component {
           cellmodel: '',
           cellcarrier: '',
           cellos: '',
-          gamesystem: '',
-          contactinfo: '',
+          gamesystem: ''
         });
       } else {
         this.setState({
@@ -619,21 +616,24 @@ class NeedForm extends Component {
 
 
     return (
+	
       <div className="NeedForm">
-
+		<div className="FormElements"> 
         <input type="hidden" value={submittedby1} />
         <div id="itemName">
-          <label>Item Name</label><br />
-          <input type="text" placeholder="Item's name..." value={name} onChange={this.onTextChangeName} required /><br />
+          <label style={{fontWeight:'600'}}>ITEM NAME*</label><br />
+          <input style={{backgroundColor: '#F9F3EA',
+		  borderRadius: '0px'
+		  }} type="text" value={name} onChange={this.onTextChangeName} required /><br />
         </div>
         <div id="itemImg">
           <input type="file" name="itemImg" id="itemImg" onChange={this.onChangeItemImg}  />
-          <p>*required (choose pic that best represents what you need)</p>
+          <p>*required (choose a photo that best represents what you are looking for)</p>
         </div>
         <div className="itemRow">
           <div id="itemCategory">
-            <label>Category</label><br />
-            <select required name={category} onChange={this.onTextChangeCategory}>
+            <label style={{fontWeight:'600'}}>Category</label><br />
+            <select style={{height:'30px', backgroundColor: '#F9F3EA'}} required name={category} onChange={this.onTextChangeCategory}>
               <option value=""></option>
               <option value="auto">Car's and Trucks</option>
               <option value="appliance">Appliances</option>
@@ -654,10 +654,11 @@ class NeedForm extends Component {
             </select><br />
           </div>
           <div id="itemBudget">
-            <label>Budget</label><br />
-            $<input required type="text" placeholder="How much are you willing to pay?" value={budget} onChange={this.onTextChangeBudget} />.00<br />
+            <label style={{fontWeight:'600'}}>Budget</label><br />
+            $<input style={{borderRadius:'0px', height:'30px', backgroundColor: '#F9F3EA'}} required type="text" value={budget} onChange={this.onTextChangeBudget} /><br />
           </div>
-          <div id="itemCondition">
+         </div>
+		 <div id="itemCondition">
             <label>Condition</label><br />
             <select required name={condition} onChange={this.onTextChangeCondition}>
               <option value=""></option>
@@ -670,15 +671,16 @@ class NeedForm extends Component {
               <option value="parts">Parts</option>
             </select><br />
           </div>
-        </div>
-        <label>Description</label><br />
-        <textarea minLength="25" maxLength="1000" rows="4" cols="50" placeholder="Provide a short description of the item..." value={description} onChange={this.onTextChangeDescription} /><br />
-        <label>Location</label><br />
-        <input type="text" placeholder="Zip..." value={locationZip} onChange={this.onTextChangeLocationZip} onBlur={this.callZipInfo2}  /><br />
-        <input type="text" placeholder="City..." value={location} /><br />
+		  <div>
+        <label style={{fontWeight:'600'}}>DESCRIPTION</label><br />
+        <textarea style={{backgroundColor: '#F9F3EA'}} minLength="25" maxLength="1000" rows="4" cols="50" value={description} onChange={this.onTextChangeDescription} /><br />
+        <label style={{fontWeight:'600'}}>Location</label><br /></div>
+		<div className="LocationDetails">
+		<div className="Zip"><input style={{backgroundColor: '#F9F3EA'}} type="text" placeholder="ZIP CODE" value={locationZip} onChange={this.onTextChangeLocationZip} onBlur={this.callZipInfo2}  /><br /></div>
+        <div className="City"><input style={{backgroundColor: '#F9F3EA'}} type="text" placeholder="CITY" value={location} /><br /></div>
 
-        <input type="text" placeholder="State.." value={locationState} />
-
+        <div className="State"><input style={{backgroundColor: '#F9F3EA'}} type="text" placeholder="STATE" value={locationState} /></div>
+		</div>
 
 
 
@@ -735,7 +737,7 @@ class NeedForm extends Component {
           ) : (null)
         }
         <br />
-        <button onClick={this.validateForm}>Submit</button>
+        <button style={{border: 'none'}}onClick={this.validateForm}><img style={{height: '40px', width: '100px'}} src={PostButton} alt="PostButton"/></button>
 
         {console.log(submitError)}
         {
@@ -743,8 +745,9 @@ class NeedForm extends Component {
             <p>{submitError}</p>
           ) : (null)
         }
-
+		</div>
       </div>
+	  	  
     );
   }
 }

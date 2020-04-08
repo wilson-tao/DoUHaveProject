@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LoginImg from '../img/login.svg';
+import LoginImg from '../img/Top Bar- Gold.png';
 import Login from './Login';
 
 import {
@@ -46,8 +46,15 @@ class MobileLogin extends Component {
       <div className="MobileLogin">
         {
           (!isAuth) ? (
-            <div className="mobile-login-box">
-              <img className="mobile-login-img" src={LoginImg} alt="Login Image" onClick={this.onLoginIcon} />
+            <div style={{marginTop: '15px'}} className="mobile-login-box">
+			<div onClick={this.onLoginIcon}>
+              <img style={{
+					width:1,
+					height: 1,
+					}} src={LoginImg} onClick={this.onLoginIcon} alt="SIGN IN"/><span 
+					style={{color: '#000000',
+							fontWeight: '600'						
+					}}>SIGN IN</span></div>
               {
                 this.state.showLogin ? (
                   <div className="mobile-login-panel">
@@ -63,12 +70,18 @@ class MobileLogin extends Component {
         }
         {
           (isAuth) ? (
-            <div className="mobile-login-box">
-              <p><a href="/userpanel">Welcome, {firstName}!</a></p>
-              <a href="#" onClick={this.onLogout}>Logout</a><br />
+            <div style={{marginTop: '5px'}} className="mobile-login-box">
+              <p><a style={{fontWeight:'600', color:'#000000'}} href="/userpanel">Welcome, {firstName}!</a><br />
+				<a style={{fontWeight:'600', color:'#000000'}} href="#" onClick={this.onLogout}>Logout</a>
+			  </p>
+              <br />
             </div>
           ) : (null)
         }
+		<div className="registerText">
+		<a style={{color: '#000000',
+							fontWeight: '600'						
+					}} href="/Register">Register</a><div className="space-break"></div></div>
       </div>
     );
   }

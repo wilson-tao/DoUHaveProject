@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import 'whatwg-fetch';
-
+import SubmitButton from '../img/Button- Submit.png';
 
 class Register extends Component {
   constructor(props) {
@@ -132,16 +132,45 @@ class Register extends Component {
 
     return (
       <div className="Register">
-        <h1>Sign Up</h1>
-
-        <input type="text" placeholder="First Name" value={signUpFirstName} onChange={this.onTextboxChangeFirstName} /><br />
-        <input type="text" placeholder="Last Name" value={signUpLastName} onChange={this.onTextboxChangeLastName} /><br />
-        <input type="email" placeholder="Email" value={signUpEmail} onChange={this.onTextboxChangeSignUpEmail} /><br />
-        <input type="password" placeholder="Password" value={signUpPassword} onChange={this.onTextboxChangeSignUpPassword} /><br />
-        <input type="password" placeholder="Confirm Password" value={passwordConfirm} onChange={this.onTextboxChangePasswordConfirm} /><br />
-        <br />
-
-        <button onClick={this.onSignUp}>Sign Up</button>
+        <h1>SIGN UP</h1>
+		<h3 style={{
+            fontWeight:'400',
+			color:'#A9A9A9'
+        }}>Be part of our community!</h3>
+		<hr style={{
+            backgroundColor:'#000000',
+			width: '70%',
+			marginTop: '30px'
+        }} />
+		<hr style={{
+			backgroundColor:'#000000',
+			width: '50%',
+			marginTop: '30px'
+        }} />
+		<div>
+		<div style={{
+            fontWeight:'700'
+        }}>LOGIN INFORMATION</div>
+		<div className="SignupInput">
+			<input className="SignupInput" type="text" placeholder="First Name" value={signUpFirstName} onChange={this.onTextboxChangeFirstName} /><br />
+        </div>
+		<div className="SignupInput">
+			<input className="SignupInput" type="text" placeholder="Last Name" value={signUpLastName} onChange={this.onTextboxChangeLastName} /><br />
+        </div>
+		<div className="SignupInput">
+			<input className="SignupInput" type="email" placeholder="Email" value={signUpEmail} onChange={this.onTextboxChangeSignUpEmail} /><br />
+        </div>
+		<div className="SignupInput">
+			<input className="SignupInput" type="password" placeholder="Password" value={signUpPassword} onChange={this.onTextboxChangeSignUpPassword} /><br />
+        </div>
+		<div className="SignupInput">
+			<input className="SignupInput" type="password" placeholder="Confirm Password" value={passwordConfirm} onChange={this.onTextboxChangePasswordConfirm} /><br />
+       	</div><br />
+		</div>
+        <button onClick={this.onSignUp}><img style={{
+				height: '40px',
+			  width: '100px'}}
+			  src={SubmitButton} alt="Submit" /></button>
         {console.log(signUpError)}
         {
           (signUpError) ? (

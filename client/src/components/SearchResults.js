@@ -21,14 +21,19 @@ class SearchResults extends Component {
       clickToShow: false,
       showOfferSubmit: false,
       showSaveItem: false,
-      token: this.props.token
+      token: this.props.token,
+      zipCode: this.props.zipCode,
+      distance: this.props.distance,
     };
 
     this.onItemFull = this.onItemFull.bind(this);
     this.onOfferSubmit = this.onOfferSubmit.bind(this);
     this.onSaveItem = this.onSaveItem.bind(this);
     this.onCancel = this.onCancel.bind(this);
+    this.checkZip = this.checkZip.bind(this);
   }
+
+
 
   onItemFull(id) {
     this.setState({
@@ -42,6 +47,7 @@ class SearchResults extends Component {
     if(nextProps.searchResults !== this.props.searchResults){
       this.setState({searchResults: nextProps.searchResults});
       console.log('ComponentWIllReceiveProps');
+
     }
   }
 
@@ -115,6 +121,20 @@ class SearchResults extends Component {
     });
   }
 
+  checkZip(zip) {
+    let zipResults = this.props.zipResults;
+    const parsed_results = [];
+
+    for (var x = 0; x < zipResults.length; x++) {
+      parsed_results.push(zipResults[x].zip_code);
+    }
+
+    var check_zip = parsed_results.includes(zip);
+
+    return check_zip;
+  }
+
+
   render() {
 
     const {
@@ -130,15 +150,40 @@ class SearchResults extends Component {
     let firstName = this.props.firstName
     let userId = this.props.userId
     let token = this.props.token
+    let zipResults = this.props.zipResults
+    let zipCode = this.props.zipCode
+    let distance = this.props.distance
+    let filteredResults = [];
+
 
     console.log("SearchResults: Results:", searchResults);
     console.log('Single result', singleResult);
+    console.log("Zip Results", zipResults);
+    console.log("check_zip", this.checkZip('75056'));
+    console.log("Zip Code: ", zipCode);
+    console.log("distance", distance);
+
+    if (zipCode !== '' && distance !== '') {
+      console.log("!!!!!!THIS IS WORKING!!!!!!!", searchResults);
+      for (var i = 0; i < searchResults.length; i++) {
+        console.log("!!!!IS THIS WORKING!!!!", this.checkZip(searchResults[i].locationZip));
+        if (this.checkZip(searchResults[i].locationZip)) {
+          filteredResults.push(searchResults[i]);
+
+        }
+      }
+    } else {
+      filteredResults = searchResults;
+    }
+
+    console.log("FILTERED: ", filteredResults);
+
     return (
       <div className="SearchResults">
       <h1>Search Results</h1>
       <Categories />
       <div className="categoryResults">
-        {searchResults.map(model =>
+        {filteredResults.map(model =>
           <div className="resultItem" key={model._id} >
 
           <div className="itemRow">
@@ -154,7 +199,7 @@ class SearchResults extends Component {
             <hr />
             <div className="itemRow">
               <h5 id="itemCategory">Category: {model.category} </h5>
-              <h5 id="itemLocation">Location: {model.location}, {model.locationState}</h5>
+              <h5 id="itemLocation">Location: {model.location}, {model.locationState} {model.locationZip}</h5>
             </div>
           </div>
 

@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
     cb(null, './public/build/uploads/itempics/');
   },
   filename: function(req, file, cb) {
-    cb(null, new Date().toISOString() + file.originalname);
+    cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname);
   }
 });
 
@@ -43,7 +43,7 @@ router.get('/', (req, res, next) => {
 router.get('/', (req, res, next) => {
   Item.find()
       .sort({createdAt: -1})
-      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .select('name _id itemImg pic budget category condition description location locationState locationZip submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
       .exec()
       .then(docs => {
         const response = {
@@ -60,6 +60,7 @@ router.get('/', (req, res, next) => {
               description: doc.description,
               location: doc.location,
               locationState: doc.locationState,
+              locationZip: doc.locationZip,
               submittedby: doc.submittedby,
               submittedby1: doc.submittedby1,
               carmake: doc.carmake,
@@ -95,7 +96,7 @@ router.get('/', (req, res, next) => {
 router.get('/:category', (req, res, next) => {
   Item.find({ category: req.params.category })
       .sort({createdAt: -1})
-      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .select('name _id itemImg pic budget category condition description location locationState locationZip submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
       .exec()
       .then(docs => {
         const response = {
@@ -112,6 +113,7 @@ router.get('/:category', (req, res, next) => {
               description: doc.description,
               location: doc.location,
               locationState: doc.locationState,
+              locationZip: doc.locationZip,
               submittedby: doc.submittedby,
               submittedby1: doc.submittedby1,
               carmake: doc.carmake,
@@ -146,7 +148,7 @@ router.get('/:category', (req, res, next) => {
 router.get('/user/:userId', (req, res, next) => {
   Item.find({submittedby1: req.params.userId})
       .sort({createdAt: -1})
-      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .select('name _id itemImg pic budget category condition description location locationState locationZip submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
       .exec()
       .then(docs => {
         const response = {
@@ -163,6 +165,7 @@ router.get('/user/:userId', (req, res, next) => {
               description: doc.description,
               location: doc.location,
               locationState: doc.locationState,
+              locationZip: doc.locationZip,
               submittedby: doc.submittedby,
               submittedby1: doc.submittedby1,
               carmake: doc.carmake,
@@ -200,7 +203,7 @@ router.get('/search1/:category/:term', (req, res, next) => {
   const regex = RegExp(req.params.term, 'i');
   Item.find({ category: req.params.category, name: regex })
       .sort({createdAt: -1})
-      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .select('name _id itemImg pic budget category condition description location locationState locationZip submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
       .exec()
       .then(docs => {
         const response = {
@@ -217,6 +220,7 @@ router.get('/search1/:category/:term', (req, res, next) => {
               description: doc.description,
               location: doc.location,
               locationState: doc.locationState,
+              locationZip: doc.locationZip,
               submittedby: doc.submittedby,
               submittedby1: doc.submittedby1,
               carmake: doc.carmake,
@@ -252,7 +256,7 @@ router.get('/search1/:category/:term', (req, res, next) => {
     const regex = RegExp(req.params.term, 'i');
     Item.find({$or :[{name: regex},{description: regex}]})
         .sort({createdAt: -1})
-        .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+        .select('name _id itemImg pic budget category condition description location locationState locationZip submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
         .exec()
         .then(docs => {
           const response = {
@@ -269,6 +273,7 @@ router.get('/search1/:category/:term', (req, res, next) => {
                 description: doc.description,
                 location: doc.location,
                 locationState: doc.locationState,
+                locationZip: doc.locationZip,
                 submittedby: doc.submittedby,
                 submittedby1: doc.submittedby1,
                 carmake: doc.carmake,
@@ -304,7 +309,7 @@ router.get('/search3/:category/:condition/:term', (req, res, next) => {
   const regex = RegExp(req.params.term, 'i');
   Item.find({ category: req.params.category, condition: req.params.condition, $or :[{name: regex},{description: regex}]})
       .sort({createdAt: -1})
-      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .select('name _id itemImg pic budget category condition description location locationState locationZip submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
       .exec()
       .then(docs => {
         const response = {
@@ -321,6 +326,7 @@ router.get('/search3/:category/:condition/:term', (req, res, next) => {
               description: doc.description,
               location: doc.location,
               locationState: doc.locationState,
+              locationZip: doc.locationZip,
               submittedby: doc.submittedby,
               submittedby1: doc.submittedby1,
               carmake: doc.carmake,
@@ -357,7 +363,7 @@ router.get('/search4/:state/:category/:condition/:term', (req, res, next) => {
   const regex = RegExp(req.params.term, 'i');
   Item.find({ locationState: req.params.state, category: req.params.category, condition: req.params.condition, $or :[{name: regex},{description: regex}]})
       .sort({createdAt: -1})
-      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .select('name _id itemImg pic budget category condition description location locationState locationZip submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
       .exec()
       .then(docs => {
         const response = {
@@ -374,6 +380,7 @@ router.get('/search4/:state/:category/:condition/:term', (req, res, next) => {
               description: doc.description,
               location: doc.location,
               locationState: doc.locationState,
+              locationZip: doc.locationZip,
               submittedby: doc.submittedby,
               submittedby1: doc.submittedby1,
               carmake: doc.carmake,
@@ -410,7 +417,7 @@ router.get('/search5/:state/:category/:term', (req, res, next) => {
   const regex = RegExp(req.params.term, 'i');
   Item.find({ locationState: req.params.state, category: req.params.category, $or :[{name: regex},{description: regex}]})
       .sort({createdAt: -1})
-      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .select('name _id itemImg pic budget category condition description location locationState locationZip submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
       .exec()
       .then(docs => {
         const response = {
@@ -427,6 +434,7 @@ router.get('/search5/:state/:category/:term', (req, res, next) => {
               description: doc.description,
               location: doc.location,
               locationState: doc.locationState,
+              locationZip: doc.locationZip,
               submittedby: doc.submittedby,
               submittedby1: doc.submittedby1,
               carmake: doc.carmake,
@@ -463,7 +471,7 @@ router.get('/search6/:state/:term', (req, res, next) => {
   const regex = RegExp(req.params.term, 'i');
   Item.find({ locationState: req.params.state, $or :[{name: regex},{description: regex}]})
       .sort({createdAt: -1})
-      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .select('name _id itemImg pic budget category condition description location locationState locationZip submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
       .exec()
       .then(docs => {
         const response = {
@@ -480,6 +488,7 @@ router.get('/search6/:state/:term', (req, res, next) => {
               description: doc.description,
               location: doc.location,
               locationState: doc.locationState,
+              locationZip: doc.locationZip,
               submittedby: doc.submittedby,
               submittedby1: doc.submittedby1,
               carmake: doc.carmake,
@@ -516,7 +525,7 @@ router.get('/search7/:condition/:term', (req, res, next) => {
   const regex = RegExp(req.params.term, 'i');
   Item.find({ condition: req.params.condition, $or :[{name: regex},{description: regex}]})
       .sort({createdAt: -1})
-      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .select('name _id itemImg pic budget category condition description location locationState locationZip submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
       .exec()
       .then(docs => {
         const response = {
@@ -533,6 +542,7 @@ router.get('/search7/:condition/:term', (req, res, next) => {
               description: doc.description,
               location: doc.location,
               locationState: doc.locationState,
+              locationZip: doc.locationZip,
               submittedby: doc.submittedby,
               submittedby1: doc.submittedby1,
               carmake: doc.carmake,
@@ -569,7 +579,7 @@ router.get('/search8/:state/:condition/:term', (req, res, next) => {
   const regex = RegExp(req.params.term, 'i');
   Item.find({ locationState: req.params.state, condition: req.params.condition, $or :[{name: regex},{description: regex}]})
       .sort({createdAt: -1})
-      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .select('name _id itemImg pic budget category condition description location locationState locationZip submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
       .exec()
       .then(docs => {
         const response = {
@@ -586,6 +596,7 @@ router.get('/search8/:state/:condition/:term', (req, res, next) => {
               description: doc.description,
               location: doc.location,
               locationState: doc.locationState,
+              locationZip: doc.locationZip,
               submittedby: doc.submittedby,
               submittedby1: doc.submittedby1,
               carmake: doc.carmake,
@@ -622,7 +633,7 @@ router.get('/search3/:category/:condition', (req, res, next) => {
 
   Item.find({ category: req.params.category, condition: req.params.condition })
       .sort({createdAt: -1})
-      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .select('name _id itemImg pic budget category condition description location locationState locationZip submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
       .exec()
       .then(docs => {
         const response = {
@@ -639,6 +650,7 @@ router.get('/search3/:category/:condition', (req, res, next) => {
               description: doc.description,
               location: doc.location,
               locationState: doc.locationState,
+              locationZip: doc.locationZip,
               submittedby: doc.submittedby,
               submittedby1: doc.submittedby1,
               carmake: doc.carmake,
@@ -675,7 +687,7 @@ router.get('/search4/:state/:category/:condition', (req, res, next) => {
 
   Item.find({ locationState: req.params.state, category: req.params.category, condition: req.params.condition })
       .sort({createdAt: -1})
-      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .select('name _id itemImg pic budget category condition description location locationState locationZip submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
       .exec()
       .then(docs => {
         const response = {
@@ -692,6 +704,7 @@ router.get('/search4/:state/:category/:condition', (req, res, next) => {
               description: doc.description,
               location: doc.location,
               locationState: doc.locationState,
+              locationZip: doc.locationZip,
               submittedby: doc.submittedby,
               submittedby1: doc.submittedby1,
               carmake: doc.carmake,
@@ -728,7 +741,7 @@ router.get('/search5/:state/:category', (req, res, next) => {
 
   Item.find({ locationState: req.params.state, category: req.params.category })
       .sort({createdAt: -1})
-      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .select('name _id itemImg pic budget category condition description location locationState locationZip submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
       .exec()
       .then(docs => {
         const response = {
@@ -745,6 +758,7 @@ router.get('/search5/:state/:category', (req, res, next) => {
               description: doc.description,
               location: doc.location,
               locationState: doc.locationState,
+              locationZip: doc.locationZip,
               submittedby: doc.submittedby,
               submittedby1: doc.submittedby1,
               carmake: doc.carmake,
@@ -781,7 +795,7 @@ router.get('/search6/:state', (req, res, next) => {
 
   Item.find({ locationState: req.params.state })
       .sort({createdAt: -1})
-      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .select('name _id itemImg pic budget category condition description location locationState locationZip submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
       .exec()
       .then(docs => {
         const response = {
@@ -798,6 +812,7 @@ router.get('/search6/:state', (req, res, next) => {
               description: doc.description,
               location: doc.location,
               locationState: doc.locationState,
+              locationZip: doc.locationZip,
               submittedby: doc.submittedby,
               submittedby1: doc.submittedby1,
               carmake: doc.carmake,
@@ -834,7 +849,7 @@ router.get('/search7/:condition', (req, res, next) => {
 
   Item.find({ condition: req.params.condition })
       .sort({createdAt: -1})
-      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .select('name _id itemImg pic budget category condition description location locationState locationZip submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
       .exec()
       .then(docs => {
         const response = {
@@ -851,6 +866,7 @@ router.get('/search7/:condition', (req, res, next) => {
               description: doc.description,
               location: doc.location,
               locationState: doc.locationState,
+              locationZip: doc.locationZip,
               submittedby: doc.submittedby,
               submittedby1: doc.submittedby1,
               carmake: doc.carmake,
@@ -887,7 +903,7 @@ router.get('/search8/:state/:condition', (req, res, next) => {
 
   Item.find({ locationState: req.params.state, condition: req.params.condition })
       .sort({createdAt: -1})
-      .select('name _id itemImg pic budget category condition description location locationState submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
+      .select('name _id itemImg pic budget category condition description location locationState locationZip submittedby carmake carmodel caryear cellmake cellmodel cellcarrier cellos gamesystem createdAt expirationDate contactinfo')
       .exec()
       .then(docs => {
         const response = {
@@ -904,6 +920,7 @@ router.get('/search8/:state/:condition', (req, res, next) => {
               description: doc.description,
               location: doc.location,
               locationState: doc.locationState,
+              locationZip: doc.locationZip,
               submittedby: doc.submittedby,
               submittedby1: doc.submittedby1,
               carmake: doc.carmake,

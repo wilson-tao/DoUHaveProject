@@ -32,10 +32,9 @@ code {
 
 /* GLOBALS */
 .mycontainer {
-  margin-left: 275px;
-  margin-right: 0;
+  
   padding: 0;
-  margin-top: -74px;
+  
 
 }
 .space-break {
@@ -52,16 +51,22 @@ code {
 .Header {
   padding: 10px;
   width: 100%;
-  background-color: #231f20;
-
+  background-color: #E4A62D;
+  height: 100px;
   box-shadow: 0 2px #A9A9A9;
   color: snow;
   z-index: 700;
+ 
 }
-
+.Footer{
+	margin-left:200px;
+}
 .Header a {
   /* color: #FFFAFA; */
   color: snow;
+}
+.LookingText{
+	font-family: Oswald-Light;
 }
 
 .site-title {
@@ -70,23 +75,35 @@ code {
 }
 
 .site-title img {
-  width: 350px;
+  width: 275px;
+  height: 100px;
 }
 
 .post-button-box {
   display: inline-block;
   text-align: right;
-  width: 40%;
+  width: 20%;
+  margin-left:165px;
+  padding-bottom:10px;
 }
-
-.post-button-box button {
-  border: none;
-  background-color: #67942f;
-  color: #2E2E2E;
-  border-radius: 10px 10px 10px 10px;
-  padding: 8px;
-  margin-left: -4px;
-  cursor: pointer;
+.zipInput{
+	display: inline-block;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding-left: 10px;
+}
+.searchHeight{
+	height: 35px;
+}
+.searchButtonHome{
+	padding-left: 5px;
+	display: inline-block;
+	
+}
+.post-button-box img {
+	
+  width:100px;
+  height:40px;
 }
 
 .login-box {
@@ -102,7 +119,8 @@ code {
   right: 10px;
   text-align: right;
   display: inline-block;
-  min-width: 50%;
+  min-width: 35%;
+  padding-top:20px;
 }
 
 .mobile-login-img {
@@ -112,6 +130,23 @@ code {
   right: 10px;
   top: 10px;
 }
+
+.Register{
+	text-align: center;
+	margin-left:200px;
+}
+
+.SignupInput{
+	padding-top:4px;
+	padding-bottom:4px;
+	border-radius: 0px;
+}
+
+.registerText{
+	padding-left:10px;
+	padding-top: 15px;
+}
+
 
 .mobile-login-panel {
   width: 70%;
@@ -128,6 +163,10 @@ code {
   margin-top: 100px;
 }
 
+.MobileLogin{
+	display:inline-flex;
+	padding-left:50px;
+}
 
 
 .Login {
@@ -172,6 +211,13 @@ input {
 .NavBar {
   display: block;
 
+}
+
+.NavBarItems{
+	display: grid;
+	text-align: center;
+	padding-top: 30px;
+	padding-bottom: 30px;
 }
 
 /* START MOBILEMENU */
@@ -219,9 +265,18 @@ input {
 .Search {
   margin-top: 5px;
   margin-bottom: 5px;
-  width: 275px;
+  display: inline-block;
 }
 
+.fromText{
+	padding-left: 5px;
+	color: #000000;
+	font-weight:600;
+}
+
+.searchGoButton{
+	
+}
 .Search button {
   border: none;
   background-color: #67942f;
@@ -236,6 +291,7 @@ input {
   width: 75%;
   border-radius: 10px 0 0 10px;
   height: 40px;
+  display: content;
 }
 
 .advanced {
@@ -257,16 +313,21 @@ input {
   display: inline-block;
   width: 275px;
   /* height: 85%; */
-  height: 195%;
+  
   position: absolute;
   padding-bottom: 0;
   /* padding-top: 20px; */
   /* background-color: #565656; */
-  background-color: #242b2e;
+  background-color: #282828;
   box-shadow: 0px 30px 40px 40px rgba(0,0,0,0.4);
   z-index: 300;
 }
 
+.hr{
+	width: 150px;
+	height: 2px;
+	color: white;
+}
 .SideBar a {
   color: #FFFAFA;
   /* color: #2E2E2E; */
@@ -274,6 +335,8 @@ input {
   font-weight: 100;
   text-transform: uppercase;
   width: 100%;
+  padding-top: 15px;
+  padding-bottom: 15px;
 
 }
 
@@ -432,6 +495,7 @@ input {
 .Categories {
   text-align: center;
   vertical-align: top;
+  padding-top: 20px;
   //display: grid;
   //grid-template-columns: auto auto auto;
   //grid-template-columns: repeat(auto-fill, 350px);
@@ -452,6 +516,7 @@ input {
 /* ---START COMPONENTS--- */
 .WhatPeopleNeed {
   text-align: center;
+  padding-left:200px;
 }
 
 .Auto {
@@ -621,10 +686,15 @@ input {
   box-shadow: 1px 1px 5px 3px #666666;
 }
 
-
-.itemRow {
-  text-align: left;
+.FormElements{
+text-align: left;
+margin-left: 400px;
 }
+
+.WhatYouNeedHeaders{
+	margin-left: 200px;
+}
+
 
 
 
@@ -671,7 +741,7 @@ input {
 
 .resultItem #itemCondition {
   display: inline-block;
-  float: right;
+  
 
 }
 
@@ -755,24 +825,35 @@ input {
   z-index: 1000;
 }
 
+.LocationDetails{
+	display: flex;
+}
+
 /* ITEM SUBMISSION */
 
 .NeedForm #itemName {
-  padding-bottom: 10px;
+	padding-top: 10px;
+	
+}
+
+.NeedForm #itemImg{
+	padding-top: 10px;
+	
 }
 
 .NeedForm #itemCategory {
-  float: left;
+  
   display: inline-block;
 }
 
 .NeedForm #itemBudget {
   display: inline-block;
+  padding-left: 10px;
 }
 
 .NeedForm #itemCondition {
   display: inline-block;
-  float: right;
+  
 }
 
 
@@ -795,6 +876,7 @@ input {
   .mycontainer {
     text-align: center;
     margin-left: 0;
+	
   }
   .Categories {
     //grid-template-columns: none;
@@ -811,6 +893,7 @@ input {
 
   .site-title img {
     width: 275px;
+	height: 100px;
   }
   .mycontainer {
     margin-top: 0px;
@@ -841,6 +924,7 @@ input {
 
   .Categories {
     //grid-template-columns: repeat(auto-fill, 450px);
+	padding-left: 40px;
   }
 
   .category {
@@ -849,6 +933,7 @@ input {
   }
 
   .WhatYouNeed {
+	  text-align: center;
     padding-left: 10px;
     padding-right: 10px;
   }
@@ -863,6 +948,7 @@ input {
 
 @media only screen and (min-width: 992px) {
   .Categories {
+	  padding-left:40px;
     //grid-template-columns: repeat(auto-fill, 350px);
   }
 
@@ -874,6 +960,7 @@ input {
 
 @media only screen and (min-width: 1200px) {
   .Categories {
+	  padding-left:40px;
     //grid-template-columns: repeat(auto-fill, 300px);
   }
 
@@ -886,7 +973,8 @@ input {
 @media only screen and (min-width: 1350px) {
 
   .site-title img {
-    width: 350px;
+    width: 275px;
+	height: 100px;
   }
 
   .cat-title {
@@ -899,6 +987,7 @@ input {
   }
 
   .Categories {
+	  padding-left:40px;
     //grid-template-columns: repeat(auto-fill, 350px);
   }
 
@@ -911,6 +1000,7 @@ input {
 
 @media only screen and (min-width: 1500px) {
   .Categories {
+	  padding-left:40px;
     //grid-template-columns: repeat(auto-fill, 300px);
   }
 
@@ -923,6 +1013,7 @@ input {
 
 @media only screen and (min-width: 1600px) {
   .Categories {
+	  padding-left:40px;
     //grid-template-columns: repeat(auto-fill, 420px);
   }
 
@@ -935,6 +1026,7 @@ input {
 
 @media only screen and (min-width: 1700px) {
   .Categories {
+	  padding-left:40px;
     //grid-template-columns: repeat(auto-fill, 350px);
   }
 
@@ -946,6 +1038,7 @@ input {
 }
 @media only screen and (min-width: 1800px) {
   .Categories {
+	  padding-left:40px;
     //grid-template-columns: repeat(auto-fill, 370px);
   }
 

@@ -35,7 +35,7 @@ import Housing from './components/Housing';
 import Beauty from './components/Beauty';
 
 import UserPanel from './components/UserPanel';
-
+import BodyBackgroundImage from './img/Body Page.png';
 import Search from './components/Search';
 import SearchResults from './components/SearchResults';
 import AdvancedSearch from './components/AdvancedSearch';
@@ -53,11 +53,17 @@ class App extends Component {
       email: '',
       searchTerm: '',
       searchResults: [],
-      showResults: false
+      showResults: false,
+      distance: '',
+      zipCode: '',
+      zipResults: []
     };
 
     this.onTextChange = this.onTextChange.bind(this);
     this.onSearch = this.onSearch.bind(this);
+    this.onDistanceChange = this.onDistanceChange.bind(this);
+    this.onZipChange = this.onZipChange.bind(this);
+    this.fetchZipInfo = this.fetchZipInfo.bind(this);
   }
 
   onTextChange(event) {
@@ -65,6 +71,20 @@ class App extends Component {
       searchTerm: event.target.value
     });
   }
+
+  onDistanceChange(event) {
+    this.setState({
+      distance: event.target.value
+    });
+  }
+
+  onZipChange(event) {
+    this.setState({
+      zipCode: event.target.value
+    })
+  }
+
+
 
   onSearch() {
     const {
@@ -94,10 +114,47 @@ class App extends Component {
           this.setState({
             searchResults: json.items
           });
-
         }
       });
+
+      this.fetchZipInfo();
+
+
   }
+
+  fetchZipInfo() {
+    const {
+      zipCode,
+      distance,
+      zipResults
+    } = this.state;
+
+    if (zipCode !== '' && distance !== '') {
+      fetch(`https://redline-redline-zipcode.p.rapidapi.com/rest/radius.json/${zipCode}/${distance}/mile`, {
+        method: 'GET',
+        headers: {
+          'x-rapidapi-host': 'redline-redline-zipcode.p.rapidapi.com',
+      		'x-rapidapi-key': '47eaf9b3eemsh8821c07d555b84cp11d76cjsn3879605d5b16'
+        }
+      })
+      .then(response => response.json())
+      .then(response => {
+        console.log("Zip Response", response);
+        console.log(response.zip_codes);
+        this.setState({
+          zipResults: response.zip_codes
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    } else {
+      console.log("No ZIP");
+    }
+
+  }
+
+
 
   componentDidMount() {
       console.log('Mounting APP');
@@ -145,7 +202,10 @@ class App extends Component {
       searchResults,
       showResults,
       token,
-      email
+      email,
+      distance,
+      zipCode,
+      zipResults
     } = this.state;
 
 
@@ -157,29 +217,32 @@ class App extends Component {
         <MobileMenu />
 
 
-        <div className="Search">
-          <input type="text" placeholder="Search" value={searchTerm} onChange={this.onTextChange} /><button onClick={this.onSearch}>Search</button>
-          <a href='/advanced/'>Advanced Search</a>
-        </div>
-        <SideBar />
+       
+        
 
 
-        <div className="mycontainer">
+        <div style={{  
+			backgroundImage: `url(${BodyBackgroundImage})`,
+			backgroundPosition: 'center',
+			backgroundSize: 'cover',
+			backgroundRepeat: 'no-repeat'
+			}} className="mycontainer">
+			<SideBar />
 
           {
             this.state.showResults ?
-            <SearchResults isAuth={isAuth} userId={userId} searchResults={searchResults} token={token} firstName={firstName} /> :
+            <SearchResults isAuth={isAuth} userId={userId} searchResults={searchResults} token={token} firstName={firstName} zipCode={zipCode} distance={distance} zipResults={zipResults} /> :
             (
               <BrowserRouter>
                 <Switch>
                   <Route exact path={'/'}
-                    render={(props) => <Home {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
+                    render={(props) => <Home {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} zipCode={zipCode} distance={distance} />}
                 />
                   <Route path={'/WhatPeopleNeed'}
-                    render={(props) => <WhatPeopleNeed {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
+                    render={(props) => <WhatPeopleNeed {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} zipCode={zipCode} distance={distance} />}
                   />
                   <Route path={'/WhatYouNeed'}
-                    render={(props) => <WhatYouNeed {...props} isAuth={isAuth} email={email} userName={userName} firstName={firstName} userId={userId} token={token} />}
+                    render={(props) => <WhatYouNeed {...props} isAuth={isAuth} email={email} userName={userName} firstName={firstName} userId={userId} token={token} zipCode={zipCode} distance={distance} />}
                   />
                   <Route path={'/HowItWorks'} component={HowItWorks} />
                   <Route path={'/About'} component={About} />
@@ -187,58 +250,58 @@ class App extends Component {
                   <Route path={'/Register'} component={Register} />
 
                   <Route path={'/auto'}
-                    render={(props) => <Auto {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
+                    render={(props) => <Auto {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} zipCode={zipCode} distance={distance} />}
                   />
                   <Route path={'/appliances'}
-                    render={(props) => <Appliances {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
+                    render={(props) => <Appliances {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} zipCode={zipCode} distance={distance} />}
                   />
                   <Route path={'/moto'}
-                    render={(props) => <Moto {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
+                    render={(props) => <Moto {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} zipCode={zipCode} distance={distance} />}
                   />
                   <Route path={'/cell'}
-                    render={(props) => <Cell {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
+                    render={(props) => <Cell {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} zipCode={zipCode} distance={distance} />}
                   />
                   <Route path={'/furniture'}
-                    render={(props) => <Furniture {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
+                    render={(props) => <Furniture {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} zipCode={zipCode} distance={distance} />}
                   />
                   <Route path={'/instruments'}
-                    render={(props) => <Instruments {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
+                    render={(props) => <Instruments {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} zipCode={zipCode} distance={distance} />}
                   />
                   <Route path={'/games'}
-                    render={(props) => <Vidgame {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
+                    render={(props) => <Vidgame {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} zipCode={zipCode} distance={distance} />}
                   />
 
                   <Route path={'/homeservice'}
-                    render={(props) => <HomeService {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
+                    render={(props) => <HomeService {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} zipCode={zipCode} distance={distance} />}
                   />
                   <Route path={'/autoservice'}
-                    render={(props) => <AutoService {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
+                    render={(props) => <AutoService {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} zipCode={zipCode} distance={distance} />}
                   />
                   <Route path={'/clothing'}
-                    render={(props) => <Clothing {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
+                    render={(props) => <Clothing {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} zipCode={zipCode} distance={distance} />}
                   />
                   <Route path={'/misc'}
-                    render={(props) => <Misc {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
+                    render={(props) => <Misc {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} zipCode={zipCode} distance={distance} />}
                   />
                   <Route path={'/collectibles'}
-                    render={(props) => <Collectibles {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
+                    render={(props) => <Collectibles {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} zipCode={zipCode} distance={distance} />}
                   />
                   <Route path={'/comequip'}
-                    render={(props) => <ComEquip {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
+                    render={(props) => <ComEquip {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} zipCode={zipCode} distance={distance} />}
                   />
                   <Route path={'/housing'}
-                    render={(props) => <Housing {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
+                    render={(props) => <Housing {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} zipCode={zipCode} distance={distance} />}
                   />
                   <Route path={'/beauty'}
-                    render={(props) => <Beauty {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} />}
+                    render={(props) => <Beauty {...props} isAuth={isAuth} userName={userName} firstName={firstName} userId={userId} token={token} zipCode={zipCode} distance={distance} />}
                   />
 
                   <Route path={'/userpanel'}
-                    render={(props) => <UserPanel {...props} isAuth={isAuth} userId={userId} token={token} />}
+                    render={(props) => <UserPanel {...props} isAuth={isAuth} userId={userId} token={token} zipCode={zipCode} distance={distance} />}
                   />
 
                   <Route path={'/advanced'}
-                    render={(props) => <AdvancedSearch {...props} isAuth={isAuth} userId={userId} token={token} firstName={firstName} />}
+                    render={(props) => <AdvancedSearch {...props} isAuth={isAuth} userId={userId} token={token} firstName={firstName} zipCode={zipCode} distance={distance} />}
                   />
 
                 </Switch>

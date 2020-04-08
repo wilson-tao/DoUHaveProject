@@ -14,16 +14,13 @@ class UserPanel extends Component {
     let isAuth = this.props.isAuth;
     let userId = this.props.userId;
     let token = this.props.token;
-
+	 let firstName = this.props.firstName;
+	 
     if (isAuth) {
 
       return (
-        <div className="UserPanel">
-
-
-          <h1>User Panel</h1>
-          <h2>Info</h2>
-          <UserInfo userId={userId} token={token} />
+        <div style={{textAlign:'center', marginLeft:'300px'}} className="UserPanel">
+		  <UserInfo userId={userId} token={token} />
           <hr />
           <h2>Items You Posted</h2>
           <UserItems userId={userId} token={token} />

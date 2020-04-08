@@ -183,7 +183,7 @@ class Login extends Component {
                 <input type="password" placeholder="Password" value={signInPassword} onChange={this.onTextboxChangeSignInPassword} />
                 <button type="submit">Sign In</button><br />
               </form>
-              <a href="/Register">Register</a><div className="space-break"></div>
+              
             </>
           ) : (null)
         }

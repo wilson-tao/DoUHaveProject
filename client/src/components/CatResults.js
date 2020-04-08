@@ -3,7 +3,6 @@ import ItemFull from './ItemFull';
 import OfferSubmit from './OfferSubmit';
 import SaveItem from './SaveItem';
 import Categories from './Categories';
-
 import saveicon from '../img/svg/001-save-file-option.svg';
 import shareicon from '../img/svg/002-share-option.svg';
 import contacticon from '../img/svg/003-contact.svg';
@@ -235,12 +234,14 @@ class CatResults extends Component {
 
     return (
       <div className="CatResults">
-      <h1>Look for What People Need</h1>
+      <h1>DO YOU HAVE</h1>
+	  <h3 style={{
+            fontWeight:'400',
+			color:'#A9A9A9'
+        }} >What people are looking for?</h3>
       <Categories />
 
-
-
-        <hr />
+       
         <div className="categoryResults">
           {models.map(model =>
             <div className="resultItem" key={model._id} >
@@ -257,7 +258,7 @@ class CatResults extends Component {
 
 
                 <h5 id="itemCategory">Category: {model.category} </h5>
-                <h5 id="itemLocation">Location: {model.location}, {model.locationState}</h5>
+                <h5 id="itemLocation">Location: {model.location}, {model.locationState} {model.locationZip}</h5>
               </div>
             </div>
 

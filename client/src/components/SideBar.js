@@ -17,7 +17,8 @@ class SideBar extends Component {
       { label: 'What You Need', link: '/WhatYouNeed' },
       { label: 'How It Works', link: '/HowItWorks' },
       { label: 'About Us', link: '/About' },
-      { label: 'Contact', link: '/Contact'}
+      { label: 'Contact', link: '/Contact'},
+	  { label: 'Partners', link: '/Partners'}
     ];
 
     return (

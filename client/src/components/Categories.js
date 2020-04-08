@@ -63,9 +63,20 @@ class Categories extends Component {
         <Category catLinks={catLinks[13]} />
         <Category catLinks={catLinks[14]} />
 
-
+		<hr style={{
+            backgroundColor:'#000000',
+			width: '90%',
+			marginTop: '30px',
+            border:'thin'
+        }} />
+		<hr style={{
+			backgroundColor:'#000000',
+            width: '60%',
+			border:'thin'
+        }} />
 
       </div>
+	  
     );
   }
 }
