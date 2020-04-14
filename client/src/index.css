@@ -75,7 +75,7 @@ code {
 }
 
 .site-title img {
-  width: 275px;
+  width: 220px;
   height: 100px;
 }
 
@@ -83,7 +83,7 @@ code {
   display: inline-block;
   text-align: right;
   width: 20%;
-  margin-left:165px;
+  margin-left:190px;
   padding-bottom:10px;
 }
 .zipInput{
@@ -311,16 +311,12 @@ input {
 
 .SideBar {
   display: inline-block;
-  width: 275px;
-  /* height: 85%; */
-  
   position: absolute;
   padding-bottom: 0;
-  /* padding-top: 20px; */
-  /* background-color: #565656; */
   background-color: #282828;
   box-shadow: 0px 30px 40px 40px rgba(0,0,0,0.4);
   z-index: 300;
+  height: 200%;
 }
 
 .hr{
@@ -580,6 +576,12 @@ input {
   margin-bottom: 10px;
 }
 
+
+.Contact{
+	padding-left: 350px;
+}
+
+
 .OfferSubmit {
   text-align: center;
 }
@@ -671,19 +673,12 @@ input {
 .resultItem {
   position: relative;
   display: inline-block;
-  margin: 20px;
-  width: 18%;
   min-width: 250px;
   max-width: 350px;
-  min-height: 400px;
+  min-height: 350px;
   text-align: left;
   padding-left: 10px;
   padding-right: 10px;
-  vertical-align: top;
-  border-style: solid;
-  border-width: 2px;
-  border-radius: 20px;
-  box-shadow: 1px 1px 5px 3px #666666;
 }
 
 .FormElements{
@@ -700,43 +695,55 @@ margin-left: 400px;
 
 .resultItem #itemPic {
   text-align: center;
-  margin: auto;
-  width: 100%;
-  height: 180px;
-  background-color: #231f20;
-
+  width: 90%;
+  height: 100px;
 }
 
 .resultItem #itemPic img {
   margin: 5%;
   vertical-align: middle;
-  width: 90%;
+  width: 100%;
   height: 90%;
 }
 
 .resultItem #itemName {
   display: block;
-  font-size: 150%;
-  vertical-align: top;
-  text-align: right;
-}
+  font-weight: 700;
+  font-size: 9px;
+  text-transform: uppercase;
+  }
 
 .resultItem #itemBudget {
-  font-size: 120%;
-  text-align: right;
-  vertical-align: top;
+   text-align: right;
+   font-weight: 700;
+   font-size: 9px;
+   text-transform: uppercase;
 }
 
 .resultItem #itemCategory {
-  font-size: 100%;
-
-
+	display: block;
+    font-weight: 500;
+    font-size: 9px;
+    text-transform: uppercase;
 }
 
 .resultItem #itemLocation {
-  font-size: 100%;
+	text-align: right;
+    font-weight: 500;
+    font-size: 9px;
+    text-transform: uppercase;
+}
 
+.UserItems{
+border-style: solid;
+border-width: medium;
+border-color: #E4A62D;
+}
 
+.ItemPostedText{
+	text-align: left;	
+	width: 150px;
+	height: 35px;	
 }
 
 .resultItem #itemCondition {
@@ -779,46 +786,42 @@ margin-left: 400px;
 
 .save-button {
   position: absolute;
-  bottom: 5px;
-  margin-left: 50%;
+  margin-left: 60%;
   transform: translateX(-50%);
   text-align: center;
 
 }
 
 .save-button img {
-  width: 35px;
-  height: 35px;
+  width: 30px;
+  height: 30px;
 }
 
 .share-button {
   position: absolute;
-  bottom: 5px;
-
   text-align: center;
 
 }
 
 .share-button img {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
 }
 
 .contact-button {
   position: absolute;
-  bottom: 5px;
   right: 10px;
   text-align: center;
 
 }
 
 .contact-button img {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
 }
 
 .SaveItem {
-  padding-bottom: 50px;
+  padding-bottom: 10px;
 }
 
 .buttonContainer {
@@ -852,8 +855,7 @@ margin-left: 400px;
 }
 
 .NeedForm #itemCondition {
-  display: inline-block;
-  
+  display: inline-block;  
 }
 
 
@@ -892,7 +894,7 @@ margin-left: 400px;
   }
 
   .site-title img {
-    width: 275px;
+    width: 220px;
 	height: 100px;
   }
   .mycontainer {
@@ -909,7 +911,7 @@ margin-left: 400px;
 @media only screen and (min-width: 600px) {
 
   .site-title img {
-    width: 250px;
+    width: 220px;
   }
 
 
@@ -973,7 +975,7 @@ margin-left: 400px;
 @media only screen and (min-width: 1350px) {
 
   .site-title img {
-    width: 275px;
+    width: 220px;
 	height: 100px;
   }
 

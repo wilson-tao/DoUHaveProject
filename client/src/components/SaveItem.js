@@ -67,10 +67,10 @@ class SaveItem extends Component {
       {
         (isAuth) ?
         <>
-          <h5>Are you sure you want to Save Item?</h5>
+          <div style={{fontWeight: '500', fontSize: '11px'}}>Are you sure you want to Save Item?</div>
 
-          <button onClick={this.onSave}>YES</button>
-          <button onClick={this.props.onCancel}>Cancel</button>
+          <button style={{fontSize:'11px', border: 'none'}} onClick={this.onSave}>YES</button>
+          <button style={{fontSize: '11px', border: 'none'}}onClick={this.props.onCancel}>Cancel</button>
         </> :
         (null)
       }

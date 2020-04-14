@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { Container, Row, Col } from 'reactstrap';
 import EditItem from './EditItem';
 import DeleteItem from './DeleteItem';
-
-
+import ItemBackground from '../img/Post Box.png';
+import LikeIcon from '../img/Heart- Light Grey.png';
+import MessageIcon from '../img/Message- Light Grey.png';
+import ShareIcon from '../img/Share- Light Grey.png';
 
 class UserItems extends Component {
 
@@ -113,29 +116,43 @@ class UserItems extends Component {
       {//Beging Mapping
         items.map(model =>
         <div className="resultItem" key={model._id} >
-
-        <div className="itemRow">
+		<img style={{maxWidth:'350px', height: '300px'}} src={ItemBackground} alt="Logo" />
+        <div style={{position:'absolute', top:'25px', left:'50px'}} className="itemRow">
+		<div style={{minWidth:'170px'}} id="rowContainer" >
           <div id="itemPic"><img src={model.itemImg.substring(
             model.itemImg.lastIndexOf("/") - 17,
             model.itemImg.length
           )} /> </div>
-          <h5 id="itemName">{model.name} </h5>
-          <h5 id="itemBudget">Budget: ${model.budget.toLocaleString(navigator.language, { minimumFractionDigits: 0 })} </h5>
+		  <Container>
+				<Row>
+					<Col id="itemName">{model.name}</Col>
+					<Col id="itemBudget">${model.budget.toLocaleString(navigator.language, { minimumFractionDigits: 0 })}</Col>
+				</Row>
+				<Row>
+					<Col id="itemCategory">{model.category} </Col>
+					<Col id="itemLocation">{model.location}, {model.locationState}</Col>
+				</Row>
+		  </Container>
         </div>
-
-        <div className="itemRow">
-          <h5 id="itemCategory">Category: {model.category} </h5>
-          <h5 id="itemLocation">Location: {model.location}, {model.locationState}</h5>
-
-          <h5 id="itemCondition">Condition: {model.condition} </h5>
-        </div>
-
-
-        <div id="itemDate">
-          <h5>Submitted On:</h5> {model.createdAt}
-        </div>
-        <button onClick={() => this.onEditItem(model._id)}>Edit</button>
-        <button onClick={() => this.onDeleteItem(model._id)}>Delete</button>
+		<hr style={{
+				backgroundColor:'#000000',
+				marginBottom: '1.5rem',
+				marginTop: '2rem'
+				}} />
+		<div className="buttonContainer">
+              <div className="share-button">
+                <img className="share-button-img" src={LikeIcon} onClick={() => this.onSaveItem(model._id)}/>
+              </div>
+              <div className="save-button">
+                <img className="save-button-img" src={MessageIcon} onClick={this.onClickToShow}/>
+              </div>
+              <div className="contact-button">
+                <img className="contact-button-img" src={ShareIcon}/>
+              </div>
+            </div>
+		</div>
+       
+        
 
         {
           this.state.deletethis && (singleResult === model._id) ?

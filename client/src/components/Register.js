@@ -167,7 +167,7 @@ class Register extends Component {
 			<input className="SignupInput" type="password" placeholder="Confirm Password" value={passwordConfirm} onChange={this.onTextboxChangePasswordConfirm} /><br />
        	</div><br />
 		</div>
-        <button onClick={this.onSignUp}><img style={{
+        <button style={{border:'none'}} onClick={this.onSignUp}><img style={{
 				height: '40px',
 			  width: '100px'}}
 			  src={SubmitButton} alt="Submit" /></button>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Container, Row, Col } from 'reactstrap';
 import ItemFull from './ItemFull';
 import OfferSubmit from './OfferSubmit';
 import SaveItem from './SaveItem';
@@ -6,6 +7,10 @@ import Categories from './Categories';
 import saveicon from '../img/svg/001-save-file-option.svg';
 import shareicon from '../img/svg/002-share-option.svg';
 import contacticon from '../img/svg/003-contact.svg';
+import ItemBackground from '../img/Post Box.png';
+import LikeIcon from '../img/Heart- Light Grey.png';
+import MessageIcon from '../img/Message- Light Grey.png';
+import ShareIcon from '../img/Share- Light Grey.png';
 
 
 class CatResults extends Component {
@@ -242,38 +247,65 @@ class CatResults extends Component {
       <Categories />
 
        
-        <div className="categoryResults">
+        <div style={{paddingLeft:'80px'}} className="categoryResults">
+		
           {models.map(model =>
+		  
             <div className="resultItem" key={model._id} >
-
-            <div className="itemRow"  >
-              <div id="rowContainer" >
+			<img style={{maxWidth:'350px', height: '340px'}} src={ItemBackground} alt="Logo" />
+            <div style={{position:'absolute', top:'25px', left:'60px'}} className="itemRow"  >
+              <div style={{minWidth:'170px'}} id="rowContainer" >
                 <div id="itemPic" ><img onClick={() => this.onItemFull(model._id)} src={model.itemImg.substring(
                   model.itemImg.lastIndexOf("/") - 17,
                   model.itemImg.length
                 )} /> </div>
-                <h1 id="itemName">{model.name} </h1>
-                <h3 id="itemBudget">Budget: ${model.budget.toLocaleString(navigator.language, { minimumFractionDigits: 0 })} </h3>
-
-
-
-                <h5 id="itemCategory">Category: {model.category} </h5>
-                <h5 id="itemLocation">Location: {model.location}, {model.locationState} {model.locationZip}</h5>
+				
+				<Container>
+				<Row>
+					<Col id="itemName">{model.name}</Col>
+					<Col id="itemBudget">${model.budget.toLocaleString(navigator.language, { minimumFractionDigits: 0 })}</Col>
+				</Row>
+				<Row>
+					<Col id="itemCategory">{model.category} </Col>
+					<Col id="itemLocation">{model.location}, {model.locationState}</Col>
+				</Row>
+				</Container>
               </div>
-            </div>
-
-
-            <div className="buttonContainer">
+			  <hr style={{
+				backgroundColor:'#000000',
+				marginBottom: '1.5rem',
+				border: '0px',
+				marginTop: '2rem'
+				}} />
+				{
+                //Save Item
+                this.state.showSaveItem && (singleResult === model._id) ?
+                <SaveItem model={model} userId={userId} firstName={firstName} isAuth={isAuth} token={token} onCancel={this.onCancel} /> :
+                (null)
+              }
+			  {
+                 this.state.clickToShow ? (
+                   isAuth ? (model.contactinfo) : <p>Please Log In</p>
+                 ) : (null)
+               }
+			  
+			  <div className="buttonContainer">
               <div className="share-button">
-                <img className="share-button-img" src={shareicon} />
+                <img className="share-button-img" src={LikeIcon} onClick={() => this.onSaveItem(model._id)} />
               </div>
               <div className="save-button">
-                <img className="save-button-img" src={saveicon} onClick={() => this.onSaveItem(model._id)} />
+                <img className="save-button-img" src={MessageIcon} onClick={this.onClickToShow}/>
               </div>
               <div className="contact-button">
-                <img className="contact-button-img" src={contacticon} onClick={this.onClickToShow} />
+                <img className="contact-button-img" src={ShareIcon} />
               </div>
             </div>
+			
+			
+            </div>
+		
+
+            
 
 
               {
@@ -294,12 +326,7 @@ class CatResults extends Component {
                 (null)
               }
 
-              {
-                //Save Item
-                this.state.showSaveItem && (singleResult === model._id) ?
-                <SaveItem model={model} userId={userId} firstName={firstName} isAuth={isAuth} token={token} onCancel={this.onCancel} /> :
-                (null)
-              }
+              
               {
                 //Single Result, if state is showItem and there is singleResult with model._id
 
@@ -310,14 +337,7 @@ class CatResults extends Component {
                 (null)
               }
 
-              {
-                 this.state.clickToShow ? (
-                   isAuth ? (model.contactinfo) : <p>Please Log In</p>
-                 ) : (null)
-               }
-
-
-
+              
             </div>
           )}
 

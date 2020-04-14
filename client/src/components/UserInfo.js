@@ -255,7 +255,7 @@ class UserInfo extends Component {
 			<h1>HI {firstName}</h1>
 			<button onClick={this.onEditClick}>Edit</button>
          </div>
-		 <div>
+		 <div style={{marginLeft: '400px', textAlign:'left', paddingTop:'10px'}}>
           <label>Address: {streetAddress}</label><br />
           <label>City: {city}</label><br />
           <label>State: {state}</label><br />

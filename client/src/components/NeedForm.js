@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import PostButton from '../img/Button- Post It.png';
 
+import PostButton from '../img/Button- Post It.png';
+import UploadPhotoButton from '../img/Button-Upload-Photo.png';
 
 
 class NeedForm extends Component {
@@ -626,9 +627,12 @@ class NeedForm extends Component {
 		  borderRadius: '0px'
 		  }} type="text" value={name} onChange={this.onTextChangeName} required /><br />
         </div>
-        <div id="itemImg">
-          <input type="file" name="itemImg" id="itemImg" onChange={this.onChangeItemImg}  />
-          <p>*required (choose a photo that best represents what you are looking for)</p>
+        <div style={{paddingTop: '10px'}} id="itemImgSection">
+		<label style={{margin:'0px'}} for="itemImg" class="btn">
+			<img style={{width:'100px', height:'40px', marginLeft:'-10px'}} src={UploadPhotoButton}/>
+		</label>
+          <input type="file" style={{visibility:'hidden'}} name="itemImg" id="itemImg" onChange={this.onChangeItemImg}  />
+          <p style={{marginTop:'0px'}}>*required (choose a photo that best represents what you are looking for)</p>
         </div>
         <div className="itemRow">
           <div id="itemCategory">
@@ -660,7 +664,7 @@ class NeedForm extends Component {
          </div>
 		 <div id="itemCondition">
             <label>Condition</label><br />
-            <select required name={condition} onChange={this.onTextChangeCondition}>
+            <select style={{backgroundColor: '#F9F3EA'}} required name={condition} onChange={this.onTextChangeCondition}>
               <option value=""></option>
               <option value="new">New</option>
               <option value="likeNew">Like New</option>
