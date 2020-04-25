@@ -639,23 +639,14 @@ class NeedForm extends Component {
             <label style={{fontWeight:'600'}}>Category</label><br />
             <select style={{height:'30px', backgroundColor: '#F9F3EA'}} required name={category} onChange={this.onTextChangeCategory}>
               <option value=""></option>
-              <option value="auto">Car's and Trucks</option>
-              <option value="appliance">Appliances</option>
-              <option value="moto">Moto/ATV/UTV</option>
-              <option value="cell">Cell Phones</option>
-              <option value="furniture">Furniture</option>
-              <option value="instrument">Musical Instruments</option>
-              <option value="game">Video Games</option>
-              <option value="clothing">Clothing & Accessories</option>
-              <option value="collectible">Antiques & Collectibles</option>
-              <option value="beauty">Beauty & Cosmetics</option>
-              <option value="comequip">Commercial & Restaurant Equipment</option>
-              <option value="misc">Everything Else</option>
-              <option value="housing">Housing & Places to Live</option>
-              <option value="autoservice">Auto Services</option>
-              <option value="homeservice">Home Services</option>
-
-            </select><br />
+              <option value="antiques">Antiques</option>
+              <option value="vintage">Vintage Clothing & Accessories</option>
+              <option value="collectibles">Collectibles</option>
+              <option value="rarevehicles">Rare & Custom Vehicles</option>
+              <option value="vintageHome">Vintage Home</option>
+              <option value="other">Other</option>
+              
+			  </select><br />
           </div>
           <div id="itemBudget">
             <label style={{fontWeight:'600'}}>Budget</label><br />
@@ -681,9 +672,9 @@ class NeedForm extends Component {
         <label style={{fontWeight:'600'}}>Location</label><br /></div>
 		<div className="LocationDetails">
 		<div className="Zip"><input style={{backgroundColor: '#F9F3EA'}} type="text" placeholder="ZIP CODE" value={locationZip} onChange={this.onTextChangeLocationZip} onBlur={this.callZipInfo2}  /><br /></div>
-        <div className="City"><input style={{backgroundColor: '#F9F3EA'}} type="text" placeholder="CITY" value={location} /><br /></div>
+        <div className="City"><input style={{backgroundColor: '#F9F3EA'}} type="text" placeholder="CITY" value={location} disabled /><br /></div>
 
-        <div className="State"><input style={{backgroundColor: '#F9F3EA'}} type="text" placeholder="STATE" value={locationState} /></div>
+        <div className="State"><input style={{backgroundColor: '#F9F3EA'}} type="text" placeholder="STATE" value={locationState} disabled /></div>
 		</div>
 
 
@@ -694,50 +685,6 @@ class NeedForm extends Component {
         {
           (contactinfo !== email) ? (
             <input required type="text" placeholder="Your Contact Number" value={phone} onChange={this.onChangePhone} />
-          ) : (null)
-        }
-
-
-        {
-          (category === 'auto') ? (
-            <>
-            <br />
-            <label>Car Make</label><br />
-            <input type="text" placeholder="Toyota, Honda, etc..." value={carmake} onChange={this.onTextChangeCarmake} /><br />
-            <label>Car Model</label><br />
-            <input type="text" placeholder="Camry, Civic, etc..." value={carmodel} onChange={this.onTextChangeCarmodel} /><br />
-            <label>Car Year</label><br />
-            <input type="text" placeholder="2018, 2017, etc..." value={caryear} onChange={this.onTextChangeCaryear} /><br />
-            </>
-          ) : (null)
-        }
-
-
-        {
-          (category === 'cell') ? (
-            <>
-            <br />
-            <label>Cell Make</label><br />
-            <input type="text" placeholder="Apple, Samsung, LG, etc..." value={cellmake} onChange={this.onTextChangeCellmake} /><br />
-            <label>Cell Model</label><br />
-            <input type="text" placeholder="iPhone, Galaxy S10, V30, etc..." value={cellmodel} onChange={this.onTextChangeCellmodel} /><br />
-            <label>Cell Carrier</label><br />
-            <input type="text" placeholder="T-Mobile, Spring, Verizon, etc..." value={cellcarrier} onChange={this.onTextChangeCellcarrier} /><br />
-            <label>Cell Operating System</label><br />
-            <input type="text" placeholder="iOS, Android, Windows Phone, etc..." value={cellos} onChange={this.onTextChangeCellos} /><br />
-            </>
-          ) : (null)
-        }
-
-
-        {
-          (category === 'game') ? (
-            <>
-            <br />
-            <label>Gaming System</label><br />
-            <input type="text" placeholder="Playstation 4, XBox One, PC, etc..." value={gamesystem} onChange={this.onTextChangeGamesystem} /><br />
-
-            </>
           ) : (null)
         }
         <br />

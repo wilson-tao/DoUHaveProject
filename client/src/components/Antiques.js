@@ -5,9 +5,9 @@ import CatResults from './CatResults';
 class Auto extends Component {
   render() {
     return (
-      <div className="Collectibles">
+      <div className="Antiques">
         <h1>Auto</h1>
-        <CatResults category={'collectibles'}
+        <CatResults category={'antiques'}
                     isAuth={this.props.isAuth}
                     userName={this.props.userName}
                     firstName={this.props.firstName}

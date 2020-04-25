@@ -83,7 +83,7 @@ code {
   display: inline-block;
   text-align: right;
   width: 20%;
-  margin-left:190px;
+  margin-left:290px;
   padding-bottom:10px;
 }
 .zipInput{
@@ -91,6 +91,7 @@ code {
 	margin-top: 5px;
 	margin-bottom: 5px;
 	padding-left: 10px;
+	width: 90px;
 }
 .searchHeight{
 	height: 35px;
@@ -100,10 +101,15 @@ code {
 	display: inline-block;
 	
 }
+
+.category{
+	width: 100px;
+	padding-right: 5px;
+}
+
 .post-button-box img {
 	
-  width:100px;
-  height:40px;
+  height:50px;
 }
 
 .login-box {
@@ -271,7 +277,7 @@ input {
 .fromText{
 	padding-left: 5px;
 	color: #000000;
-	font-weight:600;
+	font-weight:500;
 }
 
 .searchGoButton{
@@ -384,11 +390,6 @@ input {
   margin-top: 20px;
 }
 
-.Home hr {
-  background-color: #d3d3d3;
-  padding: 1px;
-}
-
 .what-you-need-button {
   background-color: #6699CC;
   color: #2E2E2E;
@@ -428,7 +429,7 @@ input {
   //position: absolute;
   //height: 100%;
   //left: 50%;
-  width: 35px;
+  width: 50px;
   text-align: center;
   //transform: translateX(-50%);
 }
@@ -442,7 +443,6 @@ input {
   //z-index: 100;
   //transform: translate(-50%, -50%);
   //font-family: 'RIVERHACK';
-  font-size: 70%;
   //width: 100%;
   //height: 100%;
   //background-color: rgba(0 , 0, 0, 0.3);
@@ -452,12 +452,11 @@ input {
 .cat-title p {
   text-transform: uppercase;
   text-align: center;
-  width: 80px;
-  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
   margin-bottom: 0px;
-
+	font-size: 9px;
+	font-weight: 700;
+	color: black;
   //position: absolute;
   //padding-top: 25%;
   //left: 50%;
@@ -695,7 +694,7 @@ margin-left: 400px;
 
 .resultItem #itemPic {
   text-align: center;
-  width: 90%;
+  width: 88%;
   height: 100px;
 }
 
@@ -703,7 +702,7 @@ margin-left: 400px;
   margin: 5%;
   vertical-align: middle;
   width: 100%;
-  height: 90%;
+  height: 100%;
 }
 
 .resultItem #itemName {
@@ -786,7 +785,7 @@ border-color: #E4A62D;
 
 .save-button {
   position: absolute;
-  margin-left: 60%;
+  margin-left: 70%;
   transform: translateX(-50%);
   text-align: center;
 
@@ -800,7 +799,7 @@ border-color: #E4A62D;
 .share-button {
   position: absolute;
   text-align: center;
-
+  margin-left: 5%;
 }
 
 .share-button img {
@@ -810,7 +809,7 @@ border-color: #E4A62D;
 
 .contact-button {
   position: absolute;
-  right: 10px;
+  margin-left: 80%;
   text-align: center;
 
 }
@@ -822,6 +821,7 @@ border-color: #E4A62D;
 
 .SaveItem {
   padding-bottom: 10px;
+  margin-left: 4%
 }
 
 .buttonContainer {

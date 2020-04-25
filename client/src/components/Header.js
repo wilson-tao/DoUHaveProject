@@ -138,14 +138,14 @@ onTextChange(event) {
 		  <span className="fromText">FROM</span>
 		</div> 
 		<div className="zipInput">
-            <input type="text" className="searchHeight" placeholder="Zip Code" value={zipCode} onChange={this.onZipChange} />
+            <input type="text" style={{width: '85px'}} className="searchHeight" placeholder="Zip Code" value={zipCode} onChange={this.onZipChange} />
 		</div>
            
 		<div className="searchButtonHome">
 		  <button style={{
 			  backgroundColor:'#E4A62D',
 				border:'none',
-				fontWeight:'600'
+				fontWeight:'bolder'
 				}} onClick={this.onSearch}>GO</button>
           </div>
         

@@ -239,12 +239,22 @@ class CatResults extends Component {
 
     return (
       <div className="CatResults">
-      <h1>DO YOU HAVE</h1>
+      <h1 style={{paddingTop:'20px', marginBottom:'0px'}}>DO YOU HAVE</h1>
 	  <h3 style={{
             fontWeight:'400',
 			color:'#A9A9A9'
         }} >What people are looking for?</h3>
-      <Categories />
+		<Categories />
+		<hr style={{
+            backgroundColor:'#000000',
+			width: '85%',
+			marginBottom: '0.5rem'
+        }} />
+		<hr style={{
+			backgroundColor:'#000000',
+			width: '70%',
+			marginTop: '0rem'
+        }} />
 
        
         <div style={{paddingLeft:'80px'}} className="categoryResults">
@@ -252,15 +262,15 @@ class CatResults extends Component {
           {models.map(model =>
 		  
             <div className="resultItem" key={model._id} >
-			<img style={{maxWidth:'350px', height: '340px'}} src={ItemBackground} alt="Logo" />
-            <div style={{position:'absolute', top:'25px', left:'60px'}} className="itemRow"  >
-              <div style={{minWidth:'170px'}} id="rowContainer" >
+			<img style={{maxWidth:'350px', height: '300px'}} src={ItemBackground} alt="Logo" />
+            <div style={{position:'absolute', top:'11px', left:'13%', width:'78%'}} className="itemRow"  >
+              <div style={{Width:'155%'}} id="rowContainer" >
                 <div id="itemPic" ><img onClick={() => this.onItemFull(model._id)} src={model.itemImg.substring(
                   model.itemImg.lastIndexOf("/") - 17,
                   model.itemImg.length
                 )} /> </div>
 				
-				<Container>
+				<Container style={{paddingTop: '10%'}}>
 				<Row>
 					<Col id="itemName">{model.name}</Col>
 					<Col id="itemBudget">${model.budget.toLocaleString(navigator.language, { minimumFractionDigits: 0 })}</Col>
@@ -273,9 +283,9 @@ class CatResults extends Component {
               </div>
 			  <hr style={{
 				backgroundColor:'#000000',
-				marginBottom: '1.5rem',
-				border: '0px',
-				marginTop: '2rem'
+				marginLeft: '5%',
+				paddingLeft: '50%',
+				width: '39%'
 				}} />
 				{
                 //Save Item
@@ -285,7 +295,7 @@ class CatResults extends Component {
               }
 			  {
                  this.state.clickToShow ? (
-                   isAuth ? (model.contactinfo) : <p>Please Log In</p>
+                   isAuth ? (model.contactinfo): <p>Please Log In</p>
                  ) : (null)
                }
 			  

@@ -81,7 +81,7 @@ class MobileLogin extends Component {
 		<div className="registerText">
 		<a style={{color: '#000000',
 							fontWeight: '600'						
-					}} href="/Register">Register</a><div className="space-break"></div></div>
+					}} href="/Register">SIGN UP</a><div className="space-break"></div></div>
       </div>
     );
   }
