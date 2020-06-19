@@ -17,7 +17,7 @@ class PaymentFormLoader extends Component {
     sqPaymentScript.src = "https://js.squareup.com/v2/paymentform";
     sqPaymentScript.type = "text/javascript"
     sqPaymentScript.async = false;
-    sqPaymentScript.onload = ()=>{that.setState({
+    sqPaymentScript.onload = ()=>{this.setState({
       loaded: true
     })};
     document.getElementsByTagName("head")[0].appendChild(sqPaymentScript);
