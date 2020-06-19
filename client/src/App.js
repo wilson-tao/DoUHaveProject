@@ -245,9 +245,8 @@ class App extends Component {
                     render={(props) => <WhatYouNeed {...props} isAuth={isAuth} email={email} userName={userName} firstName={firstName} userId={userId} token={token} zipCode={zipCode} distance={distance} />}
                   />
                   <Route path={'/HowItWorks'} component={HowItWorks} />
-				  <Route path={'/PaymentFormLoader'} 
-					render={(props) => <PaymentFormLoader {...props} token={token} />}
-				  />
+				  <Route path={'/PaymentFormLoader'} component={PaymentFormLoader} />
+					
 					
                   <Route path={'/About'} component={About} />
                   <Route path={'/Contact'} component={Contact} />
