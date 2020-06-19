@@ -258,7 +258,7 @@ class CatResults extends Component {
 
        
         <div style={{paddingLeft:'80px'}} className="categoryResults">
-		
+				
           {models.map(model =>
 		  
             <div className="resultItem" key={model._id} >
@@ -295,7 +295,9 @@ class CatResults extends Component {
               }
 			  {
                  this.state.clickToShow ? (
-                   isAuth ? (model.contactinfo): <p>Please Log In</p>
+                   isAuth ? (<a href="/paymentFormLoader">Please Pay Minimal Fee</a>)
+				   :
+				   <p>Please Log In</p>
                  ) : (null)
                }
 			  

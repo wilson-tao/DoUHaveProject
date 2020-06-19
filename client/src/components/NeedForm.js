@@ -319,7 +319,7 @@ class NeedForm extends Component {
         if (json.message === "Item created in /items") {
           console.log('it worked');
           this.setState({
-            submitError: json.message,
+            submitError: 'Your Requested Item has been posted, Please proceed to the home page to see your listing.',
             name: '',
             itemImg: '',
             budget: '',
@@ -356,7 +356,7 @@ class NeedForm extends Component {
         if (json.message === "Item created in /items") {
           console.log('it worked');
           this.setState({
-            submitError: json.message,
+            submitError: 'Your Requested Item has been posted, Please proceed to the home page to see your listing.',
             name: '',
             itemImg: '',
             budget: '',
@@ -550,7 +550,7 @@ class NeedForm extends Component {
       if (json.message === "Item created in /items") {
         console.log('it worked');
         this.setState({
-          submitError: json.message,
+          submitError: 'Your Requested Item has been posted, Please proceed to the home page to see your listing.',
           name: '',
           itemImg: '',
           budget: '',
@@ -693,7 +693,7 @@ class NeedForm extends Component {
         {console.log(submitError)}
         {
           (submitError) ? (
-            <p>{submitError}</p>
+            <p style={{marginTop: '1rem', marginBottom: '1rem', fontWeight: 'bolder', }}>{submitError}</p>
           ) : (null)
         }
 		</div>

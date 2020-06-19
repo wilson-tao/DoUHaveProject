@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
-
+import './PaymentFormLoader.css';
+import PaymentForm from './components/PaymentForm';
+import PaymentFormLoader from './components/PaymentFormLoader';
 import {
   getFromStorage,
   setInStorage,
@@ -191,6 +193,7 @@ class App extends Component {
         });
       }
     }
+	
 
   render() {
     const {
@@ -212,10 +215,8 @@ class App extends Component {
 
     return (
       <div className="App">
-
         <Header isAuth={isAuth} userName={userName} firstName={firstName} />
         <MobileMenu />
-
 
        
         
@@ -228,7 +229,6 @@ class App extends Component {
 			backgroundRepeat: 'no-repeat'
 			}} className="mycontainer">
 			<SideBar />
-
           {
             this.state.showResults ?
             <SearchResults isAuth={isAuth} userId={userId} searchResults={searchResults} token={token} firstName={firstName} zipCode={zipCode} distance={distance} zipResults={zipResults} /> :
@@ -245,6 +245,10 @@ class App extends Component {
                     render={(props) => <WhatYouNeed {...props} isAuth={isAuth} email={email} userName={userName} firstName={firstName} userId={userId} token={token} zipCode={zipCode} distance={distance} />}
                   />
                   <Route path={'/HowItWorks'} component={HowItWorks} />
+				  <Route path={'/PaymentFormLoader'} 
+					render={(props) => <PaymentFormLoader {...props} token={token} />}
+				  />
+					
                   <Route path={'/About'} component={About} />
                   <Route path={'/Contact'} component={Contact} />
                   <Route path={'/Register'} component={Register} />

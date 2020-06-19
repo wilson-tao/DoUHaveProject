@@ -94,7 +94,7 @@ class Register extends Component {
         if (json.message === "User Created") {
           console.log('it worked');
           this.setState({
-            signUpError: json.message,
+            signUpError: 'Thank you For Registering! Please go ahead and log in.',
             isLoading: false,
             signUpEmail: '',
             signUpPassword: '',
@@ -167,14 +167,14 @@ class Register extends Component {
 			<input className="SignupInput" type="password" placeholder="Confirm Password" value={passwordConfirm} onChange={this.onTextboxChangePasswordConfirm} /><br />
        	</div><br />
 		</div>
-        <button style={{border:'none'}} onClick={this.onSignUp}><img style={{
+        <button style={{border:'none', paddingBottom: '10px'}} onClick={this.onSignUp}><img style={{
 				height: '40px',
 			  width: '100px'}}
 			  src={SubmitButton} alt="Submit" /></button>
         {console.log(signUpError)}
         {
           (signUpError) ? (
-            <p>{signUpError}</p>
+            <p style={{border: 'double', color: 'red', width: '108%', fontWeight: 'bolder'}}>{signUpError}</p>
           ) : (null)
         }
       </div>
