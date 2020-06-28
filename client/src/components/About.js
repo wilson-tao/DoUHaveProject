@@ -20,7 +20,7 @@ class About extends Component {
 			mission to connect specialty buyers with what they
 			are looking for in a more efficient and satisfying way.</p>
 			
-        <label style={{fontWeight: 'bolder'}}>MACRO</label><p>DoUHave seeks to fill in the gap in the secondhand
+        <label style={{fontWeight: 'bolder'}}>MACRO</label><p className="aboutText">DoUHave seeks to fill in the gap in the secondhand
 			market, “ISO” and “WTB” groups need a platform to
 			connect and engage with sellers. It is not just another
 			secondhand market platform, it is a collector’s, a
@@ -31,18 +31,18 @@ class About extends Component {
         
 		<label style={{fontWeight: 'bolder'}}>TRAITS</label><br/ >
 		<label style={{fontWeight: 'bolder'}}>CONNECTING COMMUNITIES</label>
-		<p>DoUHave is about bringing together buyers looking
+		<p className="aboutText">DoUHave is about bringing together buyers looking
 			for something they need with the sellers- the people
 			who have what they are looking for. It’s about creating
 			engagement between these two communities driven by
 			demand and connecting them in an easier way.</p>
-        <label style={{fontWeight: 'bolder'}}>UNIQUE</label><p>This brand is unique from it’s origin story as it is
+        <label style={{fontWeight: 'bolder'}}>UNIQUE</label><p className="aboutText">This brand is unique from it’s origin story as it is
 			the first platform dedicated to “ISO” (In Search of)
 			buyers. The platform itself brings together a variety
 			of people who love their specific niche and connect
 			them to people who have rare and unique items.</p>
 			
-		<label style={{fontWeight: 'bolder'}}>PROUD</label><p>DoUHave is proud to be the first of its kind in the
+		<label style={{fontWeight: 'bolder'}}>PROUD</label><p className="aboutText">DoUHave is proud to be the first of its kind in the
 			secondhand good industry just as people in this
 			category have become more proud to find unique,
 			on-budget items. DoUHave embraces this.</p>

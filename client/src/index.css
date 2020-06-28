@@ -1046,9 +1046,9 @@ border-color: #E4A62D;
 .categoryResults{
 	padding-left: 80px;
 }
-.aboutText{
-		margin-left: 0rem;
-	}
+.aboutTitle{
+	margin-left: 15rem;
+}
  .site-title img {
     width: 100px;
 	height: 100px;
@@ -1114,9 +1114,7 @@ border-color: #E4A62D;
 	  padding-left:40px;
     //grid-template-columns: repeat(auto-fill, 350px);
   }
-.aboutText{
-		margin-left: 0rem;
-	}
+
   .category {
     //min-height: 350px;
     //min-width: 350px;
@@ -1125,6 +1123,9 @@ border-color: #E4A62D;
 	padding-left: 80px;
 }
 
+.aboutTitle{
+	margin-left: 15rem;
+}
 .categoryResults{
 	padding-left: 80px;
 }
@@ -1195,6 +1196,9 @@ border-color: #E4A62D;
     //grid-template-columns: repeat(auto-fill, 300px);
   }
 
+  .aboutTitle{
+	margin-left: 15rem;
+}
   .aboutText{
 		margin-left: 15rem;
 	}
