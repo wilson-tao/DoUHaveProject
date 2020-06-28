@@ -257,7 +257,7 @@ class CatResults extends Component {
         }} />
 
        
-        <div style={{paddingLeft:'80px'}} className="categoryResults">
+        <div className="categoryResults">
 				
           {models.map(model =>
 		  

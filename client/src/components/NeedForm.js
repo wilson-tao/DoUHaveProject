@@ -430,11 +430,6 @@ class NeedForm extends Component {
         submitError: 'Please Include Only Numbers in Budget'
       });
       return
-    } else if (condition === '') {
-      this.setState({
-        submitError: 'Please Choose a Condition'
-      });
-      return
     } else if (description === '') {
       this.setState({
         submitError: 'Description Cannot be Empty'
@@ -653,28 +648,16 @@ class NeedForm extends Component {
             $<input style={{borderRadius:'0px', height:'30px', backgroundColor: '#F9F3EA'}} required type="text" value={budget} onChange={this.onTextChangeBudget} /><br />
           </div>
          </div>
-		 <div id="itemCondition">
-            <label>Condition</label><br />
-            <select style={{backgroundColor: '#F9F3EA'}} required name={condition} onChange={this.onTextChangeCondition}>
-              <option value=""></option>
-              <option value="new">New</option>
-              <option value="likeNew">Like New</option>
-              <option value="lightlyUsed">Lightly Used</option>
-              <option value="used">Used</option>
-              <option value="wellUsed">Well Used</option>
-              <option value="needRepair">Needs Some Repair</option>
-              <option value="parts">Parts</option>
-            </select><br />
-          </div>
+		 
 		  <div>
         <label style={{fontWeight:'600'}}>DESCRIPTION</label><br />
         <textarea style={{backgroundColor: '#F9F3EA'}} minLength="25" maxLength="1000" rows="4" cols="50" value={description} onChange={this.onTextChangeDescription} /><br />
         <label style={{fontWeight:'600'}}>Location</label><br /></div>
 		<div className="LocationDetails">
 		<div className="Zip"><input style={{backgroundColor: '#F9F3EA'}} type="text" placeholder="ZIP CODE" value={locationZip} onChange={this.onTextChangeLocationZip} onBlur={this.callZipInfo2}  /><br /></div>
-        <div className="City"><input style={{backgroundColor: '#F9F3EA'}} type="text" placeholder="CITY" value={location} disabled /><br /></div>
+        <div className="City"><input style={{border: 'none'}}type="text" value={location} disabled /><br /></div>
 
-        <div className="State"><input style={{backgroundColor: '#F9F3EA'}} type="text" placeholder="STATE" value={locationState} disabled /></div>
+        <div className="State"><input style={{border: 'none'}} type="text" value={locationState} disabled /></div>
 		</div>
 
 

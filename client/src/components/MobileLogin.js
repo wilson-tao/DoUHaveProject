@@ -47,11 +47,11 @@ class MobileLogin extends Component {
         {
           (!isAuth) ? (
             <div style={{marginTop: '15px'}} className="mobile-login-box">
-			<div onClick={this.onLoginIcon}>
+			<div className="signInText" onClick={this.onLoginIcon}>
               <img style={{
 					width:1,
 					height: 1,
-					}} src={LoginImg} onClick={this.onLoginIcon} alt="SIGN IN"/><span 
+					}} src={LoginImg} onClick={this.onLoginIcon} alt="SIGN IN"/><span
 					style={{color: '#000000',
 							fontWeight: '600'						
 					}}>SIGN IN</span></div>

@@ -36,7 +36,6 @@ class MobileMenu extends Component {
       { label: 'Home', link: '/' },
       { label: 'What People Need', link: '/WhatPeopleNeed' },
       { label: 'What You Need', link: '/WhatYouNeed' },
-      { label: 'How It Works', link: '/HowItWorks' },
       { label: 'About Us', link: '/About' },
       { label: 'Contact', link: '/Contact'}
     ];

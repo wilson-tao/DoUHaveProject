@@ -15,7 +15,6 @@ class SideBar extends Component {
       { label: 'Home', link: '/' },
       { label: 'What People Need', link: '/WhatPeopleNeed' },
       { label: 'What You Need', link: '/WhatYouNeed' },
-      { label: 'How It Works', link: '/HowItWorks' },
       { label: 'About Us', link: '/About' },
       { label: 'Contact', link: '/Contact'},
 	  { label: 'Partners', link: '/Partners'}
@@ -25,7 +24,7 @@ class SideBar extends Component {
       <div className="SideBar">
         <NavBar navLinks={navLinks} />
         <div className="footer-social">
-          <a href="https://www.linkedin.com/company/douhave" target="_blank"><img className="footer-icon" src={linkedin} alt="linkedin" /></a> <a href="https://www.facebook.com/DoUhave.org/" target="_blank"><img className="footer-icon" src={facebook} alt="facebook" /></a> <a href="https://www.instagram.com/douhave_org/" target="_blank"><img className="footer-icon" src={instagram} alt="instagram" /></a> <a href="https://www.youtube.com/channel/UCBC4APUkBKC1lSysKRRoc6A" target="_blank"><img className="footer-icon" src={youtube} alt="youtube" /></a>
+          <a href="https://www.linkedin.com/company/douhave" target="_blank"><img className="footer-icon" src={linkedin} alt="linkedin" /></a> <a href="https://www.facebook.com/DoUhave.co" target="_blank"><img className="footer-icon" src={facebook} alt="facebook" /></a> <a href="https://www.instagram.com/douhave.co/" target="_blank"><img className="footer-icon" src={instagram} alt="instagram" /></a> <a href="https://www.youtube.com/channel/UCjwi66Egr3vAgOvz33mpJwg" target="_blank"><img className="footer-icon" src={youtube} alt="youtube" /></a>
         </div>
       </div>
     );
