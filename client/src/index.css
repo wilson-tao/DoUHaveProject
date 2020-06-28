@@ -868,7 +868,109 @@ border-color: #E4A62D;
 
 /* MEDIA QUERIES */
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 550px) {
+	.searchButtonHome{
+		padding-left: 36px;
+	}
+	
+	.post-button-box {
+  display: block;
+  text-align: left;
+  width: 12%;
+  margin-left: 0px;
+}
+ .MobileMenu {
+    display: block;
+  }
+  
+  .Register{
+	  margin-left: 0px;
+  }
+  
+  .login-box {
+    display: none;
+  }
+  .mobile-login {
+	position: inherit;
+	display: block;
+	right: -7px;
+	min-width: 75%;
+	margin-top: -57px;
+  }
+  .SideBar {
+    display: none;
+  }
+  .mycontainer {
+    text-align: center;
+    margin-left: 0;
+	
+  }
+  .Categories {
+    //grid-template-columns: none;
+    //width: 100%;
+  }
+  .aboutText{
+	text-align: center;
+	margin-left: 0rem;
+}
+.Footer{
+	margin-left: 0px;
+}
+
+  .category {
+    vertical-align: top;
+    //width: 100%;
+    //display: block;
+    //height: 300px;
+    //margin-bottom: 0px;
+  }
+
+  .site-title img {
+    width: 60px;
+	height: 50px;
+  }
+  .mycontainer {
+    margin-top: 0px;
+  }
+  .Search {
+    width: 35%;
+    text-align: center;
+  }
+  
+  .zipInput {
+	width: 15%;
+	padding-left: 0px;
+  }
+  .post-button-box img{
+	height: 25px;
+}
+
+.MobileLogin{
+	width: 70%;
+}
+
+.registerText{
+	font-size: smaller;
+}
+
+.signInText{
+	font-size: smaller;
+}
+
+.searchHeight{
+	width: 50%;
+}
+
+.WhatPeopleNeed{
+	padding-left: 0px;
+}
+.categoryResults{
+	padding-left: 0px;
+}
+  
+}
+
+@media only screen (min-width: 550px) and (max-width: 600px) {
   .MobileMenu {
     display: block;
   }
@@ -881,7 +983,7 @@ border-color: #E4A62D;
     display: none;
   }
   .mobile-login {
-    display: inline-block;
+
 	padding-top: 0px;
 	right: -7px;
 	min-width: 43%
