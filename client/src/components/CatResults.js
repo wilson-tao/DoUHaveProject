@@ -295,7 +295,8 @@ class CatResults extends Component {
               }
 			  {
                  this.state.clickToShow ? (
-                   isAuth ? (<a href="/paymentFormLoader">Please Pay Minimal Fee</a>)
+                   //isAuth ? (<a href="/paymentFormLoader">Please Pay Minimal Fee</a>)
+				  isAuth ? ( model.contactinfo)
 				   :
 				   <p>Please Log In</p>
                  ) : (null)
