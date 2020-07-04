@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Login from './Login';
-import Logo from '../img/Primary Logo.jpg';
+import Logo from '../img/Primary Logo- Off Black.png';
 import PostButton from '../img/Button- Post It.png';
 import MobileLogin from './MobileLogin';
 import {Link} from 'react-router-dom'
