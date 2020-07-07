@@ -19,9 +19,11 @@ class WhatYouNeed extends Component {
             fontWeight:'400',
 			color:'#A9A9A9'
         }}>Create a post listing the item you're in search of.</h3>
+		
+		</div>
 		<hr style={{
             backgroundColor:'#000000',
-			width: '65%',
+			width: '55%',
 			marginBottom: '0.5rem'
         }} />
 		<hr style={{
@@ -29,7 +31,6 @@ class WhatYouNeed extends Component {
 			width: '50%',
 			marginTop: '0rem'
         }} />
-		</div>
           <NeedForm email={email} userName={userName} firstName={firstName} userId={userId} token={token} />
 		  
         </div>

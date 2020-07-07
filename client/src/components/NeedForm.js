@@ -514,7 +514,7 @@ class NeedForm extends Component {
     data.append('itemImg', itemImg);
     data.append('budget', budget);
     data.append('category', category);
-    data.append('condition', condition);
+    data.append('condition', 'new');
     data.append('description', description);
     data.append('location', location);
     data.append('locationState', locationState);
