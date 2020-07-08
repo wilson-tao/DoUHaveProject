@@ -179,8 +179,9 @@ class Login extends Component {
           (!isAuth) ? (
             <>
               <form onSubmit={(e) => this.onSignIn(e)}>
-                <input type="email" placeholder="Email" value={signInEmail} onChange={this.onTextboxChangeSignInEmail} />
-                <input type="password" placeholder="Password" value={signInPassword} onChange={this.onTextboxChangeSignInPassword} />
+                <input style={{backgroundColor: '#E4A62D'}} type="email" placeholder="Email" value={signInEmail} onChange={this.onTextboxChangeSignInEmail} />
+                <input style={{backgroundColor: '#E4A62D'}} type="password" placeholder="Password" value={signInPassword} onChange={this.onTextboxChangeSignInPassword} />
+				<br />
                 <button type="submit">Sign In</button><br />
               </form>
               
