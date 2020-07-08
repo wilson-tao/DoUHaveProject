@@ -1311,6 +1311,10 @@ border-color: #E4A62D;
   .categoryResults{
 	padding-left: 80px;
 }
+.post-button-box {
+  width: 36%;
+  margin-left: 100px;
+}
 }
 
 @media only screen and (min-width: 1350px) {
@@ -1319,6 +1323,11 @@ border-color: #E4A62D;
     width: 220px;
 	height: 90px;
   }
+  
+  .post-button-box {
+  width: 36%;
+  margin-left: 110px;
+}
 
   .cat-title {
     //font-size: 250%;
@@ -1356,6 +1365,10 @@ border-color: #E4A62D;
 .categoryResults{
 	padding-left: 80px;
 }
+.post-button-box {
+  width: 36%;
+  margin-left: 120px;
+}
 }
 
 @media only screen and (min-width: 1600px) {
@@ -1363,7 +1376,10 @@ border-color: #E4A62D;
 	  padding-left:40px;
     //grid-template-columns: repeat(auto-fill, 420px);
   }
-
+	.post-button-box {
+  width: 36%;
+  margin-left: 120px;
+}
   .category {
     //min-height: 420px;
     //min-width: 420px;
@@ -1378,7 +1394,10 @@ border-color: #E4A62D;
 	  padding-left:40px;
     //grid-template-columns: repeat(auto-fill, 350px);
   }
-
+	.post-button-box {
+  width: 36%;
+  margin-left: 130px;
+}
   .category {
     //min-height: 350px;
     //min-width: 350px;
@@ -1392,7 +1411,10 @@ border-color: #E4A62D;
 	  padding-left:40px;
     //grid-template-columns: repeat(auto-fill, 370px);
   }
-
+	.post-button-box {
+  width: 36%;
+  margin-left: 140px;
+}
   .category {
     //min-height: 370px;
     //min-width: 370px;
