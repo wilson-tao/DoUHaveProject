@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import PostButton from '../img/Button- Post It.png';
-import UploadPhotoButton from '../img/Button-Upload-Photo.png';
-
+import PostButton from "../img/Button- Post It.png";
+import UploadPhotoButton from "../img/Button-Upload-Photo.png";
+import checkmark1 from "../img/checkmark1.png";
 
 class NeedForm extends Component {
-
-  constructor (props) {
+  constructor(props) {
     super(props);
     let firstName = this.props.firstName;
     let userName = this.props.userName;
@@ -15,29 +14,29 @@ class NeedForm extends Component {
     let email = this.props.email;
 
     this.state = {
-      submitError: '',
-      name: '',
+      submitError: "",
+      name: "",
       itemImg: null,
-      budget: '',
-      category: '',
-      condition: '',
-      description: '',
-      location: '',
-      locationState: '',
-      locationZip: '',
+      budget: "",
+      category: "",
+      condition: "",
+      description: "",
+      location: "",
+      locationState: "",
+      locationZip: "",
       submittedby: firstName,
       submittedby1: userId,
-      carmake: '',
-      carmodel: '',
-      caryear: '',
-      cellmake: '',
-      cellmodel: '',
-      cellcarrier: '',
-      cellos: '',
-      gamesystem: '',
+      carmake: "",
+      carmodel: "",
+      caryear: "",
+      cellmake: "",
+      cellmodel: "",
+      cellcarrier: "",
+      cellos: "",
+      gamesystem: "",
       contactinfo: email,
-      phone: '',
-      locationFetch: ''
+      phone: "",
+      locationFetch: "",
     };
     this.onTextChangeName = this.onTextChangeName.bind(this);
     this.onChangeItemImg = this.onChangeItemImg.bind(this);
@@ -69,188 +68,182 @@ class NeedForm extends Component {
 
   onTextChangeName(event) {
     this.setState({
-      name: event.target.value
+      name: event.target.value,
     });
   }
   onChangeItemImg(event) {
     this.setState({
-      itemImg: event.target.files[0]
+      itemImg: event.target.files[0],
     });
   }
   onTextChangeBudget(event) {
     this.setState({
-      budget: event.target.value
+      budget: event.target.value,
     });
   }
   onTextChangeCategory(event) {
     this.setState({
-      category: event.target.value
+      category: event.target.value,
     });
   }
   onTextChangeCondition(event) {
     this.setState({
-      condition: event.target.value
+      condition: event.target.value,
     });
   }
   onTextChangeDescription(event) {
     this.setState({
-      description: event.target.value
+      description: event.target.value,
     });
   }
   onTextChangeLocation(event) {
     this.setState({
-      location: event.target.value
+      location: event.target.value,
     });
   }
   onTextChangeLocationState(event) {
     this.setState({
-      locationState: event.target.value
+      locationState: event.target.value,
     });
   }
   onTextChangeLocationZip(event) {
     this.setState({
-      locationZip: event.target.value
+      locationZip: event.target.value,
     });
   }
   onTextChangeSubmittedby(event) {
     this.setState({
-      submittedby: event.target.value
+      submittedby: event.target.value,
     });
   }
   onTextChangeCarmake(event) {
     this.setState({
-      carmake: event.target.value
+      carmake: event.target.value,
     });
   }
   onTextChangeCarmodel(event) {
     this.setState({
-      carmodel: event.target.value
+      carmodel: event.target.value,
     });
   }
   onTextChangeCaryear(event) {
     this.setState({
-      caryear: event.target.value
+      caryear: event.target.value,
     });
   }
   onTextChangeCellmake(event) {
     this.setState({
-      cellmake: event.target.value
+      cellmake: event.target.value,
     });
   }
   onTextChangeCellmodel(event) {
     this.setState({
-      cellmodel: event.target.value
+      cellmodel: event.target.value,
     });
   }
   onTextChangeCellcarrier(event) {
     this.setState({
-      cellcarrier: event.target.value
+      cellcarrier: event.target.value,
     });
   }
   onTextChangeCellos(event) {
     this.setState({
-      cellos: event.target.value
+      cellos: event.target.value,
     });
   }
   onTextChangeGamesystem(event) {
     this.setState({
-      gamesystem: event.target.value
+      gamesystem: event.target.value,
     });
   }
   onTextChangeContactInfo(event) {
     this.setState({
-      contactinfo: event.target.value
+      contactinfo: event.target.value,
     });
   }
   onChangePhone(event) {
     this.setState({
-      phone: event.target.value
+      phone: event.target.value,
     });
   }
 
   callZipInfo() {
-    const {
-      location,
-      locationZip,
-      locationState,
-    } = this.state;
+    const { location, locationZip, locationState } = this.state;
 
-    fetch('/zips/' + locationZip, {
-      method: 'GET',
+    fetch("/zips/" + locationZip, {
+      method: "GET",
       headers: {
-        'Content-type': 'application/json'
-      }
+        "Content-type": "application/json",
+      },
     })
-    .then(res => res.json())
-    .then(json => {
-      console.log(json);
-      if (json.response) {
-        this.setState({
-          locationFetch: json.response,
-          locationZip: json.zip_code,
-          locationState: json.state,
-          locationCity: json.city
-        });
-      } else {
-        console.log('Zip Lookup Did Not Work');
-        console.log(json.error);
-      }
-    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json);
+        if (json.response) {
+          this.setState({
+            locationFetch: json.response,
+            locationZip: json.zip_code,
+            locationState: json.state,
+            locationCity: json.city,
+          });
+        } else {
+          console.log("Zip Lookup Did Not Work");
+          console.log(json.error);
+        }
+      });
   }
 
   callZipInfo2() {
-    const {
-      location,
-      locationZip,
-      locationState,
-    } = this.state;
+    const { location, locationZip, locationState } = this.state;
 
     var isnum = /^\d+$/.test(locationZip);
 
-    if (locationZip === '') {
+    if (locationZip === "") {
       this.setState({
-        submitError: 'Please Include Zip'
+        submitError: "Please Include Zip",
       });
-      return
+      return;
     } else if (locationZip.length !== 5) {
       this.setState({
-        submitError: 'Invalid Zip'
+        submitError: "Invalid Zip",
       });
-      return
+      return;
     } else if (!isnum) {
       this.setState({
-        submitError: 'Invalid Zip'
+        submitError: "Invalid Zip",
       });
-      return
+      return;
     } else {
       this.setState({
-        submitError: ''
+        submitError: "",
       });
     }
 
-
-    return fetch(`https://redline-redline-zipcode.p.rapidapi.com/rest/info.json/${locationZip}/degrees`, {
-      method: 'GET',
-      headers: {
-        'x-rapidapi-host': 'redline-redline-zipcode.p.rapidapi.com',
-    		'x-rapidapi-key': '47eaf9b3eemsh8821c07d555b84cp11d76cjsn3879605d5b16'
+    return fetch(
+      `https://redline-redline-zipcode.p.rapidapi.com/rest/info.json/${locationZip}/degrees`,
+      {
+        method: "GET",
+        headers: {
+          "x-rapidapi-host": "redline-redline-zipcode.p.rapidapi.com",
+          "x-rapidapi-key":
+            "47eaf9b3eemsh8821c07d555b84cp11d76cjsn3879605d5b16",
+        },
       }
-    })
-    .then(response => response.json())
-    .then(response => {
-      console.log(response);
-      console.log(response.city);
-      console.log(response.state);
-      this.setState({
-        location: response.city,
-        locationState: response.state
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        console.log(response.city);
+        console.log(response.state);
+        this.setState({
+          location: response.city,
+          locationState: response.state,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    })
-    .catch(err => {
-      console.log(err);
-    })
   }
-
 
   onSubmit2() {
     const {
@@ -275,116 +268,119 @@ class NeedForm extends Component {
       cellos,
       gamesystem,
       contactinfo,
-      locationFetch
+      locationFetch,
     } = this.state;
 
     let token = this.props.token;
 
     var data = new FormData();
-    data.append('name', name);
+    data.append("name", name);
     if (itemImg) {
-      data.append('itemImg', itemImg);
+      data.append("itemImg", itemImg);
     }
-    data.append('budget', budget);
-    data.append('category', category);
-    data.append('condition', condition);
-    data.append('description', description);
-    data.append('location', location);
-    data.append('locationState', locationState);
-    data.append('locationZip', locationZip);
-    data.append('submittedby', submittedby);
-    data.append('submittedby1', submittedby1);
-    data.append('carmake', carmake);
-    data.append('carmodel', carmodel);
-    data.append('caryear', caryear);
-    data.append('cellmake', cellmake);
-    data.append('cellmodel', cellmodel);
-    data.append('cellcarrier', cellcarrier);
-    data.append('cellos', cellos);
-    data.append('gamesystem', gamesystem);
-    data.append('contactinfo', contactinfo);
+    data.append("budget", budget);
+    data.append("category", category);
+    data.append("condition", condition);
+    data.append("description", description);
+    data.append("location", location);
+    data.append("locationState", locationState);
+    data.append("locationZip", locationZip);
+    data.append("submittedby", submittedby);
+    data.append("submittedby1", submittedby1);
+    data.append("carmake", carmake);
+    data.append("carmodel", carmodel);
+    data.append("caryear", caryear);
+    data.append("cellmake", cellmake);
+    data.append("cellmodel", cellmodel);
+    data.append("cellcarrier", cellcarrier);
+    data.append("cellos", cellos);
+    data.append("gamesystem", gamesystem);
+    data.append("contactinfo", contactinfo);
 
-    console.log('Data: ', itemImg);
+    console.log("Data: ", itemImg);
 
     if (itemImg) {
-      fetch('/items', {
-        method: 'POST',
+      fetch("/items", {
+        method: "POST",
         headers: {
-          'Authorization': 'Bearer ' + token
+          Authorization: "Bearer " + token,
         },
         body: data,
-      }).then(res => res.json())
-      .then(json => {
-        console.log(json.message);
-        if (json.message === "Item created in /items") {
-          console.log('it worked');
-          this.setState({
-            submitError: 'Your Requested Item has been posted, Please proceed to the home page to see your listing.',
-            name: '',
-            itemImg: '',
-            budget: '',
-            category: '',
-            condition: '',
-            description: '',
-            location: '',
-            locationState: '',
-            locationZip: '',
-            submittedby: '',
-            submittedby1: '',
-            carmake: '',
-            carmodel: '',
-            caryear: '',
-            cellmake: '',
-            cellmodel: '',
-            cellcarrier: '',
-            cellos: '',
-            gamesystem: ''
-          });
-        } else {
-          this.setState({
-            submitError: json.error.message
-          });
-        }
-      });
+      })
+        .then((res) => res.json())
+        .then((json) => {
+          console.log(json.message);
+          if (json.message === "Item created in /items") {
+            console.log("it worked");
+            this.setState({
+              submitError:
+                "Your Requested Item has been posted, Please proceed to the home page to see your listing.",
+              name: "",
+              itemImg: "",
+              budget: "",
+              category: "",
+              condition: "",
+              description: "",
+              location: "",
+              locationState: "",
+              locationZip: "",
+              submittedby: "",
+              submittedby1: "",
+              carmake: "",
+              carmodel: "",
+              caryear: "",
+              cellmake: "",
+              cellmodel: "",
+              cellcarrier: "",
+              cellos: "",
+              gamesystem: "",
+            });
+          } else {
+            this.setState({
+              submitError: json.error.message,
+            });
+          }
+        });
     } else {
-      fetch('/items/nopic', {
-        method: 'POST',
+      fetch("/items/nopic", {
+        method: "POST",
         body: data,
-      }).then(res => res.json())
-      .then(json => {
-        console.log(json.message);
-        if (json.message === "Item created in /items") {
-          console.log('it worked');
-          this.setState({
-            submitError: 'Your Requested Item has been posted, Please proceed to the home page to see your listing.',
-            name: '',
-            itemImg: '',
-            budget: '',
-            category: '',
-            condition: '',
-            description: '',
-            location: '',
-            locationState: '',
-            locationZip: '',
-            submittedby: '',
-            submittedby1: '',
-            carmake: '',
-            carmodel: '',
-            caryear: '',
-            cellmake: '',
-            cellmodel: '',
-            cellcarrier: '',
-            cellos: '',
-            gamesystem: ''
-          });
-        } else {
-          this.setState({
-            submitError: json.message
-          });
-        }
-      });
+      })
+        .then((res) => res.json())
+        .then((json) => {
+          console.log(json.message);
+          if (json.message === "Item created in /items") {
+            console.log("it worked");
+            this.setState({
+              submitError:
+                "Your Requested Item has been posted, Please proceed to the home page to see your listing.",
+              name: "",
+              itemImg: "",
+              budget: "",
+              category: "",
+              condition: "",
+              description: "",
+              location: "",
+              locationState: "",
+              locationZip: "",
+              submittedby: "",
+              submittedby1: "",
+              carmake: "",
+              carmodel: "",
+              caryear: "",
+              cellmake: "",
+              cellmodel: "",
+              cellcarrier: "",
+              cellos: "",
+              gamesystem: "",
+            });
+          } else {
+            this.setState({
+              submitError: json.message,
+            });
+          }
+        });
     }
-
   }
 
   validateForm() {
@@ -400,89 +396,87 @@ class NeedForm extends Component {
       locationZip,
       submittedby,
       submitError,
-      contactinfo
+      contactinfo,
     } = this.state;
 
     var isnum = /^\d+$/.test(locationZip);
 
-    if (name === '') {
+    if (name === "") {
       this.setState({
-        submitError: 'Item Name Cannot Be Empty'
+        submitError: "Item Name Cannot Be Empty",
       });
-      return
+      return;
     } else if (itemImg == null) {
       this.setState({
-        submitError: 'Please Include Image'
+        submitError: "Please Include Image",
       });
-      return
-    } else if (category === '') {
+      return;
+    } else if (category === "") {
       this.setState({
-        submitError: 'Please Choose a Category'
+        submitError: "Please Choose a Category",
       });
-      return
-    } else if (budget === '') {
+      return;
+    } else if (budget === "") {
       this.setState({
-        submitError: 'Budget Cannot Be Empty'
+        submitError: "Budget Cannot Be Empty",
       });
-      return
+      return;
     } else if (isNaN(budget)) {
       this.setState({
-        submitError: 'Please Include Only Numbers in Budget'
+        submitError: "Please Include Only Numbers in Budget",
       });
-      return
-    } else if (description === '') {
+      return;
+    } else if (description === "") {
       this.setState({
-        submitError: 'Description Cannot be Empty'
+        submitError: "Description Cannot be Empty",
       });
-      return
+      return;
     } else if (description.length < 20) {
       this.setState({
-        submitError: 'Description Needs to be at least 20 characters'
+        submitError: "Description Needs to be at least 20 characters",
       });
-      return
-    } else if (locationZip === '') {
+      return;
+    } else if (locationZip === "") {
       this.setState({
-        submitError: 'Please Include Zip'
+        submitError: "Please Include Zip",
       });
-      return
+      return;
     } else if (locationZip.length !== 5) {
       this.setState({
-        submitError: 'Invalid Zip'
+        submitError: "Invalid Zip",
       });
-      return
+      return;
     } else if (!isnum) {
       this.setState({
-        submitError: 'Invalid Zip'
+        submitError: "Invalid Zip",
       });
-      return
-    } else if (location === ''){
+      return;
+    } else if (location === "") {
       this.setState({
-        submitError: 'Please Include City where Item is Located'
+        submitError: "Please Include City where Item is Located",
       });
-      return
-    } else if (locationState === '') {
+      return;
+    } else if (locationState === "") {
       this.setState({
-        submitError: 'Please Choose a State'
+        submitError: "Please Choose a State",
       });
-      return
-    } else if (submittedby === '') {
+      return;
+    } else if (submittedby === "") {
       this.setState({
-        submitError: 'Please Include Your Name'
+        submitError: "Please Include Your Name",
       });
-      return
-    } else if (contactinfo === '') {
+      return;
+    } else if (contactinfo === "") {
       this.setState({
-        submitError: 'Please Include a Contact Number or Email Address'
+        submitError: "Please Include a Contact Number or Email Address",
       });
-      return
+      return;
     } else {
-
-      this.onSubmit()
+      this.onSubmit();
     }
   }
 
   onSubmit() {
-
     const {
       submitError,
       name,
@@ -504,76 +498,76 @@ class NeedForm extends Component {
       cellcarrier,
       cellos,
       gamesystem,
-      contactinfo
+      contactinfo,
     } = this.state;
 
     let token = this.props.token;
 
     var data = new FormData();
-    data.append('name', name);
-    data.append('itemImg', itemImg);
-    data.append('budget', budget);
-    data.append('category', category);
-    data.append('condition', 'new');
-    data.append('description', description);
-    data.append('location', location);
-    data.append('locationState', locationState);
-    data.append('locationZip', locationZip);
-    data.append('submittedby', submittedby);
-    data.append('submittedby1', submittedby1);
-    data.append('carmake', carmake);
-    data.append('carmodel', carmodel);
-    data.append('caryear', caryear);
-    data.append('cellmake', cellmake);
-    data.append('cellmodel', cellmodel);
-    data.append('cellcarrier', cellcarrier);
-    data.append('cellos', cellos);
-    data.append('gamesystem', gamesystem);
-    data.append('contactinfo', contactinfo);
+    data.append("name", name);
+    data.append("itemImg", itemImg);
+    data.append("budget", budget);
+    data.append("category", category);
+    data.append("condition", "new");
+    data.append("description", description);
+    data.append("location", location);
+    data.append("locationState", locationState);
+    data.append("locationZip", locationZip);
+    data.append("submittedby", submittedby);
+    data.append("submittedby1", submittedby1);
+    data.append("carmake", carmake);
+    data.append("carmodel", carmodel);
+    data.append("caryear", caryear);
+    data.append("cellmake", cellmake);
+    data.append("cellmodel", cellmodel);
+    data.append("cellcarrier", cellcarrier);
+    data.append("cellos", cellos);
+    data.append("gamesystem", gamesystem);
+    data.append("contactinfo", contactinfo);
 
-    console.log('Data: ', itemImg);
+    console.log("Data: ", itemImg);
 
-    fetch('/items', {
-      method: 'POST',
+    fetch("/items", {
+      method: "POST",
       headers: {
-        'Authorization': `Bearer ${token}`
+        Authorization: `Bearer ${token}`,
       },
       body: data,
-    }).then(res => res.json())
-    .then(json => {
-      console.log(json.message);
-      if (json.message === "Item created in /items") {
-        console.log('it worked');
-        this.setState({
-          submitError: 'Your Requested Item has been posted, Please proceed to the home page to see your listing.',
-          name: '',
-          itemImg: '',
-          budget: '',
-          category: '',
-          condition: '',
-          description: '',
-          location: '',
-          locationState: '',
-          locationZip: '',
-          submittedby: '',
-          submittedby1: '',
-          carmake: '',
-          carmodel: '',
-          caryear: '',
-          cellmake: '',
-          cellmodel: '',
-          cellcarrier: '',
-          cellos: '',
-          gamesystem: ''
-        });
-      } else {
-        this.setState({
-          submitError: json.error.message
-        });
-      }
-    });
-
-
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        console.log(json.message);
+        if (json.message === "Item created in /items") {
+          console.log("it worked");
+          this.setState({
+            submitError:
+              "Your Requested Item has been posted, Please proceed to the home page to see your listing.",
+            name: "",
+            itemImg: "",
+            budget: "",
+            category: "",
+            condition: "",
+            description: "",
+            location: "",
+            locationState: "",
+            locationZip: "",
+            submittedby: "",
+            submittedby1: "",
+            carmake: "",
+            carmodel: "",
+            caryear: "",
+            cellmake: "",
+            cellmodel: "",
+            cellcarrier: "",
+            cellos: "",
+            gamesystem: "",
+          });
+        } else {
+          this.setState({
+            submitError: json.error.message,
+          });
+        }
+      });
   }
 
   render() {
@@ -599,89 +593,178 @@ class NeedForm extends Component {
       cellos,
       gamesystem,
       contactinfo,
-      phone
+      phone,
     } = this.state;
-
 
     let firstName = this.props.firstName;
     let userName = this.props.userName;
     let userId = this.props.userId;
     let email = this.props.email;
 
-
-
-
     return (
-	
       <div className="NeedForm">
-		<div className="FormElements"> 
-        <input type="hidden" value={submittedby1} />
-        <div id="itemName">
-          <label style={{fontWeight:'600'}}>ITEM NAME*</label><br />
-          <input style={{backgroundColor: '#F9F3EA',
-		  borderRadius: '0px'
-		  }} type="text" value={name} onChange={this.onTextChangeName} required /><br />
-        </div>
-        <div style={{paddingTop: '10px'}} id="itemImgSection">
-		<label style={{margin:'0px'}} for="itemImg" class="btn">
-			<img style={{width:'100px', height:'40px', marginLeft:'-10px'}} src={UploadPhotoButton}/>
-		</label>
-          <input type="file" style={{visibility:'hidden'}} name="itemImg" id="itemImg" onChange={this.onChangeItemImg}  />
-          <p style={{marginTop:'0px'}}>*required (choose a photo that best represents what you are looking for)</p>
-        </div>
-        <div className="itemRow">
-          <div id="itemCategory">
-            <label style={{fontWeight:'600'}}>Category</label><br />
-            <select style={{height:'30px', backgroundColor: '#F9F3EA'}} required name={category} onChange={this.onTextChangeCategory}>
-              <option value=""></option>
-              <option value="antiques">Antiques</option>
-              <option value="vintage">Vintage Clothing & Accessories</option>
-              <option value="collectibles">Collectibles</option>
-              <option value="rarevehicles">Rare & Custom Vehicles</option>
-              <option value="vintageHome">Vintage Home</option>
-              <option value="other">Other</option>
-              
-			  </select><br />
+        <div className="FormElements">
+          <input type="hidden" value={submittedby1} />
+          <div id="itemName">
+            <label style={{ fontWeight: "600" }}>ITEM NAME*</label>
+            <br />
+            <input
+              style={{ backgroundColor: "#F9F3EA", borderRadius: "0px" }}
+              type="text"
+              value={name}
+              onChange={this.onTextChangeName}
+              required
+            />
+            <br />
           </div>
-          <div id="itemBudget">
-            <label style={{fontWeight:'600'}}>Budget</label><br />
-            $<input style={{borderRadius:'0px', height:'30px', backgroundColor: '#F9F3EA'}} required type="text" value={budget} onChange={this.onTextChangeBudget} /><br />
+          <div style={{ paddingTop: "10px" }} id="itemImgSection">
+            <label style={{ margin: "0px" }} for="itemImg" class="btn">
+              <img
+                style={{ width: "100px", height: "40px", marginLeft: "-10px" }}
+                src={UploadPhotoButton}
+              />
+            </label>
+            {this.state.itemImg ? (
+              <img
+                className="pictureCheck"
+                style={{ width: "3%", height: "auto" }}
+                src={checkmark1}
+              />
+            ) : null}
+            <input
+              type="file"
+              style={{ visibility: "hidden" }}
+              name="itemImg"
+              id="itemImg"
+              onChange={this.onChangeItemImg}
+            />
+            <p style={{ marginTop: "0px" }}>
+              *required (choose a photo that best represents what you are
+              looking for)
+            </p>
           </div>
-         </div>
-		 
-		  <div>
-        <label style={{fontWeight:'600'}}>DESCRIPTION</label><br />
-        <textarea style={{backgroundColor: '#F9F3EA'}} minLength="25" maxLength="1000" rows="4" cols="50" value={description} onChange={this.onTextChangeDescription} /><br />
-        <label style={{fontWeight:'600'}}>Location</label><br /></div>
-		<div className="LocationDetails">
-		<div className="Zip"><input style={{backgroundColor: '#F9F3EA'}} type="text" placeholder="ZIP CODE" value={locationZip} onChange={this.onTextChangeLocationZip} onBlur={this.callZipInfo2}  /><br /></div>
-        <div className="City"><input style={{border: 'none'}}type="text" value={location} disabled /><br /></div>
+          <div className="itemRow">
+            <div id="itemCategory">
+              <label style={{ fontWeight: "600" }}>Category</label>
+              <br />
+              <select
+                style={{ height: "30px", backgroundColor: "#F9F3EA" }}
+                required
+                name={category}
+                onChange={this.onTextChangeCategory}
+              >
+                <option value="" />
+                <option value="antiques">Antiques</option>
+                <option value="vintage">Vintage Clothing & Accessories</option>
+                <option value="collectibles">Collectibles</option>
+                <option value="rarevehicles">Rare & Custom Vehicles</option>
+                <option value="vintageHome">Vintage Home</option>
+                <option value="other">Other</option>
+              </select>
+              <br />
+            </div>
+            <div id="itemBudget">
+              <label style={{ fontWeight: "600" }}>Budget</label>
+              <br />
+              $
+              <input
+                style={{
+                  borderRadius: "0px",
+                  height: "30px",
+                  backgroundColor: "#F9F3EA",
+                }}
+                required
+                type="text"
+                value={budget}
+                onChange={this.onTextChangeBudget}
+              />
+              <br />
+            </div>
+          </div>
 
-        <div className="State"><input style={{border: 'none'}} type="text" value={locationState} disabled /></div>
-		</div>
+          <div>
+            <label style={{ fontWeight: "600" }}>DESCRIPTION</label>
+            <br />
+            <textarea
+              style={{ backgroundColor: "#F9F3EA" }}
+              minLength="25"
+              maxLength="1000"
+              rows="4"
+              cols="50"
+              value={description}
+              onChange={this.onTextChangeDescription}
+            />
+            <br />
+            <label style={{ fontWeight: "600" }}>Location</label>
+            <br />
+          </div>
+          <div className="LocationDetails">
+            <div className="Zip">
+              <input
+                style={{ backgroundColor: "#F9F3EA" }}
+                type="text"
+                placeholder="ZIP CODE"
+                value={locationZip}
+                onChange={this.onTextChangeLocationZip}
+                onBlur={this.callZipInfo2}
+              />
+              <br />
+            </div>
+            <div className="City">
+              <input
+                style={{ border: "none" }}
+                type="text"
+                value={location}
+                disabled
+              />
+              <br />
+            </div>
 
+            <div className="State">
+              <input
+                style={{ border: "none" }}
+                type="text"
+                value={locationState}
+                disabled
+              />
+            </div>
+          </div>
 
+          <input type="hidden" value={submittedby} />
+          <input type="hidden" value={contactinfo} />
 
-        <input type="hidden" value={submittedby} />
-        <input type="hidden" value={contactinfo} />
+          {contactinfo !== email ? (
+            <input
+              required
+              type="text"
+              placeholder="Your Contact Number"
+              value={phone}
+              onChange={this.onChangePhone}
+            />
+          ) : null}
+          <br />
+          <button style={{ border: "none" }} onClick={this.validateForm}>
+            <img
+              style={{ height: "40px", width: "100px" }}
+              src={PostButton}
+              alt="PostButton"
+            />
+          </button>
 
-        {
-          (contactinfo !== email) ? (
-            <input required type="text" placeholder="Your Contact Number" value={phone} onChange={this.onChangePhone} />
-          ) : (null)
-        }
-        <br />
-        <button style={{border: 'none'}}onClick={this.validateForm}><img style={{height: '40px', width: '100px'}} src={PostButton} alt="PostButton"/></button>
-
-        {console.log(submitError)}
-        {
-          (submitError) ? (
-            <p style={{marginTop: '1rem', marginBottom: '1rem', fontWeight: 'bolder', }}>{submitError}</p>
-          ) : (null)
-        }
-		</div>
+          {console.log(submitError)}
+          {submitError ? (
+            <p
+              style={{
+                marginTop: "1rem",
+                marginBottom: "1rem",
+                fontWeight: "bolder",
+              }}
+            >
+              {submitError}
+            </p>
+          ) : null}
+        </div>
       </div>
-	  	  
     );
   }
 }
