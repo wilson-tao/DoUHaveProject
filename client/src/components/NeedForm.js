@@ -3,6 +3,7 @@ import React, { Component } from "react";
 import PostButton from "../img/Button- Post It.png";
 import UploadPhotoButton from "../img/Button-Upload-Photo.png";
 import checkmark1 from "../img/checkmark1.png";
+import PostAnotherButton from "../img/postanother.png";
 
 class NeedForm extends Component {
   constructor(props) {
@@ -745,11 +746,24 @@ class NeedForm extends Component {
           <br />
           <button style={{ border: "none" }} onClick={this.validateForm}>
             <img
-              style={{ height: "40px", width: "100px" }}
+              style={{ height: "40px", width: "auto" }}
               src={PostButton}
               alt="PostButton"
             />
           </button>
+          {this.state.submitError ===
+          "Your Requested Item has been posted, Please proceed to the home page to see your listing." ? (
+            <button
+              style={{ border: "none" }}
+              onClick={() => window.location.reload(false)}
+            >
+              <img
+                style={{ height: "40px", width: "auto" }}
+                src={PostAnotherButton}
+                alt="PostAnotherButton"
+              />
+            </button>
+          ) : null}
 
           {console.log(submitError)}
           {submitError ? (
