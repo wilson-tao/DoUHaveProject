@@ -108,8 +108,10 @@ code {
 
 .post-button-box img {
   height: 50px;
-  position: relative;
+  position: absolute;
   z-index: 1;
+  top: 27px;
+  right: 241px;
 }
 
 .login-box {
@@ -280,19 +282,16 @@ input {
 }
 .Search button {
   border: none;
-  background-color: #67942f;
-  color: #2e2e2e;
-  border-radius: 0 10px 10px 0;
-  padding: 8px;
-  margin-left: -4px;
+  background-color: #ffffff00;
+  color: #000000;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .Search input {
-  width: 75%;
-  border-radius: 10px 0 0 10px;
+  width: 44%;
   height: 40px;
-  display: content;
+  font-weight: 500;
 }
 
 .advanced {
@@ -1367,5 +1366,20 @@ input {
 
   .categoryResults {
     padding-left: 80px;
+  }
+
+  .SearchDropDown {
+    position: absolute;
+    top: 0px;
+    left: -150px;
+    height: 40px;
+    font-weight: 500;
+  }
+
+  .Search {
+    position: absolute;
+    top: 28px;
+    left: 419px;
+    font-weight: 500;
   }
 }
